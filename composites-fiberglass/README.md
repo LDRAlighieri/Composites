@@ -1,0 +1,115 @@
+﻿
+# Fiberglass
+
+A tool for building complex screens based on simple blocks. Built on top of the following components:  
+* [Column]  
+* [LazyColumn]  
+* [Row]  
+* [LazyRow]  
+
+## Using in your projects
+
+Add dependency:
+
+```kotlin
+implementation("ru.ldralighieri.composites:composites-fiberglass:0.1.0")
+```
+
+Make sure that you have `mavenCentral()` in the list of repositories:
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+```
+
+## Example
+
+List of items:
+```kotlin
+data class SpacerItem(val height: Int) : FiberglassItem {
+    override val id: String = UUID.randomUUID().toString()
+}
+
+data class TitleItem(val title: String) : FiberglassItem {
+    override val id: String = title
+}
+
+data class LoremIpsumItem(private val words: Int) : FiberglassItem {
+    val text = LOREM_IPSUM_SOURCE.take(words).joinToString(separator = " ")
+    override val id: Int = words
+}
+```
+
+List of slots:
+```kotlin
+fun spacerItemSlot(): FiberglassLazyItemSlot = {
+    Spacer(modifier = Modifier.height((it as SpacerItem).height.dp))
+}
+
+fun titleItemSlot(): FiberglassLazyItemSlot = {
+    Text(
+        text = (it as TitleItem).title,
+        modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
+        color = AppTheme.colors.onBackground,
+        style = AppTheme.typography.headlineMedium
+    )
+}
+
+fun loremIpsumSlot(): FiberglassLazyItemSlot = {
+    Text(
+        text = (it as LoremIpsumItem).text,
+        modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
+        color = AppTheme.colors.onBackground,
+        style = AppTheme.typography.bodyMedium
+    )
+}
+```
+
+Composite:
+```kotlin
+@Composable
+private fun FiberglassContent() {
+    val items: List<FiberglassItem> = remember {
+        buildList {
+            val count = 4
+            repeat(count) {
+                val number = it + 1
+                add(TitleItem("Block №$number"))
+                add(LoremIpsumItem(20 * number))
+                if (number < count) add(SpacerItem(16))
+            }
+        }
+    }
+
+    val slots: FiberglassLazyItemSlots = remember {
+        mapOf(
+            SpacerItem::class to spacerItemSlot(),
+            TitleItem::class to titleItemSlot(),
+            LoremIpsumItem::class to loremIpsumSlot()
+        )
+    }
+
+    FiberglassLazyColumn(
+        items = items,
+        itemSlots = slots,
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(
+            top = AppTheme.dimensions.topGuideline,
+            bottom = WindowInsets.navigationBars
+                .only(WindowInsetsSides.Bottom)
+                .asPaddingValues()
+                .calculateBottomPadding() + AppTheme.dimensions.bottomGuideline
+        )
+    )
+}
+```
+
+A more complex example can be found in the [demo application][demo]
+
+
+[Column]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/package-summary#Column(androidx.compose.ui.Modifier,androidx.compose.foundation.layout.Arrangement.Vertical,androidx.compose.ui.Alignment.Horizontal,kotlin.Function1)
+[LazyColumn]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/package-summary#LazyColumn(androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.LazyListState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.foundation.layout.Arrangement.Vertical,androidx.compose.ui.Alignment.Horizontal,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)
+[Row]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/package-summary#Row(androidx.compose.ui.Modifier,androidx.compose.foundation.layout.Arrangement.Horizontal,androidx.compose.ui.Alignment.Vertical,kotlin.Function1)
+[LazyRow]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/package-summary#LazyRow(androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.LazyListState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.foundation.layout.Arrangement.Horizontal,androidx.compose.ui.Alignment.Vertical,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)
+[demo]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/ui/fiberglass/FiberglassScreen.kt
