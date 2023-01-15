@@ -12,7 +12,9 @@ A tool for building complex screens based on simple blocks. Built on top of the 
 Add dependency:
 
 ```kotlin
-implementation("ru.ldralighieri.composites:composites-fiberglass:0.1.0")
+dependencies {
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.1.0")
+}
 ```
 
 Make sure that you have `mavenCentral()` in the list of repositories:
