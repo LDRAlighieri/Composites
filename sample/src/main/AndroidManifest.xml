@@ -26,6 +26,8 @@
         android:theme="@style/Theme.Composites.SplashScreen"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <profileable android:shell="true" tools:targetApi="q" />
+
         <activity
             android:name=".ui.SampleActivity"
             android:exported="true">
