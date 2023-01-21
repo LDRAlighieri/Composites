@@ -5,7 +5,7 @@
 
 # Composites (work in progress 🚧🔧️👷⛏🚧)
 
-Composites are a group of tools and handy libraries that make it easier to use [Jetpack Compose][compose].  
+✨ Composites are a group of tools and handy libraries that make it easier to use [Jetpack Compose][compose].  
 Please consider giving this repository a star ⭐ if you like the project.
 
 
@@ -34,7 +34,7 @@ repositories {
 Snapshot build:
 ```kotlin
 repositories {
-    maven { url = URI("https://oss.sonatype.org/content/repositories/snapshots/") }
+    maven("https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
@@ -73,5 +73,5 @@ limitations under the License.
 
 
 [compose]: https://developer.android.com/jetpack/compose
-[composites-fiberglass]: https://github.com/LDRAlighieri/Composites/tree/master/composites-fiberglass
+[composites-fiberglass]: https://github.com/LDRAlighieri/Composites/tree/main/composites-fiberglass
 [performance]: https://developer.android.com/jetpack/compose/performance#build-release
