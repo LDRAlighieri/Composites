@@ -1,4 +1,4 @@
-﻿[![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg?color=blue)](https://search.maven.org/search?q=g:ru.ldralighieri.composites)
+﻿[![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://search.maven.org/search?q=g:ru.ldralighieri.composites)
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.8.0-blue.svg?logo=kotlin)](https://kotlinlang.org)
 [![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.01.00-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)

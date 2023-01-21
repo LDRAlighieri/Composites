@@ -2,8 +2,8 @@
 # Plugins
 agp = "7.4.0"
 dokka = "1.7.20"
-spotless = "6.12.1"
-mavenPublish = "0.23.1"
+spotless = "6.13.0"
+mavenPublish = "0.23.2"
 gver = "0.44.0"
 
 # Kotlin
@@ -14,7 +14,7 @@ androidxCoreSplashscreen = "1.0.0"
 androidxActivity = "1.6.1"
 androidxPagingCompose = "1.0.0-alpha17"
 # Compose
-androidxComposeCompiler = "1.4.0-dev-k1.8.0-33c0ad36f83"
+androidxComposeCompiler = "1.4.0"
 androidxComposeBom = "2023.01.00"
 # Accompanist
 accompanist = "0.28.0"
