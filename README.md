@@ -3,6 +3,9 @@
 [![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.01.00-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
+![Publish status](https://github.com/LDRAlighieri/Composites/actions/workflows/publish.yml/badge.svg)
+
 # Composites (work in progress 🚧🔧️👷⛏🚧)
 
 ✨ Composites are a group of tools and handy libraries that make it easier to use [Jetpack Compose][compose].  

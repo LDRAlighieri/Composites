@@ -1,9 +1,6 @@
 name: Build
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
 
 jobs:
@@ -12,7 +9,8 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup JDK
         uses: actions/setup-java@v3
@@ -23,5 +21,5 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: Build the sample app
+      - name: Build the sample app to verify it works
         run: ./gradlew sample:assemble
