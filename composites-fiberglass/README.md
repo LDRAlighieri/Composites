@@ -1,4 +1,5 @@
-﻿
+﻿[![jetc.dev](https://img.shields.io/badge/As_Seen_In-jetc.dev_Newsletter_Issue_%23150-blue?logo=jetpackcompose&logoColor=white)](https://jetc.dev/issues/150.html)
+
 # Fiberglass
 
 A tool for building complex screens based on simple blocks. Built on top of the following components:  

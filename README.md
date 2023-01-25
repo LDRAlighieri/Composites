@@ -34,7 +34,8 @@ repositories {
 }
 ```
 
-Snapshot build:
+Snapshot build:  
+[![Nexus](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-fiberglass?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/)
 ```kotlin
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
