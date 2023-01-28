@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
@@ -38,7 +37,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * @param items List of [FiberglassItem] items.
  * @param itemSlots FiberglassColumn [slots map][FiberglassColumnItemSlots].
  * @param modifier The modifier to be applied to the Composite.
- * @param state Vertical scroll state.
+ * @param scrollState Vertical scroll state.
  * @param contentPadding A padding around the whole content. Negative padding is not permitted — it
  * will cause IllegalArgumentException.
  * @param verticalArrangement The vertical arrangement of the layout's children.
@@ -49,7 +48,7 @@ fun FiberglassColumn(
     items: List<FiberglassItem>,
     itemSlots: FiberglassColumnItemSlots,
     modifier: Modifier = Modifier,
-    state: ScrollState = rememberScrollState(),
+    scrollState: ScrollState? = null,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start
@@ -57,13 +56,13 @@ fun FiberglassColumn(
     Box(modifier = modifier) {
         Column(
             modifier = Modifier
-                .verticalScroll(state)
+                .then(if (scrollState != null) Modifier.verticalScroll(scrollState) else Modifier)
                 .padding(contentPadding),
             verticalArrangement = verticalArrangement,
             horizontalAlignment = horizontalAlignment
         ) {
             items.forEach { item ->
-                key(item) {
+                key(item.id) {
                     itemSlots[item::class]?.let { it(item) }
                 }
             }

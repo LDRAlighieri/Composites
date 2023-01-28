@@ -30,6 +30,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
@@ -133,6 +134,7 @@ fun tagsRowSlot(): FiberglassLazyItemSlot = {
         FiberglassRow(
             items = tags,
             itemSlots = mapOf(TagItem::class to tagSlot()),
+            scrollState = rememberScrollState(),
             contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         )
