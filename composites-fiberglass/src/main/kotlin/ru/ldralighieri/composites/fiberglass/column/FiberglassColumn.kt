@@ -63,7 +63,7 @@ fun FiberglassColumn(
             horizontalAlignment = horizontalAlignment
         ) {
             items.forEach { item ->
-                key(item) {
+                key(item.id) {
                     itemSlots[item::class]?.let { it(item) }
                 }
             }
