@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
@@ -38,7 +37,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlots
  * @param items List of [FiberglassItem] items.
  * @param itemSlots FiberglassRow [slots map][FiberglassRowItemSlots].
  * @param modifier The modifier to be applied to the Composite.
- * @param state Horizontal scroll state.
+ * @param scrollState Horizontal scroll state.
  * @param contentPadding A padding around the whole content. Negative padding is not permitted — it
  * will cause IllegalArgumentException.
  * @param horizontalArrangement The horizontal arrangement of the layout's children.
@@ -49,7 +48,7 @@ fun FiberglassRow(
     items: List<FiberglassItem>,
     itemSlots: FiberglassRowItemSlots,
     modifier: Modifier = Modifier,
-    state: ScrollState = rememberScrollState(),
+    scrollState: ScrollState? = null,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     verticalAlignment: Alignment.Vertical = Alignment.Top
@@ -57,7 +56,7 @@ fun FiberglassRow(
     Box(modifier = modifier) {
         Row(
             modifier = Modifier
-                .horizontalScroll(state)
+                .then(if (scrollState != null) Modifier.horizontalScroll(scrollState) else Modifier)
                 .padding(contentPadding),
             horizontalArrangement = horizontalArrangement,
             verticalAlignment = verticalAlignment
