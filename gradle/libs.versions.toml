@@ -1,20 +1,21 @@
 [versions]
 # Plugins
-agp = "7.4.0"
+agp = "7.4.1"
 dokka = "1.7.20"
-spotless = "6.14.0"
-mavenPublish = "0.23.2"
-gver = "0.44.0"
+spotless = "6.15.0"
+mavenPublish = "0.24.0"
+bcv = "0.12.1"
+gver = "0.45.0"
 
 # Kotlin
-kotlin = "1.8.0"
+kotlin = "1.8.10"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.0"
 androidxActivity = "1.6.1"
 androidxPagingCompose = "1.0.0-alpha17"
 # Compose
-androidxComposeCompiler = "1.4.0"
+androidxComposeCompiler = "1.4.2"
 androidxComposeBom = "2023.01.00"
 # Accompanist
 accompanist = "0.28.0"
@@ -66,4 +67,5 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv" }
 gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
