@@ -6,6 +6,10 @@
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
 ![Publish status](https://github.com/LDRAlighieri/Composites/actions/workflows/publish.yml/badge.svg)
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/48987500/218184621-5bab06f6-36a6-4a22-b25f-e3f41d7bd441.png" />
+</p>
+
 # Composites (work in progress 🚧🔧️👷⛏🚧)
 
 ✨ Composites are a group of tools and handy libraries that make it easier to use [Jetpack Compose][compose].  
