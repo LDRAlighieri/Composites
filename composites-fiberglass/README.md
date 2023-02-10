@@ -2,11 +2,21 @@
 
 # Fiberglass
 
-A tool for building complex screens based on simple blocks. Built on top of the following components:  
-* [Column]  
-* [LazyColumn]  
-* [Row]  
-* [LazyRow]  
+<img src="https://user-images.githubusercontent.com/48987500/218207225-d8b942f9-a6da-4cf7-92f7-ee63a56f41c6.gif" align="right" width="20%">
+
+A tool for building complex screens based on simple blocks. Built on top of the following components:
+* [Column]
+* [LazyColumn]
+* [Row]
+* [LazyRow]
+
+Let’s imagine that you need to draw a screen, but you don’t know its content. You don’t know how many elements, sections, banners, or cards will be on the screen. It all depends on the data set received from the server.
+
+In such a situation, the solution to the problem is the standardization of the screen components. We define valid screen items, prepare a slot for each item, and convert the response from the server into a list of items in the order we need. Items will define the data required for the components, and slots will define the UI to display this data.
+
+As a result, we will get a set of blocks from which we can build complex screens without code duplication.
+
+FiberglassColumn and FiberglassRow are great for small and not very complex cases or blocks. FiberglassLazyColumn and FiberglassLazyRow are more universal, and screens of any complexity can be built on their basis.
 
 ## Using in your projects
 
