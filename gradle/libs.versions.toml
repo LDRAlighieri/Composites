@@ -11,7 +11,7 @@ gver = "0.46.0"
 kotlin = "1.8.21"
 
 # Androidx
-androidxCoreSplashscreen = "1.0.0"
+androidxCoreSplashscreen = "1.0.1"
 androidxActivity = "1.7.1"
 androidxPagingCompose = "1.0.0-alpha17"
 # Compose
