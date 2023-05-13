@@ -1,9 +1,17 @@
 # ChangeLog
 
 
+## Version 0.1.2
+
+* Fix: Paging FiberglassLazyColumn after paging-compose v1.0.0-alpha19.
+* Update: Kotlin to v1.8.21.
+* Update: Compose BOM to v2023.05.01.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.1.1
 
-* Fix: Row and Column key
+* Fix: Row and Column key.
 * Update: Row and Column are no longer scrollable by default. You need to explicitly set the scroll state.
 
 

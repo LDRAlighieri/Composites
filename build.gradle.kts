@@ -30,7 +30,7 @@ plugins {
 
 // Binary compatibility validator
 apiValidation {
-    ignoredProjects.addAll(listOf("sample"))
+    ignoredProjects.add("sample")
 }
 
 // Dependency updates
