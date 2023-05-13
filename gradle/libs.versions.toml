@@ -1,27 +1,27 @@
 [versions]
 # Plugins
-agp = "7.4.1"
-dokka = "1.7.20"
-spotless = "6.15.0"
-mavenPublish = "0.24.0"
-bcv = "0.12.1"
-gver = "0.45.0"
+agp = "8.0.1"
+dokka = "1.8.10"
+spotless = "6.18.0"
+mavenPublish = "0.25.2"
+bcv = "0.13.1"
+gver = "0.46.0"
 
 # Kotlin
-kotlin = "1.8.10"
+kotlin = "1.8.21"
 
 # Androidx
-androidxCoreSplashscreen = "1.0.0"
-androidxActivity = "1.6.1"
-androidxPagingCompose = "1.0.0-alpha17"
+androidxCoreSplashscreen = "1.0.1"
+androidxActivity = "1.7.1"
+androidxPagingCompose = "1.0.0-alpha19"
 # Compose
-androidxComposeCompiler = "1.4.2"
-androidxComposeBom = "2023.01.00"
+androidxComposeCompiler = "1.4.7"
+androidxComposeBom = "2023.05.01"
 # Accompanist
-accompanist = "0.28.0"
+accompanist = "0.30.1"
 
 # Google
-googleMaterial="1.8.0"
+googleMaterial="1.9.0"
 
 # Lint
 ktlint = "0.46.1"

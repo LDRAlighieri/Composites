@@ -31,7 +31,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -55,9 +55,10 @@ fun CompositesScreen(onFiberglassClick: () -> Unit) {
                     style = AppTheme.typography.headlineSmall
                 )
             },
-            colors = TopAppBarDefaults.smallTopAppBarColors(
+            colors = topAppBarColors(
                 containerColor = AppTheme.colors.surfaceColorAtElevation(3.dp),
-                titleContentColor = AppTheme.colors.onSurface
+                titleContentColor = AppTheme.colors.onSurface,
+                actionIconContentColor = AppTheme.colors.onSurfaceVariant
             )
         )
 

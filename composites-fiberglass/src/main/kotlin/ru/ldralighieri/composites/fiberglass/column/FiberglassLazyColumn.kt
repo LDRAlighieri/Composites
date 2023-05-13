@@ -30,7 +30,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderItem
@@ -125,11 +126,12 @@ fun FiberglassLazyColumn(
         userScrollEnabled = userScrollEnabled
     ) {
         items(
-            items = items,
-            key = { it.id }
-        ) { item ->
-            item?.let {
-                itemSlots[it::class]?.let { slot -> slot(item) }
+            count = items.itemCount,
+            key = items.itemKey { it.id },
+            contentType = items.itemContentType { it::class.simpleName }
+        ) { index ->
+            items[index]?.let {
+                itemSlots[it::class]?.let { slot -> slot(it) }
             }
         }
     }

@@ -24,7 +24,7 @@ Add dependency:
 
 ```kotlin
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.1.1")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.1.2")
 }
 ```
 
