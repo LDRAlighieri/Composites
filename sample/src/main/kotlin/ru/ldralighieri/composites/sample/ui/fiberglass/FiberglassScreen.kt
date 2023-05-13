@@ -31,7 +31,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -65,10 +65,11 @@ fun FiberglassScreen(onBackClick: () -> Unit) {
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "")
                 }
             },
-            colors = TopAppBarDefaults.smallTopAppBarColors(
+            colors = topAppBarColors(
                 containerColor = AppTheme.colors.surfaceColorAtElevation(3.dp),
                 navigationIconContentColor = AppTheme.colors.onSurface,
-                titleContentColor = AppTheme.colors.onSurface
+                titleContentColor = AppTheme.colors.onSurface,
+                actionIconContentColor = AppTheme.colors.onSurfaceVariant
             )
         )
 
