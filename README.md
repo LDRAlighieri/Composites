@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
-![Publish status](https://github.com/LDRAlighieri/Composites/actions/workflows/publish.yml/badge.svg)
+[![Publish status](https://github.com/LDRAlighieri/Composites/actions/workflows/publish.yml/badge.svg)](https://github.com/LDRAlighieri/Composites/actions)
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/48987500/218184621-5bab06f6-36a6-4a22-b25f-e3f41d7bd441.png" />
@@ -39,7 +39,7 @@ repositories {
 ```
 
 Snapshot build:  
-[![Nexus](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-fiberglass?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/)
+[![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-fiberglass?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/)
 ```kotlin
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
