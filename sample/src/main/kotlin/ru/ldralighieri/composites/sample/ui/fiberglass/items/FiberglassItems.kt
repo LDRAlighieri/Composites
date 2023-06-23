@@ -38,18 +38,22 @@ private val LOREM_IPSUM_SOURCE = (
         " eleifend a. Curabitur congue orci in neque euismod a blandit libero vehicula."
     ).split(" ")
 
+
 data class StickyHeaderItem(override val title: String) : FiberglassStickyHeaderItem {
     override val id: String = title
 }
+
 
 data class SpacerItem(val height: Int) : FiberglassItem {
     override val id: String = UUID.randomUUID().toString()
 }
 
+
 data class LoremIpsumItem(private val words: Int) : FiberglassItem {
     val text = LOREM_IPSUM_SOURCE.take(words).joinToString(separator = " ")
     override val id: Int = words
 }
+
 
 data class SmallImageItem(override val id: String = UUID.randomUUID().toString()) : FiberglassItem
 data class BigImageItem(override val id: String = UUID.randomUUID().toString()) : FiberglassItem
@@ -63,14 +67,21 @@ data class ImagesRowItem(val count: Int) : FiberglassItem {
     }
 }
 
-data class TagItem(val number: Int) : FiberglassItem {
+
+open class TagItem(number: Int) : FiberglassItem {
     override val id: String = UUID.randomUUID().toString()
-    val text: String = "tag $number"
+    open val text: String = "tag $number"
 }
 
-data class TagRowItem(val count: Int) : FiberglassItem {
+data class SecondaryTagItem(val number: Int) : TagItem(number)
+data class TertiaryTagItem(val number: Int) : TagItem(number)
+
+data class TagsFlowRowItem(val count: Int) : FiberglassItem {
     override val id: String = "TagItem_$count"
     val tags: List<TagItem> = buildList {
-        repeat(count) { add(TagItem(it + 1)) }
+        repeat(count) {
+            val number = it + 1
+            add(if (it % 2 == 0) SecondaryTagItem(number) else TertiaryTagItem(number))
+        }
     }
 }
