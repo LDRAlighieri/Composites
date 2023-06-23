@@ -20,20 +20,17 @@ package ru.ldralighieri.composites
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.kotlin.dsl.getByType
 import java.io.File
 
 internal fun Project.configureAndroidCompose(
     extension: CommonExtension<*, *, *, *>,
 ) {
-    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-
     extension.apply {
         buildFeatures.compose = true
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
+            kotlinCompilerExtensionVersion =
+                libs.findVersion("androidxComposeCompiler").get().toString()
         }
 
         kotlinOptions {
@@ -42,20 +39,20 @@ internal fun Project.configureAndroidCompose(
     }
 }
 
-@Suppress("OPT_IN_IS_NOT_ENABLED")
-@OptIn(ExperimentalStdlibApi::class)
 private fun Project.buildComposeMetricsParameters(): List<String> = buildList {
     val enableMetricsProvider = project.providers.gradleProperty("enableComposeCompilerMetrics")
     if (enableMetricsProvider.orNull == "true") {
         val metricsFolder = File(project.buildDir, "compose-metrics")
         add("-P")
-        add("plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + metricsFolder.absolutePath)
+        add("plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination="
+            + metricsFolder.absolutePath)
     }
 
     val enableReportsProvider = project.providers.gradleProperty("enableComposeCompilerReports")
     if (enableReportsProvider.orNull == "true") {
         val reportsFolder = File(project.buildDir, "compose-reports")
         add("-P")
-        add("plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + reportsFolder.absolutePath)
+        add("plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination="
+            + reportsFolder.absolutePath)
     }
 }
