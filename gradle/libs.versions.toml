@@ -16,7 +16,7 @@ androidxActivity = "1.7.1"
 androidxPagingCompose = "1.0.0-alpha19"
 # Compose
 androidxComposeCompiler = "1.4.7"
-androidxComposeBom = "2023.05.01"
+androidxComposeBom = "2023.06.01"
 # Accompanist
 accompanist = "0.30.1"
 
