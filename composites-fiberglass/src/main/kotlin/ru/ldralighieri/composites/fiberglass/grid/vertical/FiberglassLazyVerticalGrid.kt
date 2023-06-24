@@ -28,13 +28,28 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.ldralighieri.composites.fiberglass.model.FiberglasslazyGridItemSlots
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlots
 
+/**
+ * Fiberglass lazy vertical grid Composite
+ *
+ * @param items List of [FiberglassItem] items.
+ * @param itemSlots FiberglassLazyHorizontalGrid [slots map][FiberglassLazyGridItemSlots].
+ * @param modifier The modifier to apply to this layout.
+ * @param state The state object to be used to control and observe the grid state.
+ * @param contentPadding A padding around the whole content.
+ * @param reverseLayout Reverse the direction of scrolling and layout.
+ * @param verticalArrangement The vertical arrangement of the layout's children.
+ * @param horizontalArrangement The horizontal arrangement of the layout's children.
+ * @param flingBehavior Logic describing fling behavior.
+ * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
+ * is allowed. You can still scroll programmatically using the state even when it is disabled.
+ */
 @Composable
 fun FiberglassLazyVerticalGrid(
     items: List<FiberglassItem>,
-    itemSlots: FiberglasslazyGridItemSlots,
+    itemSlots: FiberglassLazyGridItemSlots,
     columns: GridCells,
     modifier: Modifier = Modifier,
     state: LazyGridState = rememberLazyGridState(),

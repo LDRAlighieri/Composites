@@ -16,58 +16,63 @@
 
 package ru.ldralighieri.composites.fiberglass.grid.horizontal
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyGridState
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
-import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlots
+import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyStaggeredGridItemSlots
 
 /**
- * Fiberglass lazy horizontal grid Composite
+ * Fiberglass lazy horizontal staggered grid Composite
  *
  * @param items List of [FiberglassItem] items.
- * @param itemSlots FiberglassLazyHorizontalGrid [slots map][FiberglassLazyGridItemSlots].
+ * @param itemSlots FiberglassLazyHorizontalStaggeredGrid
+ * [slots map][FiberglassLazyStaggeredGridItemSlots].
  * @param modifier The modifier to apply to this layout.
- * @param state The state object to be used to control and observe the grid state.
+ * @param state The state object that can be used to control and observe staggered grid state.
  * @param contentPadding A padding around the whole content.
  * @param reverseLayout Reverse the direction of scrolling and layout.
- * @param horizontalArrangement The horizontal arrangement of the layout's children.
- * @param verticalArrangement The vertical arrangement of the layout's children.
+ * @param verticalArrangement Arrangement specifying vertical spacing between items.
+ * @param horizontalItemSpacing Horizontal spacing between items.
  * @param flingBehavior Logic describing fling behavior.
- * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
- * is allowed. You can still scroll programmatically using the state even when it is disabled.
+ * @param userScrollEnabled Whether scroll with gestures or accessibility actions are allowed. It
+ * is still possible to scroll programmatically through state when [userScrollEnabled] is set to
+ * false.
  */
+@ExperimentalFoundationApi
 @Composable
-fun FiberglassLazyHorizontalGrid(
+fun FiberglassLazyHorizontalStaggeredGrid(
     items: List<FiberglassItem>,
-    itemSlots: FiberglassLazyGridItemSlots,
-    rows: GridCells,
+    itemSlots: FiberglassLazyStaggeredGridItemSlots,
+    rows: StaggeredGridCells,
     modifier: Modifier = Modifier,
-    state: LazyGridState = rememberLazyGridState(),
+    state: LazyStaggeredGridState = rememberLazyStaggeredGridState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
     reverseLayout: Boolean = false,
-    horizontalArrangement: Arrangement.Horizontal =
-        if (!reverseLayout) Arrangement.Start else Arrangement.End,
-    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(0.dp),
+    horizontalItemSpacing: Dp = 0.dp,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
-    userScrollEnabled: Boolean = true
+    userScrollEnabled: Boolean = true,
 ) {
-    LazyHorizontalGrid(
+    LazyHorizontalStaggeredGrid(
         rows = rows,
         modifier = modifier,
         state = state,
         contentPadding = contentPadding,
-        horizontalArrangement = horizontalArrangement,
+        reverseLayout = reverseLayout,
         verticalArrangement = verticalArrangement,
+        horizontalItemSpacing = horizontalItemSpacing,
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled
     ) {
