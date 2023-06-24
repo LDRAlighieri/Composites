@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlot
@@ -33,6 +34,7 @@ private fun gridSlot(backgroundColor: Color): FiberglassLazyGridItemSlot = {
         modifier = Modifier
             .aspectRatio(1f)
             .padding(Random.nextInt(8, 48).dp)
+            .clip(AppTheme.shapes.medium)
             .background(backgroundColor)
     )
 }
