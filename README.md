@@ -1,6 +1,6 @@
 ﻿[![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://search.maven.org/search?q=g:ru.ldralighieri.composites)
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.8.21-blue.svg?logo=kotlin)](https://kotlinlang.org)
-[![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.05.01-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
+[![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.06.01-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
@@ -26,7 +26,7 @@ Add one or more dependencies:
 
 ```kotlin
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.1.2")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.2.0")
 }
 ```
 

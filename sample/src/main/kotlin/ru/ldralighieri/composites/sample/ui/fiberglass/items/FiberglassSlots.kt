@@ -30,24 +30,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderSlot
+import ru.ldralighieri.composites.fiberglass.row.FiberglassFlowRow
 import ru.ldralighieri.composites.fiberglass.row.FiberglassLazyRow
-import ru.ldralighieri.composites.fiberglass.row.FiberglassRow
 import ru.ldralighieri.composites.sample.ThemePreviews
 import ru.ldralighieri.composites.sample.theme.AppTheme
 
@@ -64,9 +65,11 @@ fun stickyHeaderSlot(): FiberglassStickyHeaderSlot = {
     )
 }
 
+
 fun spacerItemSlot(): FiberglassLazyItemSlot = {
     Spacer(modifier = Modifier.height((it as SpacerItem).height.dp))
 }
+
 
 fun loremIpsumSlot(): FiberglassLazyItemSlot = {
     Text(
@@ -77,8 +80,6 @@ fun loremIpsumSlot(): FiberglassLazyItemSlot = {
     )
 }
 
-fun smallImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 160.dp) }
-fun bigImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 256.dp) }
 
 @Composable
 private fun ImageSlot(width: Dp) {
@@ -98,6 +99,9 @@ private fun ImageSlot(width: Dp) {
     }
 }
 
+fun smallImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 160.dp) }
+fun bigImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 256.dp) }
+
 fun imagesRowSlot(): FiberglassLazyItemSlot = {
     with(it as ImagesRowItem) {
         FiberglassLazyRow(
@@ -112,34 +116,43 @@ fun imagesRowSlot(): FiberglassLazyItemSlot = {
     }
 }
 
+
 @OptIn(ExperimentalMaterialApi::class)
-fun tagSlot(): FiberglassRowItemSlot = {
+private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot = {
     Chip(
         onClick = {},
-        colors = ChipDefaults.chipColors(
-            backgroundColor = AppTheme.colors.tertiaryContainer
-        )
+        colors = ChipDefaults.chipColors(backgroundColor = backgroundColor)
     ) {
         Text(
             text = (it as TagItem).text,
             modifier = Modifier.padding(horizontal = 8.dp),
-            color = AppTheme.colors.onTertiaryContainer,
+            color = AppTheme.colors.contentColorFor(backgroundColor),
             style = AppTheme.typography.labelSmall
         )
     }
 }
 
-fun tagsRowSlot(): FiberglassLazyItemSlot = {
-    with(it as TagRowItem) {
-        FiberglassRow(
+@Composable
+fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
+
+@Composable
+fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
+
+
+fun tagsFlowRowSlot(): FiberglassLazyItemSlot = {
+    with(it as TagsFlowRowItem) {
+        FiberglassFlowRow(
             items = tags,
-            itemSlots = mapOf(TagItem::class to tagSlot()),
-            scrollState = rememberScrollState(),
+            itemSlots = mapOf(
+                SecondaryTagItem::class to secondaryTagSlot(),
+                TertiaryTagItem::class to tertiaryTagSlot(),
+            ),
             contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         )
     }
 }
+
 
 // Previews
 @OptIn(ExperimentalFoundationApi::class)
@@ -213,8 +226,8 @@ private fun ImagesRowSlotPreview() {
 private fun TagSlotPreview() {
     AppTheme(dynamicColor = false) {
         Row {
-            tagSlot()(
-                TagItem(2)
+            secondaryTagSlot()(
+                SecondaryTagItem(2)
             )
         }
     }
@@ -224,8 +237,8 @@ private fun TagSlotPreview() {
 @ThemePreviews
 private fun TagsRowSlotPreview() {
     ItemSlotPreview {
-        tagsRowSlot()(
-            TagRowItem(2)
+        tagsFlowRowSlot()(
+            TagsFlowRowItem(2)
         )
     }
 }

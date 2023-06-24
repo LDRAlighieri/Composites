@@ -45,20 +45,20 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.items.ImagesRowItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.LoremIpsumItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.SpacerItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.StickyHeaderItem
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.TagRowItem
+import ru.ldralighieri.composites.sample.ui.fiberglass.items.TagsFlowRowItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.imagesRowSlot
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.loremIpsumSlot
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.spacerItemSlot
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.stickyHeaderSlot
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.tagsRowSlot
+import ru.ldralighieri.composites.sample.ui.fiberglass.items.tagsFlowRowSlot
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiberglassScreen(onBackClick: () -> Unit) {
+fun FiberglassColumnScreen(onBackClick: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = "Fiberglass", style = AppTheme.typography.headlineSmall)
+                Text(text = "Fiberglass column", style = AppTheme.typography.headlineSmall)
             },
             navigationIcon = {
                 IconButton(onClick = onBackClick) {
@@ -73,12 +73,12 @@ fun FiberglassScreen(onBackClick: () -> Unit) {
             )
         )
 
-        FiberglassContent()
+        FiberglassColumnContent()
     }
 }
 
 @Composable
-private fun FiberglassContent() {
+private fun FiberglassColumnContent() {
     val sections: Map<FiberglassStickyHeaderItem, List<FiberglassItem>> = remember {
         buildMap {
             val count = 6
@@ -87,7 +87,7 @@ private fun FiberglassContent() {
                 val header = StickyHeaderItem("Block №$number")
                 val items: List<FiberglassItem> = buildList {
                     add(ImagesRowItem(number * 2))
-                    add(TagRowItem(number * 3))
+                    add(TagsFlowRowItem(number * 3))
                     add(LoremIpsumItem(20 * number))
                     if (number < count) add(SpacerItem(16))
                 }
@@ -103,7 +103,7 @@ private fun FiberglassContent() {
             SpacerItem::class to spacerItemSlot(),
             LoremIpsumItem::class to loremIpsumSlot(),
             ImagesRowItem::class to imagesRowSlot(),
-            TagRowItem::class to tagsRowSlot()
+            TagsFlowRowItem::class to tagsFlowRowSlot()
         ),
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(

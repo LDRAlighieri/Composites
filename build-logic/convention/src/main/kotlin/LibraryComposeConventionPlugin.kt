@@ -20,14 +20,13 @@ import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.provideDelegate
 import ru.ldralighieri.composites.configureAndroidCompose
 import ru.ldralighieri.composites.configureKotlinAndroid
 import ru.ldralighieri.composites.getLibrary
+import ru.ldralighieri.composites.libs
 
 @Suppress("unused")
 internal class LibraryComposeConventionPlugin : Plugin<Project> {
@@ -53,7 +52,6 @@ internal class LibraryComposeConventionPlugin : Plugin<Project> {
                 }
             }
 
-            val libs: VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
                 // Compose
                 add("implementation", platform(libs.composeBom()))

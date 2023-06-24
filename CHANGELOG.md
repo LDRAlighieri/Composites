@@ -1,6 +1,19 @@
 # ChangeLog
 
 
+## Version 0.2.0
+
+* New: Fiberglass(`composites-fiberglass`) composites:
+  - Fiberglass flow column Composite
+  - Fiberglass flow row Composite
+  - Fiberglass lazy horizontal grid Composite
+  - Fiberglass lazy vertical grid Composite
+  - Fiberglass lazy horizontal staggered grid Composite
+  - Fiberglass lazy vertical staggered grid Composite
+* Update: Compose BOM to v2023.06.01.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.1.2
 
 * Fix: Paging FiberglassLazyColumn after paging-compose v1.0.0-alpha19.
@@ -17,7 +30,7 @@
 
 ## Version 0.1.0
 
-* New: Fiberglass module(`composites-fiberglass`):
+* New: Fiberglass(`composites-fiberglass`) module:
     - Fiberglass column Composite
     - Fiberglass lazy column Composite
     - Fiberglass lazy column Composite for `LazyPagingItems`
