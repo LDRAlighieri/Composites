@@ -45,6 +45,7 @@ androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+
 # Accompanist
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
