@@ -65,9 +65,11 @@ fun stickyHeaderSlot(): FiberglassStickyHeaderSlot = {
     )
 }
 
+
 fun spacerItemSlot(): FiberglassLazyItemSlot = {
     Spacer(modifier = Modifier.height((it as SpacerItem).height.dp))
 }
+
 
 fun loremIpsumSlot(): FiberglassLazyItemSlot = {
     Text(
@@ -78,8 +80,6 @@ fun loremIpsumSlot(): FiberglassLazyItemSlot = {
     )
 }
 
-fun smallImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 160.dp) }
-fun bigImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 256.dp) }
 
 @Composable
 private fun ImageSlot(width: Dp) {
@@ -99,6 +99,9 @@ private fun ImageSlot(width: Dp) {
     }
 }
 
+fun smallImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 160.dp) }
+fun bigImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 256.dp) }
+
 fun imagesRowSlot(): FiberglassLazyItemSlot = {
     with(it as ImagesRowItem) {
         FiberglassLazyRow(
@@ -113,11 +116,6 @@ fun imagesRowSlot(): FiberglassLazyItemSlot = {
     }
 }
 
-@Composable
-fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
-
-@Composable
-fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
 
 @OptIn(ExperimentalMaterialApi::class)
 private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot = {
@@ -134,6 +132,13 @@ private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot = {
     }
 }
 
+@Composable
+fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
+
+@Composable
+fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
+
+
 fun tagsFlowRowSlot(): FiberglassLazyItemSlot = {
     with(it as TagsFlowRowItem) {
         FiberglassFlowRow(
@@ -147,6 +152,7 @@ fun tagsFlowRowSlot(): FiberglassLazyItemSlot = {
         )
     }
 }
+
 
 // Previews
 @OptIn(ExperimentalFoundationApi::class)

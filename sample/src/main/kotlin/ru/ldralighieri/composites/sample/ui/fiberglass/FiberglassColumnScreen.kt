@@ -54,11 +54,11 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.items.tagsFlowRowSlot
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiberglassScreen(onBackClick: () -> Unit) {
+fun FiberglassColumnScreen(onBackClick: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = "Fiberglass", style = AppTheme.typography.headlineSmall)
+                Text(text = "Fiberglass column", style = AppTheme.typography.headlineSmall)
             },
             navigationIcon = {
                 IconButton(onClick = onBackClick) {
@@ -73,12 +73,12 @@ fun FiberglassScreen(onBackClick: () -> Unit) {
             )
         )
 
-        FiberglassContent()
+        FiberglassColumnContent()
     }
 }
 
 @Composable
-private fun FiberglassContent() {
+private fun FiberglassColumnContent() {
     val sections: Map<FiberglassStickyHeaderItem, List<FiberglassItem>> = remember {
         buildMap {
             val count = 6

@@ -21,7 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import ru.ldralighieri.composites.sample.ui.CompositesScreen
-import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassScreen
+import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassColumnScreen
+import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassGridScreen
+import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassRootScreen
 
 @Composable
 fun AppNavHost(
@@ -43,7 +45,19 @@ fun AppNavHost(
         }
 
         appComposable(route = "fiberglass") {
-            FiberglassScreen(onBackClick)
+            FiberglassRootScreen(
+                onBackClick = onBackClick,
+                onFiberglassColumnClick = { navigate("fiberglass/column", null) },
+                onFiberglassGridClick = { navigate("fiberglass/grid", null) }
+            )
+        }
+
+        appComposable(route = "fiberglass/column") {
+            FiberglassColumnScreen(onBackClick)
+        }
+
+        appComposable(route = "fiberglass/grid") {
+            FiberglassGridScreen(onBackClick)
         }
     }
 }

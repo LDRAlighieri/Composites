@@ -19,6 +19,7 @@ package ru.ldralighieri.composites.fiberglass.model
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.runtime.Composable
 import kotlin.reflect.KClass
 
@@ -57,3 +58,13 @@ typealias FiberglassRowItemSlot = @Composable RowScope.(item: FiberglassItem) ->
  * FiberglassRow slots map alias
  */
 typealias FiberglassRowItemSlots = Map<KClass<out FiberglassItem>, FiberglassRowItemSlot>
+
+/**
+ * Fiberglass[Vertical|Horizontal]Grid slot alias
+ */
+typealias FiberglassLazyGridItemSlot = @Composable LazyGridItemScope.(item: FiberglassItem) -> Unit
+
+/**
+ * Fiberglass[Vertical|Horizontal]Grid slots map alias
+ */
+typealias FiberglasslazyGridItemSlots = Map<KClass<out FiberglassItem>, FiberglassLazyGridItemSlot>
