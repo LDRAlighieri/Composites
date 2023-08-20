@@ -8,15 +8,15 @@ bcv = "0.13.2"
 gver = "0.47.0"
 
 # Kotlin
-kotlin = "1.8.21"
+kotlin = "1.9.0"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
 androidxActivity = "1.7.2"
 androidxPagingCompose = "3.2.0-beta01"
 # Compose
-androidxComposeCompiler = "1.4.7"
-androidxComposeBom = "2023.06.01"
+androidxComposeCompiler = "1.5.1"
+androidxComposeBom = "2023.08.00"
 # Accompanist
 accompanist = "0.30.1"
 
