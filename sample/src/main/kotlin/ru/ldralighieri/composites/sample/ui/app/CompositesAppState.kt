@@ -23,10 +23,10 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun rememberCompositesAppState(navController: NavHostController = rememberAnimatedNavController()) =
+fun rememberCompositesAppState(navController: NavHostController = rememberNavController()) =
     remember(navController) { CompositesAppState(navController) }
 
 @Stable

@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
-import com.google.accompanist.navigation.animation.composable
+import androidx.navigation.compose.composable
 import ru.ldralighieri.composites.sample.ui.CompositesScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassColumnScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassGridScreen
