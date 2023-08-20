@@ -23,7 +23,7 @@ import org.gradle.api.Project
 import java.io.File
 
 internal fun Project.configureAndroidCompose(
-    extension: CommonExtension<*, *, *, *>,
+    extension: CommonExtension<*, *, *, *, *>,
 ) {
     extension.apply {
         buildFeatures.compose = true
