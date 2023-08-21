@@ -1,9 +1,20 @@
 # ChangeLog
 
 
+## Version 0.3.0
+
+* Update: Fiberglass(`composites-fiberglass`) module:
+  - Fiberglass items now @Stable
+  - FiberglassFlowColumn and FiberglassFlowRow API
+* Update: Target SDK to v34.
+* Update: Kotlin to v1.9.0.
+* Update: Compose BOM to v2023.08.00.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.2.0
 
-* New: Fiberglass(`composites-fiberglass`) composites:
+* New: Fiberglass(`composites-fiberglass`) module:
   - Fiberglass flow column Composite
   - Fiberglass flow row Composite
   - Fiberglass lazy horizontal grid Composite
@@ -31,11 +42,11 @@
 ## Version 0.1.0
 
 * New: Fiberglass(`composites-fiberglass`) module:
-    - Fiberglass column Composite
-    - Fiberglass lazy column Composite
-    - Fiberglass lazy column Composite for `LazyPagingItems`
-    - Fiberglass lazy column Composite with sticky headers
-    - Fiberglass row Composite
-    - Fiberglass lazy row Composite
+  - Fiberglass column Composite
+  - Fiberglass lazy column Composite
+  - Fiberglass lazy column Composite for `LazyPagingItems`
+  - Fiberglass lazy column Composite with sticky headers
+  - Fiberglass row Composite
+  - Fiberglass lazy row Composite
 * Update: Kotlin to v1.8.0.
 * Update: Compose BOM to v2023.01.00.
