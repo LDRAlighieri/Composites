@@ -4,7 +4,7 @@
 ## Version 0.3.0
 
 * Update: Fiberglass(`composites-fiberglass`) module:
-  - Fiberglass items now @Stable
+  - Fiberglass items now Stable
   - FiberglassFlowColumn and FiberglassFlowRow API
 * Update: Target SDK to v34.
 * Update: Kotlin to v1.9.0.
