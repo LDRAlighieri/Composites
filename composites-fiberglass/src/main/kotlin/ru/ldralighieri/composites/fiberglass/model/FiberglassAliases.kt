@@ -16,7 +16,6 @@
 
 package ru.ldralighieri.composites.fiberglass.model
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.lazy.LazyItemScope
@@ -74,14 +73,12 @@ typealias FiberglassLazyGridItemSlots = Map<KClass<out FiberglassItem>, Fibergla
 /**
  * Fiberglass[Vertical|Horizontal]Grid slot alias
  */
-@OptIn(ExperimentalFoundationApi::class)
 typealias FiberglassLazyStaggeredGridItemSlot =
     @Composable LazyStaggeredGridItemScope.(item: FiberglassItem) -> Unit
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slots map alias
  */
-@OptIn(ExperimentalFoundationApi::class)
 typealias FiberglassLazyStaggeredGridItemSlots =
     Map<KClass<out FiberglassItem>, FiberglassLazyStaggeredGridItemSlot>
 

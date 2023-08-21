@@ -38,7 +38,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlots
  * @param contentPadding A padding around the whole content. Negative padding is not permitted — it
  * will cause IllegalArgumentException.
  * @param horizontalArrangement The horizontal arrangement of the layout's children.
- * @param verticalAlignment The vertical alignment of the layout's children.
+ * @param verticalArrangement The vertical arrangement of the layout's virtual rows.
  * @param maxItemsInEachRow The maximum number of items per row
  */
 @Composable
@@ -48,14 +48,14 @@ fun FiberglassFlowRow(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    verticalAlignment: Alignment.Vertical = Alignment.Top,
+    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     maxItemsInEachRow: Int = Int.MAX_VALUE
 ) {
     Box(modifier = modifier) {
         FlowRow(
             modifier = Modifier.padding(contentPadding),
             horizontalArrangement = horizontalArrangement,
-            verticalAlignment = verticalAlignment,
+            verticalArrangement = verticalArrangement,
             maxItemsInEachRow = maxItemsInEachRow
         ) {
             items.forEach { item ->

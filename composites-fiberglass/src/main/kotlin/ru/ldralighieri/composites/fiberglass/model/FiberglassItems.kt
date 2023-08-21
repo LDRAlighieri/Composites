@@ -16,12 +16,12 @@
 
 package ru.ldralighieri.composites.fiberglass.model
 
-import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 
 /**
  * Item interface for Fiberglass
  */
-@Immutable
+@Stable
 interface FiberglassItem {
     val id: Any
 }
@@ -29,7 +29,7 @@ interface FiberglassItem {
 /**
  * StickyHeader interface for FiberglassLazyColumn
  */
-@Immutable
+@Stable
 interface FiberglassStickyHeaderItem : FiberglassItem {
     val title: String
 }

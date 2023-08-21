@@ -61,6 +61,7 @@ dependencies {
     // Androidx
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -71,8 +72,6 @@ dependencies {
 
     // Accompanist
     implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.accompanist.navigation.material)
-    implementation(libs.accompanist.navigation.animation)
 
     // Google
     implementation(libs.google.material)

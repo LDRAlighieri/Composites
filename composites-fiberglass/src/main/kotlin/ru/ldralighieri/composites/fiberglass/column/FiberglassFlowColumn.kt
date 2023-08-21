@@ -38,7 +38,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * @param contentPadding A padding around the whole content. Negative padding is not permitted — it
  * will cause IllegalArgumentException.
  * @param verticalArrangement The vertical arrangement of the layout's children.
- * @param horizontalAlignment The horizontal alignment of the layout's children.
+ * @param horizontalArrangement The horizontal arrangement of the layout's virtual columns.
  * @param maxItemsInEachColumn The maximum number of items per column
  */
 @Composable
@@ -48,14 +48,14 @@ fun FiberglassFlowColumn(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     maxItemsInEachColumn: Int = Int.MAX_VALUE
 ) {
     Box(modifier = modifier) {
         FlowColumn(
             modifier = Modifier.padding(contentPadding),
             verticalArrangement = verticalArrangement,
-            horizontalAlignment = horizontalAlignment,
+            horizontalArrangement = horizontalArrangement,
             maxItemsInEachColumn = maxItemsInEachColumn
         ) {
             items.forEach { item ->

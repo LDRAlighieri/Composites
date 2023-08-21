@@ -17,6 +17,7 @@
 package ru.ldralighieri.composites.sample.navigation
 
 import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
@@ -29,7 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import com.google.accompanist.navigation.animation.AnimatedNavHost
+import androidx.navigation.compose.NavHost
 
 @Composable
 fun AppAnimatedNavHost(
@@ -38,7 +39,7 @@ fun AppAnimatedNavHost(
     modifier: Modifier = Modifier,
     route: String? = null,
 
-    enterTransition: (AnimatedContentScope<NavBackStackEntry>.() -> EnterTransition) = {
+    enterTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) = {
         slideInHorizontally(
             initialOffsetX = { 300 },
             animationSpec = tween(durationMillis = 300)
@@ -46,7 +47,7 @@ fun AppAnimatedNavHost(
             fadeIn(animationSpec = tween(durationMillis = 300))
     },
 
-    exitTransition: (AnimatedContentScope<NavBackStackEntry>.() -> ExitTransition) = {
+    exitTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) = {
         slideOutHorizontally(
             targetOffsetX = { -300 },
             animationSpec = tween(durationMillis = 300)
@@ -54,15 +55,16 @@ fun AppAnimatedNavHost(
             fadeOut(animationSpec = tween(durationMillis = 300))
     },
 
-    popEnterTransition: (AnimatedContentScope<NavBackStackEntry>.() -> EnterTransition) = {
-        slideInHorizontally(
-            initialOffsetX = { -300 },
-            animationSpec = tween(durationMillis = 300)
-        ) +
-            fadeIn(animationSpec = tween(durationMillis = 300))
-    },
+    popEnterTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) =
+        {
+            slideInHorizontally(
+                initialOffsetX = { -300 },
+                animationSpec = tween(durationMillis = 300)
+            ) +
+                fadeIn(animationSpec = tween(durationMillis = 300))
+        },
 
-    popExitTransition: (AnimatedContentScope<NavBackStackEntry>.() -> ExitTransition) = {
+    popExitTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) = {
         slideOutHorizontally(
             targetOffsetX = { 300 },
             animationSpec = tween(durationMillis = 300)
@@ -72,7 +74,7 @@ fun AppAnimatedNavHost(
 
     builder: NavGraphBuilder.() -> Unit
 ) {
-    AnimatedNavHost(
+    NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,

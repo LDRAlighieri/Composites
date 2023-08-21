@@ -1,6 +1,6 @@
 ﻿[![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://search.maven.org/search?q=g:ru.ldralighieri.composites)
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.8.21-blue.svg?logo=kotlin)](https://kotlinlang.org)
-[![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.06.01-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.9.0-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.08.00-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
@@ -16,6 +16,11 @@
 Please consider giving this repository a star ⭐ if you like the project.
 
 
+## Articles
+* [Compose these composites][compose-these-composites]
+* [Reach out to infinity][reach-out-to-infinity]
+
+
 ## Modules
 * [composites-fiberglass] &mdash; A tool for building complex screens based on simple blocks.
 
@@ -26,7 +31,7 @@ Add one or more dependencies:
 
 ```kotlin
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.2.0")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.3.0")
 }
 ```
 
@@ -81,5 +86,7 @@ limitations under the License.
 
 
 [compose]: https://developer.android.com/jetpack/compose
+[compose-these-composites]: https://medium.com/@ldralighieri/compose-these-composites-8ea923e4a34c
+[reach-out-to-infinity]: https://medium.com/@ldralighieri/reach-out-to-infinity-bba17019a938
 [composites-fiberglass]: https://github.com/LDRAlighieri/Composites/tree/main/composites-fiberglass
 [performance]: https://developer.android.com/jetpack/compose/performance#build-release

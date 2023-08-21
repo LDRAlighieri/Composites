@@ -1,22 +1,23 @@
 [versions]
 # Plugins
-agp = "8.0.2"
+agp = "8.1.0"
 dokka = "1.8.20"
-spotless = "6.19.0"
-mavenPublish = "0.25.2"
+spotless = "6.20.0"
+mavenPublish = "0.25.3"
 bcv = "0.13.2"
 gver = "0.47.0"
 
 # Kotlin
-kotlin = "1.8.21"
+kotlin = "1.9.0"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
 androidxActivity = "1.7.2"
-androidxPagingCompose = "3.2.0-beta01"
+androidxNavigation = "2.7.0"
+androidxPagingCompose = "3.2.0"
 # Compose
-androidxComposeCompiler = "1.4.7"
-androidxComposeBom = "2023.06.01"
+androidxComposeCompiler = "1.5.1"
+androidxComposeBom = "2023.08.00"
 # Accompanist
 accompanist = "0.30.1"
 
@@ -31,6 +32,7 @@ ktlint = "0.49.1"
 # Androidx
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidxPagingCompose" }
 # Compose
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
@@ -48,8 +50,6 @@ androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-mani
 
 # Accompanist
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
-accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
-accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 
 # Google
 google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
