@@ -1,6 +1,13 @@
 # ChangeLog
 
 
+## Version 0.3.1
+
+* Update: Kotlin to v1.9.21.
+* Update: Compose BOM to v2023.10.01.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.3.0
 
 * Update: Fiberglass(`composites-fiberglass`) module:
