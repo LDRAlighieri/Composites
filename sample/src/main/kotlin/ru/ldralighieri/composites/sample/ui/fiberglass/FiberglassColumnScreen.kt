@@ -16,6 +16,7 @@
 
 package ru.ldralighieri.composites.sample.ui.fiberglass
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
