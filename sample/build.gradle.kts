@@ -56,6 +56,7 @@ android {
 }
 
 dependencies {
+    // Projects
     implementation(projects.composites.compositesFiberglass)
 
     // Androidx
