@@ -31,6 +31,7 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.spotless.gradlePlugin)
+    compileOnly(libs.ksp.gradlePlugin)
     implementation(libs.dokka.gradlePlugin)
 }
 
@@ -51,6 +52,11 @@ gradlePlugin {
         register("dokka") {
             id = "composites.dokka"
             implementationClass = "DokkaConventionPlugin"
+        }
+
+        register("ksp") {
+            id = "composites.ksp"
+            implementationClass = "KspConventionPlugin"
         }
 
         register("libraryCompose") {
