@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-plugins {
-    alias(libs.plugins.kotlin.jvm)
-}
+package ru.ldralighieri.composites.carbon.core
 
-dependencies {
-    implementation(libs.kotlinpoet.jvm)
-}
+@Target(AnnotationTarget.CLASS)
+annotation class CarbonRoute(val route: String, val deeplinkSchema: String = "")
+
+// TODO The default value cannot be defined via KSP, so we will need to explicitly specify the
+//  value via this annotation
+@Target(AnnotationTarget.VALUE_PARAMETER)
+annotation class DefaultValue(val value: String)

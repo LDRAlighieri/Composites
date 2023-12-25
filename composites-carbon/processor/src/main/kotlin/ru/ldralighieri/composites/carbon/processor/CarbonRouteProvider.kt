@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-plugins {
-    alias(libs.plugins.kotlin.jvm)
-}
+package ru.ldralighieri.composites.carbon.processor
 
-dependencies {
-    implementation(libs.kotlinpoet.jvm)
+import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
+import com.google.devtools.ksp.processing.SymbolProcessorProvider
+
+internal class CarbonRouteProvider : SymbolProcessorProvider {
+    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
+        CarbonRouteProcessor(
+            parser = CarbonRouteDataParser(),
+            generator = CarbonRouteGenerator(environment.codeGenerator),
+            logger = environment.logger
+        )
 }

@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-plugins {
-    alias(libs.plugins.kotlin.jvm)
-}
+package ru.ldralighieri.composites.carbon.core
 
-dependencies {
-    implementation(libs.kotlinpoet.jvm)
+sealed interface Destination {
+    data class Compose(val route: String) : Destination
 }
