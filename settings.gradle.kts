@@ -37,5 +37,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Composites"
 
+include(":composites-carbon:core")
 include(":composites-fiberglass")
 include(":sample")
