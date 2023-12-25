@@ -19,46 +19,71 @@ package ru.ldralighieri.composites.sample.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import ru.ldralighieri.composites.carbon.core.CarbonRoute
 import ru.ldralighieri.composites.sample.ui.CompositesScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassColumnScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassGridScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassRootScreen
 
+@CarbonRoute(route = "composites")
+data object CompositesArgs
+
+@CarbonRoute(route = "composites/fiberglass")
+data class CompositesFiberglassArgs(
+    val title: String
+)
+
+@CarbonRoute(route = "composites/fiberglass/column")
+data class CompositesFiberglassColumnArgs(
+    val title: String
+)
+
+@CarbonRoute(route = "composites/fiberglass/grid")
+data class CompositesFiberglassGridArgs(
+    val title: String
+)
+
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    navigate: (String, NavOptions?) -> Unit,
-    onBackClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    startDestination: String = "composites"
+    modifier: Modifier = Modifier
 ) {
     AppAnimatedNavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = CompositesRoute.route,
         modifier = modifier
     ) {
-        composable(route = "composites") {
-            CompositesScreen(
-                onFiberglassClick = { navigate("fiberglass", null) }
-            )
+        composable(
+            route = CompositesRoute.route,
+            arguments = CompositesRoute.arguments,
+            deepLinks = CompositesRoute.deepLinks,
+        ) {
+            CompositesScreen()
         }
 
-        composable(route = "fiberglass") {
-            FiberglassRootScreen(
-                onBackClick = onBackClick,
-                onFiberglassColumnClick = { navigate("fiberglass/column", null) },
-                onFiberglassGridClick = { navigate("fiberglass/grid", null) }
-            )
+        composable(
+            route = CompositesFiberglassRoute.route,
+            arguments = CompositesFiberglassRoute.arguments,
+            deepLinks = CompositesFiberglassRoute.deepLinks,
+        ) {
+            FiberglassRootScreen(args = CompositesFiberglassRoute.parseArguments(it))
         }
 
-        composable(route = "fiberglass/column") {
-            FiberglassColumnScreen(onBackClick)
+        composable(
+            route = CompositesFiberglassColumnRoute.route,
+            arguments = CompositesFiberglassColumnRoute.arguments,
+            deepLinks = CompositesFiberglassColumnRoute.deepLinks,
+        ) {
+            FiberglassColumnScreen(args = CompositesFiberglassColumnRoute.parseArguments(it))
         }
 
-        composable(route = "fiberglass/grid") {
-            FiberglassGridScreen(onBackClick)
+        composable(
+            route = CompositesFiberglassGridRoute.route,
+            arguments = CompositesFiberglassGridRoute.arguments,
+            deepLinks = CompositesFiberglassGridRoute.deepLinks,
+        ) {
+            FiberglassGridScreen(args = CompositesFiberglassGridRoute.parseArguments(it))
         }
     }
 }

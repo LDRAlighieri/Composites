@@ -40,6 +40,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.grid.vertical.FiberglassLazyVerticalGrid
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassGridArgs
+import ru.ldralighieri.composites.sample.navigation.LocalNavigator
+import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.theme.AppTheme
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.ErrorGridItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.PrimaryGridItem
@@ -48,14 +51,16 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.items.primaryGridSlot
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiberglassGridScreen(onBackClick: () -> Unit) {
+fun FiberglassGridScreen(args: CompositesFiberglassGridArgs) {
+    val navigator: Navigator = LocalNavigator.current
+
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = "Fiberglass grid", style = AppTheme.typography.headlineSmall)
+                Text(text = args.title, style = AppTheme.typography.headlineSmall)
             },
             navigationIcon = {
-                IconButton(onClick = onBackClick) {
+                IconButton(onClick = { navigator.navigateBack() }) {
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "")
                 }
             },

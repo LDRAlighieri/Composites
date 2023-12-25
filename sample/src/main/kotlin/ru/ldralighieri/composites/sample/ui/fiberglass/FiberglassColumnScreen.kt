@@ -16,7 +16,6 @@
 
 package ru.ldralighieri.composites.sample.ui.fiberglass
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -41,6 +40,9 @@ import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.column.FiberglassLazyColumn
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderItem
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassColumnArgs
+import ru.ldralighieri.composites.sample.navigation.LocalNavigator
+import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.theme.AppTheme
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.ImagesRowItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.LoremIpsumItem
@@ -55,14 +57,16 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.items.tagsFlowRowSlot
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiberglassColumnScreen(onBackClick: () -> Unit) {
+fun FiberglassColumnScreen(args: CompositesFiberglassColumnArgs) {
+    val navigator: Navigator = LocalNavigator.current
+
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = "Fiberglass column", style = AppTheme.typography.headlineSmall)
+                Text(text = args.title, style = AppTheme.typography.headlineSmall)
             },
             navigationIcon = {
-                IconButton(onClick = onBackClick) {
+                IconButton(onClick = { navigator.navigateBack() }) {
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "")
                 }
             },
