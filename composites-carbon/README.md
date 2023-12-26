@@ -1,0 +1,132 @@
+
+# Carbon
+
+Annotation processor ([Kotlin Symbol Processing, KSP][ksp]) for generating Route objects that help with navigation based on the [Navigation Component][navigation].
+Allows you to significantly reduce routine and time spent on creating `Route` objects manually.
+
+
+## Roadmap
+
+- [X] KSP `Route` object generation
+- [ ] Default arguments
+- [ ] Enums and Parcelable support (using parcelable is not best practice. It is recommended to use primitives)****
+
+
+## Using in your projects
+
+Add dependency:
+
+```kotlin
+dependencies {
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.0-SNAPSHOT")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.0-SNAPSHOT")
+}
+```
+
+Make sure that you have `mavenCentral()` in the list of repositories:
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+```
+
+
+## Example
+
+The arguments class/object is the basis for generating the Route object:
+```kotlin
+@CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
+data class CompositesFiberglassArgs(
+    val title: String
+)
+```
+The generator currently only supports primitives and strings as arguments.
+
+The generated `Route` object will look as follows:
+```kotlin
+public object CompositesFiberglassRoute { 
+    public const val route: String = "composites/fiberglass/{title}"
+
+    public val arguments: List<NamedNavArgument> = listOf(
+        navArgument("title") { 
+            type = StringType
+            nullable = false
+        },
+    )
+
+    public val deepLinks: List<NavDeepLink> = listOf(
+        navDeepLink {
+            uriPattern = "composites://$route"
+        }
+    )
+
+  public fun create(title: String): Destination.Compose = 
+      Destination.Compose("composites/fiberglass/$title")
+
+  public fun parseArguments(backStackEntry: NavBackStackEntry): CompositesFiberglassArgs = 
+      CompositesFiberglassArgs(
+          title = backStackEntry.arguments?.getString("title") ?: "",
+      )
+
+  public fun parseArguments(savedStateHandle: SavedStateHandle): CompositesFiberglassArgs = 
+      CompositesFiberglassArgs(
+          title = savedStateHandle["title"] ?: "",
+      )
+}
+```
+The object contains the components necessary for navigation:
+- `route`, `arguments` and `deeplink` are used for navigation
+- `parseArguments` and `parseArguments` for parsing the argument class from `NavBackStackEntry` and `SavedStateHandle` respectively
+- `create` creates a Destination class for [navigator]
+
+If the base object contains no arguments:
+```kotlin
+@CarbonRoute(route = "composites")
+data object CompositesArgs
+```
+
+Then the generated `Route` object will not contain `parseArguments` and `parseArguments` methods:
+```kotlin
+public object CompositesRoute {
+    public const val route: String = "composites"
+    
+    public val arguments: List<NamedNavArgument> = emptyList()
+    
+    public val deepLinks: List<NavDeepLink> = emptyList()
+    
+    public fun create(): Destination.Compose = Destination.Compose("composites")
+}
+```
+
+Using a simple [navigator], you can implement navigation based on the Route object:
+```kotlin
+LazyColumn {
+    item(key = "fiberglass") {
+        CompositeItem(
+            title = "Fiberglass",
+            onClick = {
+                navigator.navigateTo(
+                    CompositesFiberglassRoute.create(title = "Fiberglass composites")
+                )
+            }
+        )
+    }
+}
+
+composable(
+    route = CompositesFiberglassRoute.route,
+    arguments = CompositesFiberglassRoute.arguments,
+    deepLinks = CompositesFiberglassRoute.deepLinks,
+) { navBackStackEntry ->
+    FiberglassRootScreen(args = CompositesFiberglassRoute.parseArguments(navBackStackEntry))
+}
+```
+
+A more complex example can be found in the [demo application][demo]
+
+
+[ksp]: https://kotlinlang.org/docs/ksp-overview.html
+[navigator]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/navigation/Navigator.kt
+[navigation]: https://developer.android.com/guide/navigation
+[demo]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/navigation/AppNavHost.kt

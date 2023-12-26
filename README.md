@@ -22,6 +22,7 @@ Please consider giving this repository a star ⭐ if you like the project.
 
 
 ## Modules
+* [composites-carbon] &mdash; Annotation processor for generating Route objects that help with navigation based on the Navigation Component
 * [composites-fiberglass] &mdash; A tool for building complex screens based on simple blocks.
 
 
@@ -88,5 +89,6 @@ limitations under the License.
 [compose]: https://developer.android.com/jetpack/compose
 [compose-these-composites]: https://medium.com/@ldralighieri/compose-these-composites-8ea923e4a34c
 [reach-out-to-infinity]: https://medium.com/@ldralighieri/reach-out-to-infinity-bba17019a938
+[composites-carbon]: https://github.com/LDRAlighieri/Composites/tree/main/composites-carbon
 [composites-fiberglass]: https://github.com/LDRAlighieri/Composites/tree/main/composites-fiberglass
 [performance]: https://developer.android.com/jetpack/compose/performance#build-release

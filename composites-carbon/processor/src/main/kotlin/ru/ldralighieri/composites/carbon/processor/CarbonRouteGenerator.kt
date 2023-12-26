@@ -47,7 +47,7 @@ private const val DEEPLINK_PROPERTY_NAME = "deepLinks"
 private const val CREATE_FUNCTION_NAME = "create"
 private const val PARSE_ARGUMENTS_FUNCTION_NAME = "parseArguments"
 
-internal const val PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME = "backStackEntry"
+internal const val PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME = "navBackStackEntry"
 internal const val PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME = "savedStateHandle"
 
 internal class CarbonRouteGenerator(private val codeGenerator: CodeGenerator) {

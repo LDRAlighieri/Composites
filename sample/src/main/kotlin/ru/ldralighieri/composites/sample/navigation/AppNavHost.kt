@@ -29,7 +29,7 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassRootScreen
 @CarbonRoute(route = "composites")
 data object CompositesArgs
 
-@CarbonRoute(route = "composites/fiberglass")
+@CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
 data class CompositesFiberglassArgs(
     val title: String
 )
@@ -66,24 +66,28 @@ fun AppNavHost(
             route = CompositesFiberglassRoute.route,
             arguments = CompositesFiberglassRoute.arguments,
             deepLinks = CompositesFiberglassRoute.deepLinks,
-        ) {
-            FiberglassRootScreen(args = CompositesFiberglassRoute.parseArguments(it))
+        ) { navBackStackEntry ->
+            FiberglassRootScreen(args = CompositesFiberglassRoute.parseArguments(navBackStackEntry))
         }
 
         composable(
             route = CompositesFiberglassColumnRoute.route,
             arguments = CompositesFiberglassColumnRoute.arguments,
             deepLinks = CompositesFiberglassColumnRoute.deepLinks,
-        ) {
-            FiberglassColumnScreen(args = CompositesFiberglassColumnRoute.parseArguments(it))
+        ) { navBackStackEntry ->
+            FiberglassColumnScreen(
+                args = CompositesFiberglassColumnRoute.parseArguments(navBackStackEntry)
+            )
         }
 
         composable(
             route = CompositesFiberglassGridRoute.route,
             arguments = CompositesFiberglassGridRoute.arguments,
             deepLinks = CompositesFiberglassGridRoute.deepLinks,
-        ) {
-            FiberglassGridScreen(args = CompositesFiberglassGridRoute.parseArguments(it))
+        ) { navBackStackEntry ->
+            FiberglassGridScreen(
+                args = CompositesFiberglassGridRoute.parseArguments(navBackStackEntry)
+            )
         }
     }
 }
