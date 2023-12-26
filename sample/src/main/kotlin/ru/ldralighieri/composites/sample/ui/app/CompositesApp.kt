@@ -37,15 +37,41 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import ru.ldralighieri.composites.carbon.core.Destination
 import ru.ldralighieri.composites.sample.navigation.AppNavHost
+import ru.ldralighieri.composites.sample.navigation.LocalNavigator
+import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.theme.AppTheme
 
 @Composable
-fun ComponentActivity.CompositesApp(appState: CompositesAppState) {
+fun ComponentActivity.CompositesApp() {
     val currentThemeIsDark = isSystemInDarkTheme()
     val isDarkMode by rememberSaveable { mutableStateOf(currentThemeIsDark) }
 
+    val navController: NavHostController = rememberNavController()
+    val navigator: Navigator = LocalNavigator.current
+
     ChangeSystemBarsTheme(isDarkMode)
+
+    LaunchedEffect(Unit) {
+        navigator.destinations
+            .onEach {
+                when (it) {
+                    is Navigator.Event.ToDestination -> {
+                        when (val destination: Destination = it.destination) {
+                            is Destination.Compose -> navController.navigate(destination.route)
+                        }
+                    }
+
+                    is Navigator.Event.Back -> navController.popBackStack()
+                }
+            }
+            .launchIn(this)
+    }
 
     ProvideDefaults {
         Column {
@@ -55,9 +81,7 @@ fun ComponentActivity.CompositesApp(appState: CompositesAppState) {
                 contentWindowInsets = WindowInsets(0, 0, 0, 0)
             ) { innerPadding ->
                 AppNavHost(
-                    navController = appState.navController,
-                    onBackClick = appState::onBackClick,
-                    navigate = appState::navigate,
+                    navController = navController,
                     modifier = Modifier
                         .background(color = AppTheme.colors.background)
                         .padding(innerPadding)

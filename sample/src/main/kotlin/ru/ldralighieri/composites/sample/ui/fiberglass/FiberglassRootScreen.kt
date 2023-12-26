@@ -37,22 +37,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassArgs
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassColumnRoute
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassGridRoute
+import ru.ldralighieri.composites.sample.navigation.LocalNavigator
+import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun FiberglassRootScreen(
-    onBackClick: () -> Unit,
-    onFiberglassColumnClick: () -> Unit,
-    onFiberglassGridClick: () -> Unit
-) {
+internal fun FiberglassRootScreen(args: CompositesFiberglassArgs) {
+    val navigator: Navigator = LocalNavigator.current
+
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = "Fiberglass composites", style = AppTheme.typography.headlineSmall)
+                Text(text = args.title, style = AppTheme.typography.headlineSmall)
             },
             navigationIcon = {
-                IconButton(onClick = onBackClick) {
+                IconButton(onClick = { navigator.navigateBack() }) {
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "")
                 }
             },
@@ -64,8 +67,23 @@ internal fun FiberglassRootScreen(
             )
         )
 
-        FiberglassScreenItem(title = "Column", onFiberglassColumnClick)
-        FiberglassScreenItem(title = "Grid", onFiberglassGridClick)
+        FiberglassScreenItem(
+            title = "Column",
+            onClick = {
+                navigator.navigateTo(
+                    CompositesFiberglassColumnRoute.create(title = "Fiberglass column")
+                )
+            }
+        )
+
+        FiberglassScreenItem(
+            title = "Grid",
+            onClick = {
+                navigator.navigateTo(
+                    CompositesFiberglassGridRoute.create(title = "Fiberglass grid")
+                )
+            }
+        )
     }
 }
 

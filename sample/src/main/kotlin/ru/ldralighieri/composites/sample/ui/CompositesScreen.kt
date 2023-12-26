@@ -42,11 +42,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.sample.R
 import ru.ldralighieri.composites.sample.ThemePreviews
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassRoute
+import ru.ldralighieri.composites.sample.navigation.LocalNavigator
+import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CompositesScreen(onFiberglassClick: () -> Unit) {
+fun CompositesScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
             title = {
@@ -62,15 +65,24 @@ fun CompositesScreen(onFiberglassClick: () -> Unit) {
             )
         )
 
-        CompositesContent(onFiberglassClick)
+        CompositesContent()
     }
 }
 
 @Composable
-private fun CompositesContent(onFiberglassClick: () -> Unit) {
+private fun CompositesContent() {
+    val navigator: Navigator = LocalNavigator.current
+
     LazyColumn {
         item(key = "fiberglass") {
-            CompositeItem(title = "Fiberglass", onClick = onFiberglassClick)
+            CompositeItem(
+                title = "Fiberglass",
+                onClick = {
+                    navigator.navigateTo(
+                        CompositesFiberglassRoute.create(title = "Fiberglass composites")
+                    )
+                }
+            )
         }
     }
 }

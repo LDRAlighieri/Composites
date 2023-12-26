@@ -14,30 +14,11 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
-
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+plugins {
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.maven.publish)
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-        maven("https://androidx.dev/storage/compose-compiler/repository/")
-    }
+dependencies {
+    implementation(libs.kotlinpoet.jvm)
 }
-
-rootProject.name = "Composites"
-
-include(":composites-carbon:core")
-include(":composites-carbon:processor")
-include(":composites-fiberglass")
-include(":sample")

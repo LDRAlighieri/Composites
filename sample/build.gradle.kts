@@ -18,6 +18,7 @@
 
 plugins {
     id("composites.application.compose")
+    id("composites.ksp")
     id("composites.spotless")
 }
 
@@ -56,6 +57,11 @@ android {
 }
 
 dependencies {
+    // Projects
+    // Carbon
+    implementation(projects.composites.compositesCarbon.core)
+    ksp(projects.composites.compositesCarbon.processor)
+    // Fiberglass
     implementation(projects.composites.compositesFiberglass)
 
     // Androidx

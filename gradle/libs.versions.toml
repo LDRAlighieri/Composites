@@ -6,6 +6,7 @@ spotless = "6.23.3"
 mavenPublish = "0.25.3"
 bcv = "0.13.2"
 gver = "0.50.0"
+ksp = "1.9.21-1.0.15"
 
 # Kotlin
 kotlin = "1.9.21"
@@ -22,8 +23,22 @@ androidxComposeBom = "2023.10.01"
 # Google
 googleMaterial="1.11.0"
 
+# KotlinPoet
+kotlinpoet="1.15.3"
+
 # Lint
 ktlint = "0.49.1"
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv" }
+gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
 
 
 [libraries]
@@ -49,20 +64,17 @@ androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-mani
 
 # Google
 google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+google-ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+
+
+# KotlinPoet
+kotlinpoet-jvm = { module = "com.squareup:kotlinpoet-jvm", version.ref = "kotlinpoet" }
+kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinpoet" }
 
 
 # build-logic
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 spotless-gradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
-
-
-[plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv" }
-gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
+ksp-gradlePlugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }

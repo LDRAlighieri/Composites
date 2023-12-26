@@ -14,30 +14,14 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
+import org.gradle.api.Plugin
+import org.gradle.api.Project
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+@Suppress("unused")
+class KspConventionPlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            pluginManager.apply("com.google.devtools.ksp")
+        }
     }
 }
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-        maven("https://androidx.dev/storage/compose-compiler/repository/")
-    }
-}
-
-rootProject.name = "Composites"
-
-include(":composites-carbon:core")
-include(":composites-carbon:processor")
-include(":composites-fiberglass")
-include(":sample")

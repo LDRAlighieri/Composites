@@ -23,9 +23,7 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.WindowCompat
 import ru.ldralighieri.composites.sample.ui.app.CompositesApp
-import ru.ldralighieri.composites.sample.ui.app.rememberCompositesAppState
 
 class SampleActivity : ComponentActivity() {
 
@@ -38,9 +36,7 @@ class SampleActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            CompositesApp(
-                rememberCompositesAppState()
-            )
+            CompositesApp()
         }
     }
 }
