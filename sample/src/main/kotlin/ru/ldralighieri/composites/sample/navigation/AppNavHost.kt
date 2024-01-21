@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import ru.ldralighieri.composites.carbon.core.CarbonRoute
+import ru.ldralighieri.composites.carbon.core.DefaultValue
 import ru.ldralighieri.composites.sample.ui.CompositesScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassColumnScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassGridScreen
@@ -31,7 +32,7 @@ data object CompositesArgs
 
 @CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
 data class CompositesFiberglassArgs(
-    val title: String
+    @DefaultValue("Fiberglass composites") val title: String
 )
 
 @CarbonRoute(route = "composites/fiberglass/column")

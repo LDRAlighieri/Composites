@@ -8,8 +8,9 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 ## Roadmap
 
 - [X] KSP `Route` object generation
-- [ ] Default arguments
+- [X] Default arguments (without reflection)
 - [ ] Enums and Parcelable support (using parcelable is not best practice. It is recommended to use primitives)
+- [ ] Optional. Default arguments (with reflection)
 
 
 ## Using in your projects

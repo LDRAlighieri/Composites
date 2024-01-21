@@ -19,8 +19,6 @@ package ru.ldralighieri.composites.carbon.processor.ext
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.asTypeName
-import ru.ldralighieri.composites.carbon.processor.PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
-import ru.ldralighieri.composites.carbon.processor.PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME
 
 private val navTypeIntClassName =
     ClassName("androidx.navigation.NavType.Companion", "IntType")
@@ -57,45 +55,20 @@ internal fun TypeName.toClassName(): ClassName =
         else -> navTypeStringClassName
     }
 
-internal fun TypeName.toBackStackGetter(name: String): String =
-    "${PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME}.arguments?." +
-            when(this) {
-                Int::class.asTypeName() -> "getInt(\"$name\") ?: 0"
-                Int::class.asTypeName().copy(nullable = true) -> "getInt(\"$name\")"
-
-                Long::class.asTypeName() -> "getLong(\"$name\") ?: 0L"
-                Long::class.asTypeName().copy(nullable = true) -> "getLong(\"$name\")"
-
-                Float::class.asTypeName() -> "getFloat(\"$name\") ?: 0f"
-                Float::class.asTypeName().copy(nullable = true) -> "getFloat(\"$name\")"
-
-                Boolean::class.asTypeName() -> "getBoolean(\"$name\")"
-                Boolean::class.asTypeName().copy(nullable = true) ->
-                    "getBoolean(\"$name\") ?: false"
-
-                String::class.asTypeName() -> "getString(\"$name\") ?: \"\""
-                String::class.asTypeName().copy(nullable = true) -> "getString(\"$name\")"
-
-                else -> "getString(\"$name\") ?: \"\""
-            }
-
-internal fun TypeName.toSavedStateHandleGetter(name: String): String =
-    PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME +
-            when(this) {
-                Int::class.asTypeName() -> "[\"$name\"] ?: 0"
-                Int::class.asTypeName().copy(nullable = true) -> "[\"$name\"]"
-
-                Long::class.asTypeName() -> "[\"$name\"] ?: 0L"
-                Long::class.asTypeName().copy(nullable = true) -> "[\"$name\"]"
-
-                Float::class.asTypeName() -> "[\"$name\"] ?: 0f"
-                Float::class.asTypeName().copy(nullable = true) -> "[\"$name\"]"
-
-                Boolean::class.asTypeName() -> "[\"$name\"] ?: false"
-                Boolean::class.asTypeName().copy(nullable = true) -> "[\"$name\"]"
-
-                String::class.asTypeName() -> "[\"$name\"] ?: \"\""
-                String::class.asTypeName().copy(nullable = true) -> "[\"$name\"]"
-
-                else -> "[\"$name\"] ?: \"\""
-            }
+internal fun TypeName.cast(value: String): Any =
+    String.format(
+        format = "%s%s",
+        when(this) {
+            Int::class.asTypeName() -> value.toInt()
+            Long::class.asTypeName() -> value.toLong()
+            Float::class.asTypeName() -> value.toFloat()
+            Boolean::class.asTypeName() -> value.toBoolean()
+            String::class.asTypeName() -> "\"$value\""
+            else -> "\"$value\""
+        },
+        when(this) {
+            Long::class.asTypeName() -> "L"
+            Float::class.asTypeName() -> "F"
+            else -> ""
+        }
+    )

@@ -33,6 +33,7 @@ import com.squareup.kotlinpoet.ksp.writeTo
 import com.squareup.kotlinpoet.withIndent
 import ru.ldralighieri.composites.carbon.core.CarbonRouteData
 import ru.ldralighieri.composites.carbon.core.Destination
+import ru.ldralighieri.composites.carbon.processor.ext.castValue
 import ru.ldralighieri.composites.carbon.processor.ext.getCreateArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getOptionalCreateArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getOptionalPathArguments
@@ -119,11 +120,17 @@ private fun CarbonRouteData.argumentsProperty(): PropertySpec =
                                     withIndent {
                                         addStatement("type = %T", argument.typeName.toClassName())
                                         addStatement("nullable = %L", argument.isNullable)
+                                        argument.defaultValue?.let {
+                                            addStatement(
+                                                format = "defaultValue = %L",
+                                                it.castValue()
+                                            )
+                                        }
                                     }
                                     add("},")
                                 }
                             }
-                            .joinToCode(separator = "\n", suffix = "\n")
+                                .joinToCode(separator = "\n", suffix = "\n")
                         )
                     }
                     add(")")
@@ -170,7 +177,21 @@ private fun CarbonRouteData.deepLinksProperty(): PropertySpec =
 private fun CarbonRouteData.createFunction() = FunSpec
     .builder(CREATE_FUNCTION_NAME)
     .addParameters(
-        arguments.map { data -> ParameterSpec(data.name, data.typeName) }
+        arguments
+            .map { data ->
+                ParameterSpec.builder(data.name, data.typeName)
+                    .apply {
+                        when {
+                            data.isNullable -> defaultValue(format = "%L", null)
+                            data.defaultValue != null ->
+                                defaultValue(
+                                    format = "%L",
+                                    data.defaultValue?.castValue()
+                                )
+                        }
+                    }
+                    .build()
+            }
     )
     .returns(Destination.Compose::class)
     .addStatement(
@@ -202,7 +223,7 @@ private fun CarbonRouteData.parseArgumentsByStackEntryFunction() =
                                 addStatement(
                                     format = "%L = %L,",
                                     argument.name,
-                                    argument.typeName.toBackStackGetter(argument.name)
+                                    argument.toBackStackGetter()
                                 )
                             }
                         }
@@ -234,7 +255,7 @@ private fun CarbonRouteData.parseArgumentsBySavedStateHandleFunction() =
                                 addStatement(
                                     format = "%L = %L,",
                                     argument.name,
-                                    argument.typeName.toSavedStateHandleGetter(argument.name)
+                                    argument.toSavedStateHandleGetter()
                                 )
                             }
                         }

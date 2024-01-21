@@ -77,11 +77,7 @@ private fun CompositesContent() {
         item(key = "fiberglass") {
             CompositeItem(
                 title = "Fiberglass",
-                onClick = {
-                    navigator.navigateTo(
-                        CompositesFiberglassRoute.create(title = "Fiberglass composites")
-                    )
-                }
+                onClick = { navigator.navigateTo(CompositesFiberglassRoute.create()) }
             )
         }
     }

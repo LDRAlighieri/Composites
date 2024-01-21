@@ -16,7 +16,12 @@
 
 package ru.ldralighieri.composites.carbon.processor.ext
 
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.asTypeName
+import com.squareup.kotlinpoet.buildCodeBlock
 import ru.ldralighieri.composites.carbon.core.ArgumentData
+import ru.ldralighieri.composites.carbon.processor.PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
+import ru.ldralighieri.composites.carbon.processor.PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME
 
 private fun List<ArgumentData>.getArguments(transform: (ArgumentData) -> CharSequence): String {
     val notNullable: List<ArgumentData> = filterNot { it.isNullable }
@@ -43,3 +48,59 @@ internal fun List<ArgumentData>.getOptionalPathArguments(): String =
 
 internal fun List<ArgumentData>.getOptionalCreateArguments(): String =
     getOptionalArguments { "${it.name}=\$${it.name}" }
+
+internal fun ArgumentData.toBackStackGetter(): CodeBlock = buildCodeBlock {
+    add(
+        format = "${PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME}.arguments?.%L(\"$name\")",
+        when(typeName) {
+            Int::class.asTypeName(),
+            Int::class.asTypeName().copy(nullable = true) -> "getInt"
+
+            Long::class.asTypeName(),
+            Long::class.asTypeName().copy(nullable = true) -> "getLong"
+
+            Float::class.asTypeName(),
+            Float::class.asTypeName().copy(nullable = true) -> "getFloat"
+
+            Boolean::class.asTypeName(),
+            Boolean::class.asTypeName().copy(nullable = true) -> "getBoolean"
+
+            String::class.asTypeName(),
+            String::class.asTypeName().copy(nullable = true) -> "getString"
+
+            else -> "getString(\"$name\")"
+        }
+    )
+
+    if (!isNullable) {
+        add(
+            format = " ?: %L",
+            toDefaultValueLiteral()
+        )
+    }
+}
+
+internal fun ArgumentData.toSavedStateHandleGetter(): CodeBlock = buildCodeBlock {
+    add("${PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME}[\"$name\"]")
+
+    if (!isNullable) {
+        add(
+            format = " ?: %L",
+            toDefaultValueLiteral()
+        )
+    }
+}
+
+// TODO MAP
+internal fun ArgumentData.toDefaultValueLiteral(): Any? =
+    defaultValue?.castValue()
+        ?: run {
+            when(typeName) {
+                Int::class.asTypeName() -> "0"
+                Long::class.asTypeName() -> "0L"
+                Float::class.asTypeName() -> "0.0f"
+                Boolean::class.asTypeName() -> "false"
+                String::class.asTypeName() -> "\"\""
+                else -> null
+            }
+        }
