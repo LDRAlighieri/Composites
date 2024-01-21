@@ -25,7 +25,7 @@ import ru.ldralighieri.composites.carbon.core.Destination
 
 class Navigator {
 
-    private val _destinations = Channel<Event>()
+    private val _destinations = Channel<Event>(Channel.CONFLATED)
     val destinations: Flow<Event> = _destinations.receiveAsFlow()
 
     fun navigateTo(destination: Destination) {

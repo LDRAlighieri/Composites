@@ -26,9 +26,6 @@ googleMaterial="1.11.0"
 # KotlinPoet
 kotlinpoet="1.16.0"
 
-# Lint
-ktlint = "0.49.1"
-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

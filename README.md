@@ -26,6 +26,15 @@ Please consider giving this repository a star ⭐ if you like the project.
 * [composites-fiberglass] &mdash; A tool for building complex screens based on simple blocks.
 
 
+## Current versions
+
+| Module                                           | Version                                                                                                                                                                                                                                                    |
+|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [composites-carbon-core][composites-carbon]      | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-core?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-core/)           |
+| [composites-carbon-processor][composites-carbon] | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-processor?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-processor/) |
+| [composites-fiberglass]                          | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.corbind/corbind.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.corbind/corbind)                                                                                         |
+
+
 ## Using in your projects
 
 Add one or more dependencies:
