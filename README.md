@@ -1,5 +1,4 @@
-﻿[![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://search.maven.org/search?q=g:ru.ldralighieri.composites)
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.9.22-blue.svg?logo=kotlin)](https://kotlinlang.org)
+﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.9.22-blue.svg?logo=kotlin)](https://kotlinlang.org)
 [![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.10.01-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -32,7 +31,7 @@ Please consider giving this repository a star ⭐ if you like the project.
 |--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [composites-carbon-core][composites-carbon]      | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-core?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-core/)           |
 | [composites-carbon-processor][composites-carbon] | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-processor?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-processor/) |
-| [composites-fiberglass]                          | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.corbind/corbind.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.corbind/corbind)                                                                                         |
+| [composites-fiberglass]                          | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.composites/composites-fiberglass)                                                                        |
 
 
 ## Using in your projects
