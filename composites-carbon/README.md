@@ -5,11 +5,17 @@ Annotation processor ([Kotlin Symbol Processing, KSP][ksp]) for generating Route
 Allows you to significantly reduce routine and time spent on creating `Route` objects manually.
 
 
+## Modules
+* [composites-carbon-core] &mdash; Core models
+* [composites-carbon-processor] &mdash; Annotation processor, parser and generator
+
+
 ## Roadmap
 
 - [X] KSP `Route` object generation
-- [ ] Default arguments
-- [ ] Enums and Parcelable support (using parcelable is not best practice. It is recommended to use primitives)****
+- [X] Default arguments (without reflection)
+- [ ] Enums and Parcelable support (using parcelable is not best practice. It is recommended to use primitives)
+- [ ] Optional. Default arguments (with reflection)
 
 
 ## Using in your projects
@@ -38,7 +44,7 @@ The arguments class/object is the basis for generating the Route object:
 ```kotlin
 @CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
 data class CompositesFiberglassArgs(
-    val title: String
+    @DefaultValue("Fiberglass composites") val title: String
 )
 ```
 The generator currently only supports primitives and strings as arguments.
@@ -52,6 +58,7 @@ public object CompositesFiberglassRoute {
         navArgument("title") { 
             type = StringType
             nullable = false
+            defaultValue = "Fiberglass composites"
         },
     )
 
@@ -61,17 +68,17 @@ public object CompositesFiberglassRoute {
         }
     )
 
-  public fun create(title: String): Destination.Compose = 
+  public fun create(title: String = "Fiberglass composites"): Destination.Compose = 
       Destination.Compose("composites/fiberglass/$title")
 
   public fun parseArguments(backStackEntry: NavBackStackEntry): CompositesFiberglassArgs = 
       CompositesFiberglassArgs(
-          title = backStackEntry.arguments?.getString("title") ?: "",
+          title = backStackEntry.arguments?.getString("title") ?: "Fiberglass composites",
       )
 
   public fun parseArguments(savedStateHandle: SavedStateHandle): CompositesFiberglassArgs = 
       CompositesFiberglassArgs(
-          title = savedStateHandle["title"] ?: "",
+          title = savedStateHandle["title"] ?: "Fiberglass composites",
       )
 }
 ```
@@ -101,13 +108,15 @@ public object CompositesRoute {
 
 Using a simple [navigator], you can implement navigation based on the Route object:
 ```kotlin
+val navigator: Navigator = LocalNavigator.current
+
 LazyColumn {
     item(key = "fiberglass") {
         CompositeItem(
             title = "Fiberglass",
             onClick = {
                 navigator.navigateTo(
-                    CompositesFiberglassRoute.create(title = "Fiberglass composites")
+                    CompositesFiberglassRoute.create(title = "Not a default title")
                 )
             }
         )
@@ -128,5 +137,7 @@ A more complex example can be found in the [demo application][demo]
 
 [ksp]: https://kotlinlang.org/docs/ksp-overview.html
 [navigator]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/navigation/Navigator.kt
+[composites-carbon-core]: https://github.com/LDRAlighieri/Composites/tree/main/composites-carbon/core
+[composites-carbon-processor]: https://github.com/LDRAlighieri/Composites/tree/main/composites-carbon/processor
 [navigation]: https://developer.android.com/guide/navigation
 [demo]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/navigation/AppNavHost.kt

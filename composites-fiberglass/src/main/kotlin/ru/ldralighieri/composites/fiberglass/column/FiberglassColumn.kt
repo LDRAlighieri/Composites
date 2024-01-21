@@ -51,7 +51,7 @@ fun FiberglassColumn(
     scrollState: ScrollState? = null,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    horizontalAlignment: Alignment.Horizontal = Alignment.Start
+    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
 ) {
     Box(modifier = modifier) {
         Column(
@@ -59,7 +59,7 @@ fun FiberglassColumn(
                 .then(if (scrollState != null) Modifier.verticalScroll(scrollState) else Modifier)
                 .padding(contentPadding),
             verticalArrangement = verticalArrangement,
-            horizontalAlignment = horizontalAlignment
+            horizontalAlignment = horizontalAlignment,
         ) {
             items.forEach { item ->
                 key(item.id) {

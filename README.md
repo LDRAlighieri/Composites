@@ -1,5 +1,5 @@
 ﻿[![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://search.maven.org/search?q=g:ru.ldralighieri.composites)
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.9.21-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.9.22-blue.svg?logo=kotlin)](https://kotlinlang.org)
 [![Compose BOM Version](https://img.shields.io/badge/Compose-v2023.10.01-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -24,6 +24,15 @@ Please consider giving this repository a star ⭐ if you like the project.
 ## Modules
 * [composites-carbon] &mdash; Annotation processor for generating Route objects that help with navigation based on the Navigation Component
 * [composites-fiberglass] &mdash; A tool for building complex screens based on simple blocks.
+
+
+## Current versions
+
+| Module                                           | Version                                                                                                                                                                                                                                                    |
+|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [composites-carbon-core][composites-carbon]      | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-core?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-core/)           |
+| [composites-carbon-processor][composites-carbon] | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-processor?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-processor/) |
+| [composites-fiberglass]                          | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.corbind/corbind.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.corbind/corbind)                                                                                         |
 
 
 ## Using in your projects
@@ -70,7 +79,7 @@ If I forgot something or you have any ideas what can be added or corrected, plea
 ## License
 
 ```
-Copyright 2023 Vladimir Raupov
+Copyright 2023-2024 Vladimir Raupov
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

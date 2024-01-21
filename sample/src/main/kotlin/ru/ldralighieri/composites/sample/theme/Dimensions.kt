@@ -27,9 +27,10 @@ data class AppDimensions(
     val shapeAppearanceLarge: Dp,
     val horizontalGuideline: Dp,
     val topGuideline: Dp,
-    val bottomGuideline: Dp
+    val bottomGuideline: Dp,
 )
 
-val LocalAppDimensions = staticCompositionLocalOf<AppDimensions> {
-    error("No LocalAppDimensions specified")
-}
+val LocalAppDimensions =
+    staticCompositionLocalOf<AppDimensions> {
+        error("No LocalAppDimensions specified")
+    }

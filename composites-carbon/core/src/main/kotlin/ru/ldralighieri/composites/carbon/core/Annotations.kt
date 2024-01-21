@@ -14,15 +14,10 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.sample.ui.fiberglass.items
+package ru.ldralighieri.composites.carbon.core
 
-import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
-import java.util.UUID
+@Target(AnnotationTarget.CLASS)
+annotation class CarbonRoute(val route: String, val deeplinkSchema: String = "")
 
-abstract class GridItem : FiberglassItem {
-    override val id: String = UUID.randomUUID().toString()
-}
-
-internal class PrimaryGridItem : GridItem()
-
-internal class ErrorGridItem : GridItem()
+@Target(AnnotationTarget.VALUE_PARAMETER)
+annotation class DefaultValue(val value: String)

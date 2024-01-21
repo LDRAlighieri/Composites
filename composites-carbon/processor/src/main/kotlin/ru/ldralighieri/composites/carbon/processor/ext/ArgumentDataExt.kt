@@ -16,7 +16,21 @@
 
 package ru.ldralighieri.composites.carbon.processor.ext
 
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.buildCodeBlock
 import ru.ldralighieri.composites.carbon.core.ArgumentData
+import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
+import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME
+import ru.ldralighieri.composites.carbon.processor.model.booleanNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.booleanTypeName
+import ru.ldralighieri.composites.carbon.processor.model.floatNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.floatTypeName
+import ru.ldralighieri.composites.carbon.processor.model.intNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.intTypeName
+import ru.ldralighieri.composites.carbon.processor.model.longNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.longTypeName
+import ru.ldralighieri.composites.carbon.processor.model.stringNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.stringTypeName
 
 private fun List<ArgumentData>.getArguments(transform: (ArgumentData) -> CharSequence): String {
     val notNullable: List<ArgumentData> = filterNot { it.isNullable }
@@ -43,3 +57,48 @@ internal fun List<ArgumentData>.getOptionalPathArguments(): String =
 
 internal fun List<ArgumentData>.getOptionalCreateArguments(): String =
     getOptionalArguments { "${it.name}=\$${it.name}" }
+
+internal fun ArgumentData.toBackStackGetter(): CodeBlock = buildCodeBlock {
+    add(
+        format = "${PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME}.arguments?.%L(\"$name\")",
+        when(typeName) {
+            intTypeName, intNullableTypeName -> "getInt"
+            longTypeName, longNullableTypeName -> "getLong"
+            floatTypeName, floatNullableTypeName -> "getFloat"
+            booleanTypeName, booleanNullableTypeName -> "getBoolean"
+            stringTypeName, stringNullableTypeName -> "getString"
+            else -> "getString"
+        }
+    )
+
+    if (!isNullable) {
+        add(
+            format = " ?: %L",
+            toDefaultValueLiteral()
+        )
+    }
+}
+
+internal fun ArgumentData.toSavedStateHandleGetter(): CodeBlock = buildCodeBlock {
+    add("${PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME}[\"$name\"]")
+
+    if (!isNullable) {
+        add(
+            format = " ?: %L",
+            toDefaultValueLiteral()
+        )
+    }
+}
+
+internal fun ArgumentData.toDefaultValueLiteral(): Any? =
+    defaultValue?.castValue()
+        ?: run {
+            when(typeName) {
+                intTypeName -> "0"
+                longTypeName -> "0L"
+                floatTypeName -> "0.0f"
+                booleanTypeName -> "false"
+                stringTypeName -> "\"\""
+                else -> null
+            }
+        }

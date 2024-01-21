@@ -37,41 +37,36 @@ fun AppAnimatedNavHost(
     startDestination: String,
     modifier: Modifier = Modifier,
     route: String? = null,
-
     enterTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) = {
         slideInHorizontally(
             initialOffsetX = { 300 },
-            animationSpec = tween(durationMillis = 300)
+            animationSpec = tween(durationMillis = 300),
         ) +
             fadeIn(animationSpec = tween(durationMillis = 300))
     },
-
     exitTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) = {
         slideOutHorizontally(
             targetOffsetX = { -300 },
-            animationSpec = tween(durationMillis = 300)
+            animationSpec = tween(durationMillis = 300),
         ) +
             fadeOut(animationSpec = tween(durationMillis = 300))
     },
-
     popEnterTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) =
         {
             slideInHorizontally(
                 initialOffsetX = { -300 },
-                animationSpec = tween(durationMillis = 300)
+                animationSpec = tween(durationMillis = 300),
             ) +
                 fadeIn(animationSpec = tween(durationMillis = 300))
         },
-
     popExitTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) = {
         slideOutHorizontally(
             targetOffsetX = { 300 },
-            animationSpec = tween(durationMillis = 300)
+            animationSpec = tween(durationMillis = 300),
         ) +
             fadeOut(animationSpec = tween(durationMillis = 300))
     },
-
-    builder: NavGraphBuilder.() -> Unit
+    builder: NavGraphBuilder.() -> Unit,
 ) {
     NavHost(
         navController = navController,
@@ -82,6 +77,6 @@ fun AppAnimatedNavHost(
         exitTransition = exitTransition,
         popEnterTransition = popEnterTransition,
         popExitTransition = popExitTransition,
-        builder = builder
+        builder = builder,
     )
 }

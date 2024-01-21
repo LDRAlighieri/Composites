@@ -52,34 +52,34 @@ import ru.ldralighieri.composites.fiberglass.row.FiberglassLazyRow
 import ru.ldralighieri.composites.sample.ThemePreviews
 import ru.ldralighieri.composites.sample.theme.AppTheme
 
-fun stickyHeaderSlot(): FiberglassStickyHeaderSlot = {
-    Text(
-        text = (it as StickyHeaderItem).title,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = AppTheme.colors.background)
-            .padding(top = 16.dp)
-            .padding(horizontal = AppTheme.dimensions.horizontalGuideline),
-        color = AppTheme.colors.onBackground,
-        style = AppTheme.typography.headlineMedium
-    )
-}
+fun stickyHeaderSlot(): FiberglassStickyHeaderSlot =
+    {
+        Text(
+            text = (it as StickyHeaderItem).title,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = AppTheme.colors.background)
+                .padding(top = 16.dp)
+                .padding(horizontal = AppTheme.dimensions.horizontalGuideline),
+            color = AppTheme.colors.onBackground,
+            style = AppTheme.typography.headlineMedium,
+        )
+    }
 
+fun spacerItemSlot(): FiberglassLazyItemSlot =
+    {
+        Spacer(modifier = Modifier.height((it as SpacerItem).height.dp))
+    }
 
-fun spacerItemSlot(): FiberglassLazyItemSlot = {
-    Spacer(modifier = Modifier.height((it as SpacerItem).height.dp))
-}
-
-
-fun loremIpsumSlot(): FiberglassLazyItemSlot = {
-    Text(
-        text = (it as LoremIpsumItem).text,
-        modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
-        color = AppTheme.colors.onBackground,
-        style = AppTheme.typography.bodyMedium
-    )
-}
-
+fun loremIpsumSlot(): FiberglassLazyItemSlot =
+    {
+        Text(
+            text = (it as LoremIpsumItem).text,
+            modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
+            color = AppTheme.colors.onBackground,
+            style = AppTheme.typography.bodyMedium,
+        )
+    }
 
 @Composable
 private fun ImageSlot(width: Dp) {
@@ -88,49 +88,51 @@ private fun ImageSlot(width: Dp) {
             .padding(vertical = 8.dp)
             .size(width = width, height = 160.dp)
             .background(color = AppTheme.colors.secondaryContainer, shape = AppTheme.shapes.medium),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Image(
             imageVector = Icons.Default.Image,
             contentDescription = "",
             modifier = Modifier.size(64.dp),
-            colorFilter = ColorFilter.tint(color = AppTheme.colors.onBackground)
+            colorFilter = ColorFilter.tint(color = AppTheme.colors.onBackground),
         )
     }
 }
 
 fun smallImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 160.dp) }
+
 fun bigImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 256.dp) }
 
-fun imagesRowSlot(): FiberglassLazyItemSlot = {
-    with(it as ImagesRowItem) {
-        FiberglassLazyRow(
-            items = images,
-            itemSlots = mapOf(
-                SmallImageItem::class to smallImageSlot(),
-                BigImageItem::class to bigImageSlot()
-            ),
-            contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        )
+fun imagesRowSlot(): FiberglassLazyItemSlot =
+    {
+        with(it as ImagesRowItem) {
+            FiberglassLazyRow(
+                items = images,
+                itemSlots = mapOf(
+                    SmallImageItem::class to smallImageSlot(),
+                    BigImageItem::class to bigImageSlot(),
+                ),
+                contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            )
+        }
     }
-}
-
 
 @OptIn(ExperimentalMaterialApi::class)
-private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot = {
-    Chip(
-        onClick = {},
-        colors = ChipDefaults.chipColors(backgroundColor = backgroundColor)
-    ) {
-        Text(
-            text = (it as TagItem).text,
-            modifier = Modifier.padding(horizontal = 8.dp),
-            color = AppTheme.colors.contentColorFor(backgroundColor),
-            style = AppTheme.typography.labelSmall
-        )
+private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot =
+    {
+        Chip(
+            onClick = {},
+            colors = ChipDefaults.chipColors(backgroundColor = backgroundColor),
+        ) {
+            Text(
+                text = (it as TagItem).text,
+                modifier = Modifier.padding(horizontal = 8.dp),
+                color = AppTheme.colors.contentColorFor(backgroundColor),
+                style = AppTheme.typography.labelSmall,
+            )
+        }
     }
-}
 
 @Composable
 fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
@@ -138,21 +140,20 @@ fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondar
 @Composable
 fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
 
-
-fun tagsFlowRowSlot(): FiberglassLazyItemSlot = {
-    with(it as TagsFlowRowItem) {
-        FiberglassFlowRow(
-            items = tags,
-            itemSlots = mapOf(
-                SecondaryTagItem::class to secondaryTagSlot(),
-                TertiaryTagItem::class to tertiaryTagSlot(),
-            ),
-            contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        )
+fun tagsFlowRowSlot(): FiberglassLazyItemSlot =
+    {
+        with(it as TagsFlowRowItem) {
+            FiberglassFlowRow(
+                items = tags,
+                itemSlots = mapOf(
+                    SecondaryTagItem::class to secondaryTagSlot(),
+                    TertiaryTagItem::class to tertiaryTagSlot(),
+                ),
+                contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            )
+        }
     }
-}
-
 
 // Previews
 @OptIn(ExperimentalFoundationApi::class)
@@ -163,7 +164,7 @@ private fun StickyHeaderSlotPreview() {
         LazyColumn {
             stickyHeader {
                 stickyHeaderSlot()(
-                    StickyHeaderItem("Title")
+                    StickyHeaderItem("Title"),
                 )
             }
         }
@@ -186,7 +187,7 @@ private fun ItemSlotPreview(content: @Composable LazyItemScope.() -> Unit) {
 private fun LoremIpsumSlotPreview() {
     ItemSlotPreview {
         loremIpsumSlot()(
-            LoremIpsumItem(20)
+            LoremIpsumItem(20),
         )
     }
 }
@@ -196,7 +197,7 @@ private fun LoremIpsumSlotPreview() {
 private fun SmallImageSlotPreview() {
     ItemSlotPreview {
         smallImageSlot()(
-            SmallImageItem()
+            SmallImageItem(),
         )
     }
 }
@@ -206,7 +207,7 @@ private fun SmallImageSlotPreview() {
 private fun BigImageSlotPreview() {
     ItemSlotPreview {
         bigImageSlot()(
-            BigImageItem()
+            BigImageItem(),
         )
     }
 }
@@ -216,7 +217,7 @@ private fun BigImageSlotPreview() {
 private fun ImagesRowSlotPreview() {
     ItemSlotPreview {
         imagesRowSlot()(
-            ImagesRowItem(2)
+            ImagesRowItem(2),
         )
     }
 }
@@ -227,7 +228,7 @@ private fun TagSlotPreview() {
     AppTheme(dynamicColor = false) {
         Row {
             secondaryTagSlot()(
-                SecondaryTagItem(2)
+                SecondaryTagItem(2),
             )
         }
     }
@@ -238,7 +239,7 @@ private fun TagSlotPreview() {
 private fun TagsRowSlotPreview() {
     ItemSlotPreview {
         tagsFlowRowSlot()(
-            TagsFlowRowItem(2)
+            TagsFlowRowItem(2),
         )
     }
 }

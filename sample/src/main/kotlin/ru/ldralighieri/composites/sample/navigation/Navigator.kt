@@ -24,18 +24,20 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import ru.ldralighieri.composites.carbon.core.Destination
 
 class Navigator {
-
-    private val _destinations = Channel<Event>()
+    private val _destinations = Channel<Event>(Channel.CONFLATED)
     val destinations: Flow<Event> = _destinations.receiveAsFlow()
 
     fun navigateTo(destination: Destination) {
         _destinations.trySend(Event.ToDestination(destination))
     }
 
-    fun navigateBack() { _destinations.trySend(Event.Back()) }
+    fun navigateBack() {
+        _destinations.trySend(Event.Back())
+    }
 
     sealed interface Event {
         data class ToDestination(val destination: Destination) : Event
+
         data class Back(val result: Parcelable? = null) : Event
     }
 }

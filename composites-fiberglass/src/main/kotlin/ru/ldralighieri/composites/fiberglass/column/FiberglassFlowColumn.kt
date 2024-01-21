@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassColumnItemSlots
@@ -49,14 +48,14 @@ fun FiberglassFlowColumn(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    maxItemsInEachColumn: Int = Int.MAX_VALUE
+    maxItemsInEachColumn: Int = Int.MAX_VALUE,
 ) {
     Box(modifier = modifier) {
         FlowColumn(
             modifier = Modifier.padding(contentPadding),
             verticalArrangement = verticalArrangement,
             horizontalArrangement = horizontalArrangement,
-            maxItemsInEachColumn = maxItemsInEachColumn
+            maxItemsInEachColumn = maxItemsInEachColumn,
         ) {
             items.forEach { item ->
                 key(item.id) {

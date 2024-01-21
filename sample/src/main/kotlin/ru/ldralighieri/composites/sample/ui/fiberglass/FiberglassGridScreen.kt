@@ -68,8 +68,8 @@ fun FiberglassGridScreen(args: CompositesFiberglassGridArgs) {
                 containerColor = AppTheme.colors.surfaceColorAtElevation(3.dp),
                 navigationIconContentColor = AppTheme.colors.onSurface,
                 titleContentColor = AppTheme.colors.onSurface,
-                actionIconContentColor = AppTheme.colors.onSurfaceVariant
-            )
+                actionIconContentColor = AppTheme.colors.onSurfaceVariant,
+            ),
         )
 
         FiberglassGridContent()
@@ -78,19 +78,20 @@ fun FiberglassGridScreen(args: CompositesFiberglassGridArgs) {
 
 @Composable
 private fun FiberglassGridContent() {
-    val items: List<FiberglassItem> = remember {
-        buildList {
-            repeat(33) {
-                add(if (it % 2 == 0) PrimaryGridItem() else ErrorGridItem())
+    val items: List<FiberglassItem> =
+        remember {
+            buildList {
+                repeat(33) {
+                    add(if (it % 2 == 0) PrimaryGridItem() else ErrorGridItem())
+                }
             }
         }
-    }
 
     FiberglassLazyVerticalGrid(
         items = items,
         itemSlots = mapOf(
             PrimaryGridItem::class to primaryGridSlot(),
-            ErrorGridItem::class to errorGridSlot()
+            ErrorGridItem::class to errorGridSlot(),
         ),
         columns = GridCells.Adaptive(minSize = 128.dp),
         modifier = Modifier.fillMaxSize(),
@@ -98,7 +99,7 @@ private fun FiberglassGridContent() {
             bottom = WindowInsets.navigationBars
                 .only(WindowInsetsSides.Bottom)
                 .asPaddingValues()
-                .calculateBottomPadding() + AppTheme.dimensions.bottomGuideline
-        )
+                .calculateBottomPadding() + AppTheme.dimensions.bottomGuideline,
+        ),
     )
 }

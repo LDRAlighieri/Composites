@@ -74,12 +74,12 @@ fun FiberglassLazyVerticalStaggeredGrid(
         verticalItemSpacing = verticalItemSpacing,
         horizontalArrangement = horizontalArrangement,
         flingBehavior = flingBehavior,
-        userScrollEnabled = userScrollEnabled
+        userScrollEnabled = userScrollEnabled,
     ) {
         items(
             items = items,
             key = { it.id },
-            contentType = { it::class.simpleName }
+            contentType = { it::class.simpleName },
         ) { item ->
             itemSlots[item::class]?.let { it(item) }
         }

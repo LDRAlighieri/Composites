@@ -17,12 +17,10 @@
 package ru.ldralighieri.composites.carbon.processor
 
 import com.google.devtools.ksp.processing.CodeGenerator
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LIST
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
@@ -33,22 +31,27 @@ import com.squareup.kotlinpoet.ksp.writeTo
 import com.squareup.kotlinpoet.withIndent
 import ru.ldralighieri.composites.carbon.core.CarbonRouteData
 import ru.ldralighieri.composites.carbon.core.Destination
+import ru.ldralighieri.composites.carbon.processor.ext.castValue
 import ru.ldralighieri.composites.carbon.processor.ext.getCreateArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getOptionalCreateArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getOptionalPathArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getPathArguments
 import ru.ldralighieri.composites.carbon.processor.ext.toBackStackGetter
-import ru.ldralighieri.composites.carbon.processor.ext.toClassName
+import ru.ldralighieri.composites.carbon.processor.ext.toNavTypeClassName
 import ru.ldralighieri.composites.carbon.processor.ext.toSavedStateHandleGetter
-
-private const val ROUTE_PROPERTY_NAME = "route"
-private const val ARGUMENTS_PROPERTY_NAME = "arguments"
-private const val DEEPLINK_PROPERTY_NAME = "deepLinks"
-private const val CREATE_FUNCTION_NAME = "create"
-private const val PARSE_ARGUMENTS_FUNCTION_NAME = "parseArguments"
-
-internal const val PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME = "navBackStackEntry"
-internal const val PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME = "savedStateHandle"
+import ru.ldralighieri.composites.carbon.processor.model.ARGUMENTS_PROPERTY_NAME
+import ru.ldralighieri.composites.carbon.processor.model.CREATE_FUNCTION_NAME
+import ru.ldralighieri.composites.carbon.processor.model.DEEPLINK_PROPERTY_NAME
+import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
+import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_FUNCTION_NAME
+import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME
+import ru.ldralighieri.composites.carbon.processor.model.ROUTE_PROPERTY_NAME
+import ru.ldralighieri.composites.carbon.processor.model.namedNavArgumentClassName
+import ru.ldralighieri.composites.carbon.processor.model.navArgumentMemberName
+import ru.ldralighieri.composites.carbon.processor.model.navBackStackEntryClassName
+import ru.ldralighieri.composites.carbon.processor.model.navDeepLinkClassName
+import ru.ldralighieri.composites.carbon.processor.model.navDeepLinkMemberName
+import ru.ldralighieri.composites.carbon.processor.model.savedStateHandleClassName
 
 internal class CarbonRouteGenerator(private val codeGenerator: CodeGenerator) {
     fun generate(data: CarbonRouteData) {
@@ -99,7 +102,7 @@ private fun CarbonRouteData.argumentsProperty(): PropertySpec =
     PropertySpec
         .builder(
             name = ARGUMENTS_PROPERTY_NAME,
-            type = LIST.parameterizedBy(ClassName("androidx.navigation", "NamedNavArgument"))
+            type = LIST.parameterizedBy(namedNavArgumentClassName)
         )
         .initializer(
             buildCodeBlock {
@@ -110,20 +113,28 @@ private fun CarbonRouteData.argumentsProperty(): PropertySpec =
                         add(
                             arguments.map { argument ->
                                 buildCodeBlock {
-                                    addStatement(
-                                        format = "%M(%S) {",
-                                        MemberName("androidx.navigation", "navArgument"),
-                                        argument.name
-                                    )
+                                    addStatement("%M(%S) {", navArgumentMemberName, argument.name)
 
                                     withIndent {
-                                        addStatement("type = %T", argument.typeName.toClassName())
+                                        addStatement(
+                                            format = "type = %T",
+                                            argument.typeName.toNavTypeClassName()
+                                        )
+
                                         addStatement("nullable = %L", argument.isNullable)
+
+                                        argument.defaultValue?.let {
+                                            addStatement(
+                                                format = "defaultValue = %L",
+                                                it.castValue()
+                                            )
+                                        }
                                     }
+
                                     add("},")
                                 }
                             }
-                            .joinToCode(separator = "\n", suffix = "\n")
+                                .joinToCode(separator = "\n", suffix = "\n")
                         )
                     }
                     add(")")
@@ -136,7 +147,7 @@ private fun CarbonRouteData.deepLinksProperty(): PropertySpec =
     PropertySpec
         .builder(
             name = DEEPLINK_PROPERTY_NAME,
-            type = LIST.parameterizedBy(ClassName("androidx.navigation", "NavDeepLink"))
+            type = LIST.parameterizedBy(navDeepLinkClassName)
         )
         .initializer(
             buildCodeBlock {
@@ -146,10 +157,7 @@ private fun CarbonRouteData.deepLinksProperty(): PropertySpec =
                     withIndent {
                         add(
                             buildCodeBlock {
-                                beginControlFlow(
-                                    controlFlow = "%M",
-                                    MemberName("androidx.navigation", "navDeepLink")
-                                )
+                                beginControlFlow("%M", navDeepLinkMemberName)
 
                                 addStatement(
                                     format = "uriPattern = \"%L://\$%N\"",
@@ -170,7 +178,21 @@ private fun CarbonRouteData.deepLinksProperty(): PropertySpec =
 private fun CarbonRouteData.createFunction() = FunSpec
     .builder(CREATE_FUNCTION_NAME)
     .addParameters(
-        arguments.map { data -> ParameterSpec(data.name, data.typeName) }
+        arguments
+            .map { data ->
+                ParameterSpec.builder(data.name, data.typeName)
+                    .apply {
+                        when {
+                            data.isNullable -> defaultValue(format = "%L", null)
+                            data.defaultValue != null ->
+                                defaultValue(
+                                    format = "%L",
+                                    data.defaultValue?.castValue()
+                                )
+                        }
+                    }
+                    .build()
+            }
     )
     .returns(Destination.Compose::class)
     .addStatement(
@@ -188,7 +210,7 @@ private fun CarbonRouteData.parseArgumentsByStackEntryFunction() =
         .addParameter(
             ParameterSpec(
                 name = PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME,
-                type = ClassName("androidx.navigation", "NavBackStackEntry")
+                type = navBackStackEntryClassName
             )
         )
         .returns(className)
@@ -202,7 +224,7 @@ private fun CarbonRouteData.parseArgumentsByStackEntryFunction() =
                                 addStatement(
                                     format = "%L = %L,",
                                     argument.name,
-                                    argument.typeName.toBackStackGetter(argument.name)
+                                    argument.toBackStackGetter()
                                 )
                             }
                         }
@@ -220,7 +242,7 @@ private fun CarbonRouteData.parseArgumentsBySavedStateHandleFunction() =
         .addParameter(
             ParameterSpec(
                 name = PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME,
-                type = ClassName("androidx.lifecycle", "SavedStateHandle")
+                type = savedStateHandleClassName
             )
         )
         .returns(className)
@@ -234,7 +256,7 @@ private fun CarbonRouteData.parseArgumentsBySavedStateHandleFunction() =
                                 addStatement(
                                     format = "%L = %L,",
                                     argument.name,
-                                    argument.typeName.toSavedStateHandleGetter(argument.name)
+                                    argument.toSavedStateHandleGetter()
                                 )
                             }
                         }

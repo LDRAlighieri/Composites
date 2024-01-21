@@ -55,14 +55,14 @@ fun CompositesScreen() {
             title = {
                 Text(
                     text = "Composites Materials Catalog",
-                    style = AppTheme.typography.headlineSmall
+                    style = AppTheme.typography.headlineSmall,
                 )
             },
             colors = topAppBarColors(
                 containerColor = AppTheme.colors.surfaceColorAtElevation(3.dp),
                 titleContentColor = AppTheme.colors.onSurface,
-                actionIconContentColor = AppTheme.colors.onSurfaceVariant
-            )
+                actionIconContentColor = AppTheme.colors.onSurfaceVariant,
+            ),
         )
 
         CompositesContent()
@@ -77,31 +77,30 @@ private fun CompositesContent() {
         item(key = "fiberglass") {
             CompositeItem(
                 title = "Fiberglass",
-                onClick = {
-                    navigator.navigateTo(
-                        CompositesFiberglassRoute.create(title = "Fiberglass composites")
-                    )
-                }
+                onClick = { navigator.navigateTo(CompositesFiberglassRoute.create()) },
             )
         }
     }
 }
 
 @Composable
-private fun CompositeItem(title: String, onClick: () -> Unit) {
+private fun CompositeItem(
+    title: String,
+    onClick: () -> Unit,
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp)
             .clickable(onClick = onClick)
             .padding(horizontal = AppTheme.dimensions.horizontalGuideline, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             painter = painterResource(id = R.drawable.fiberglass),
             contentDescription = "",
             modifier = Modifier.size(48.dp),
-            colorFilter = ColorFilter.tint(color = AppTheme.colors.onBackground)
+            colorFilter = ColorFilter.tint(color = AppTheme.colors.onBackground),
         )
 
         Spacer(modifier = Modifier.width(12.dp))
@@ -111,7 +110,7 @@ private fun CompositeItem(title: String, onClick: () -> Unit) {
             color = AppTheme.colors.onBackground,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
-            style = AppTheme.typography.titleLarge
+            style = AppTheme.typography.titleLarge,
         )
     }
 }

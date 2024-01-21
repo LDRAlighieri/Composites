@@ -63,46 +63,49 @@ internal fun FiberglassRootScreen(args: CompositesFiberglassArgs) {
                 containerColor = AppTheme.colors.surfaceColorAtElevation(3.dp),
                 navigationIconContentColor = AppTheme.colors.onSurface,
                 titleContentColor = AppTheme.colors.onSurface,
-                actionIconContentColor = AppTheme.colors.onSurfaceVariant
-            )
+                actionIconContentColor = AppTheme.colors.onSurfaceVariant,
+            ),
         )
 
         FiberglassScreenItem(
             title = "Column",
             onClick = {
                 navigator.navigateTo(
-                    CompositesFiberglassColumnRoute.create(title = "Fiberglass column")
+                    CompositesFiberglassColumnRoute.create(title = "Fiberglass column"),
                 )
-            }
+            },
         )
 
         FiberglassScreenItem(
             title = "Grid",
             onClick = {
                 navigator.navigateTo(
-                    CompositesFiberglassGridRoute.create(title = "Fiberglass grid")
+                    CompositesFiberglassGridRoute.create(title = "Fiberglass grid"),
                 )
-            }
+            },
         )
     }
 }
 
 @Composable
-private fun FiberglassScreenItem(title: String, onClick: () -> Unit) {
+private fun FiberglassScreenItem(
+    title: String,
+    onClick: () -> Unit,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp)
             .clickable(onClick = onClick)
             .padding(horizontal = AppTheme.dimensions.horizontalGuideline, vertical = 8.dp),
-        contentAlignment = Alignment.CenterStart
+        contentAlignment = Alignment.CenterStart,
     ) {
         Text(
             text = title,
             color = AppTheme.colors.onBackground,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
-            style = AppTheme.typography.titleLarge
+            style = AppTheme.typography.titleLarge,
         )
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright $YEAR Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,3 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.sample.ui.fiberglass.items
-
-import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
-import java.util.UUID
-
-abstract class GridItem : FiberglassItem {
-    override val id: String = UUID.randomUUID().toString()
-}
-
-internal class PrimaryGridItem : GridItem()
-
-internal class ErrorGridItem : GridItem()

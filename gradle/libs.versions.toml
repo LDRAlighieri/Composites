@@ -1,15 +1,15 @@
 [versions]
 # Plugins
-agp = "8.2.0"
+agp = "8.2.1"
 dokka = "1.9.10"
-spotless = "6.23.3"
-mavenPublish = "0.25.3"
+spotless = "6.24.0"
+mavenPublish = "0.27.0"
 bcv = "0.13.2"
 gver = "0.50.0"
-ksp = "1.9.21-1.0.15"
+ksp = "1.9.22-1.0.17"
 
 # Kotlin
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
@@ -17,17 +17,14 @@ androidxActivity = "1.8.2"
 androidxNavigation = "2.7.6"
 androidxPagingCompose = "3.2.1"
 # Compose
-androidxComposeCompiler = "1.5.7"
+androidxComposeCompiler = "1.5.8"
 androidxComposeBom = "2023.10.01"
 
 # Google
 googleMaterial="1.11.0"
 
 # KotlinPoet
-kotlinpoet="1.15.3"
-
-# Lint
-ktlint = "0.49.1"
+kotlinpoet="1.16.0"
 
 
 [plugins]
