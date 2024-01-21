@@ -9,7 +9,7 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 
 - [X] KSP `Route` object generation
 - [ ] Default arguments
-- [ ] Enums and Parcelable support (using parcelable is not best practice. It is recommended to use primitives)****
+- [ ] Enums and Parcelable support (using parcelable is not best practice. It is recommended to use primitives)
 
 
 ## Using in your projects
