@@ -16,6 +16,8 @@
 
 package ru.ldralighieri.composites.carbon.processor
 
+import com.google.devtools.ksp.KspExperimental
+import com.google.devtools.ksp.getAnnotationsByType
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSNode
@@ -26,8 +28,10 @@ import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import ru.ldralighieri.composites.carbon.core.ArgumentData
+import ru.ldralighieri.composites.carbon.core.ArgumentDefaultValue
 import ru.ldralighieri.composites.carbon.core.CarbonRoute
 import ru.ldralighieri.composites.carbon.core.CarbonRouteData
+import ru.ldralighieri.composites.carbon.core.DefaultValue
 import java.util.Locale
 
 private const val NAVIGATION_ROUTE_ARGUMENT_NAME = "route"
@@ -120,6 +124,7 @@ internal class CarbonRouteDataParser {
                 }
             }
 
+    @OptIn(KspExperimental::class)
     @Throws(IllegalStateException::class)
     private fun KSClassDeclaration.getArguments(): List<ArgumentData> =
         this
@@ -135,7 +140,17 @@ internal class CarbonRouteDataParser {
 
                 val isNullable: Boolean = type.isMarkedNullable
 
-                ArgumentData(name, typeName, isNullable)
+                val defaultValue: ArgumentDefaultValue? = it
+                    .getAnnotationsByType(DefaultValue::class)
+                    .firstOrNull()
+                    ?.let { defaultValue ->
+                        ArgumentDefaultValue(
+                            value = defaultValue.value,
+                            type = typeName,
+                        )
+                    }
+
+                ArgumentData(name, typeName, isNullable, defaultValue)
             }
 
     sealed interface Result {
