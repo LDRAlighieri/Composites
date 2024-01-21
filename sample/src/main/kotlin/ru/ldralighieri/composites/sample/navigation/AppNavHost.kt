@@ -32,28 +32,28 @@ data object CompositesArgs
 
 @CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
 data class CompositesFiberglassArgs(
-    @DefaultValue("Fiberglass composites") val title: String
+    @DefaultValue("Fiberglass composites") val title: String,
 )
 
 @CarbonRoute(route = "composites/fiberglass/column")
 data class CompositesFiberglassColumnArgs(
-    val title: String
+    val title: String,
 )
 
 @CarbonRoute(route = "composites/fiberglass/grid")
 data class CompositesFiberglassGridArgs(
-    val title: String
+    val title: String,
 )
 
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     AppAnimatedNavHost(
         navController = navController,
         startDestination = CompositesRoute.route,
-        modifier = modifier
+        modifier = modifier,
     ) {
         composable(
             route = CompositesRoute.route,
@@ -77,7 +77,7 @@ fun AppNavHost(
             deepLinks = CompositesFiberglassColumnRoute.deepLinks,
         ) { navBackStackEntry ->
             FiberglassColumnScreen(
-                args = CompositesFiberglassColumnRoute.parseArguments(navBackStackEntry)
+                args = CompositesFiberglassColumnRoute.parseArguments(navBackStackEntry),
             )
         }
 
@@ -87,7 +87,7 @@ fun AppNavHost(
             deepLinks = CompositesFiberglassGridRoute.deepLinks,
         ) { navBackStackEntry ->
             FiberglassGridScreen(
-                args = CompositesFiberglassGridRoute.parseArguments(navBackStackEntry)
+                args = CompositesFiberglassGridRoute.parseArguments(navBackStackEntry),
             )
         }
     }

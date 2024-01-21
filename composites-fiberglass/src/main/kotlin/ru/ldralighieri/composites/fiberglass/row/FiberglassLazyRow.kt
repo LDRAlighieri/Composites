@@ -58,7 +58,7 @@ fun FiberglassLazyRow(
         if (!reverseLayout) Arrangement.Start else Arrangement.End,
     verticalAlignment: Alignment.Vertical = Alignment.Top,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
-    userScrollEnabled: Boolean = true
+    userScrollEnabled: Boolean = true,
 ) {
     LazyRow(
         modifier = modifier,
@@ -68,12 +68,12 @@ fun FiberglassLazyRow(
         horizontalArrangement = horizontalArrangement,
         verticalAlignment = verticalAlignment,
         flingBehavior = flingBehavior,
-        userScrollEnabled = userScrollEnabled
+        userScrollEnabled = userScrollEnabled,
     ) {
         items(
             items = items,
             key = { it.id },
-            contentType = { it::class.simpleName }
+            contentType = { it::class.simpleName },
         ) { item ->
             itemSlots[item::class]?.let { it(item) }
         }

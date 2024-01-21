@@ -18,40 +18,29 @@ package ru.ldralighieri.composites.carbon.processor.ext
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.asTypeName
+import ru.ldralighieri.composites.carbon.processor.model.booleanNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.booleanTypeName
+import ru.ldralighieri.composites.carbon.processor.model.floatNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.floatTypeName
+import ru.ldralighieri.composites.carbon.processor.model.intNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.intTypeName
+import ru.ldralighieri.composites.carbon.processor.model.longNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.longTypeName
+import ru.ldralighieri.composites.carbon.processor.model.navTypeBooleanClassName
+import ru.ldralighieri.composites.carbon.processor.model.navTypeFloatClassName
+import ru.ldralighieri.composites.carbon.processor.model.navTypeIntClassName
+import ru.ldralighieri.composites.carbon.processor.model.navTypeLongClassName
+import ru.ldralighieri.composites.carbon.processor.model.navTypeStringClassName
+import ru.ldralighieri.composites.carbon.processor.model.stringNullableTypeName
+import ru.ldralighieri.composites.carbon.processor.model.stringTypeName
 
-private val navTypeIntClassName =
-    ClassName("androidx.navigation.NavType.Companion", "IntType")
-
-private val navTypeLongClassName =
-    ClassName("androidx.navigation.NavType.Companion", "LongType")
-
-private val navTypeFloatClassName =
-    ClassName("androidx.navigation.NavType.Companion", "FloatType")
-
-private val navTypeBooleanClassName =
-    ClassName("androidx.navigation.NavType.Companion", "BoolType")
-
-private val navTypeStringClassName =
-    ClassName("androidx.navigation.NavType.Companion", "StringType")
-
-internal fun TypeName.toClassName(): ClassName =
+internal fun TypeName.toNavTypeClassName(): ClassName =
     when(this) {
-        Int::class.asTypeName(),
-        Int::class.asTypeName().copy(nullable = true) -> navTypeIntClassName
-
-        Long::class.asTypeName(),
-        Long::class.asTypeName().copy(nullable = true) -> navTypeLongClassName
-
-        Float::class.asTypeName(),
-        Float::class.asTypeName().copy(nullable = true) -> navTypeFloatClassName
-
-        Boolean::class.asTypeName(),
-        Boolean::class.asTypeName().copy(nullable = true) -> navTypeBooleanClassName
-
-        String::class.asTypeName(),
-        String::class.asTypeName().copy(nullable = true) -> navTypeStringClassName
-
+        intTypeName, intNullableTypeName -> navTypeIntClassName
+        longTypeName, longNullableTypeName -> navTypeLongClassName
+        floatTypeName, floatNullableTypeName -> navTypeFloatClassName
+        booleanTypeName, booleanNullableTypeName -> navTypeBooleanClassName
+        stringTypeName, stringNullableTypeName -> navTypeStringClassName
         else -> navTypeStringClassName
     }
 
@@ -59,16 +48,16 @@ internal fun TypeName.cast(value: String): Any =
     String.format(
         format = "%s%s",
         when(this) {
-            Int::class.asTypeName() -> value.toInt()
-            Long::class.asTypeName() -> value.toLong()
-            Float::class.asTypeName() -> value.toFloat()
-            Boolean::class.asTypeName() -> value.toBoolean()
-            String::class.asTypeName() -> "\"$value\""
+            intTypeName -> value.toInt()
+            longTypeName -> value.toLong()
+            floatTypeName -> value.toFloat()
+            booleanTypeName -> value.toBoolean()
+            stringTypeName -> "\"$value\""
             else -> "\"$value\""
         },
         when(this) {
-            Long::class.asTypeName() -> "L"
-            Float::class.asTypeName() -> "F"
+            longTypeName -> "L"
+            floatTypeName -> "F"
             else -> ""
         }
     )

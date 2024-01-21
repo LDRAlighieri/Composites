@@ -64,7 +64,7 @@ fun FiberglassLazyColumn(
         if (!reverseLayout) Arrangement.Top else Arrangement.Bottom,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
-    userScrollEnabled: Boolean = true
+    userScrollEnabled: Boolean = true,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -74,12 +74,12 @@ fun FiberglassLazyColumn(
         verticalArrangement = verticalArrangement,
         horizontalAlignment = horizontalAlignment,
         flingBehavior = flingBehavior,
-        userScrollEnabled = userScrollEnabled
+        userScrollEnabled = userScrollEnabled,
     ) {
         items(
             items = items,
             key = { it.id },
-            contentType = { it::class.simpleName }
+            contentType = { it::class.simpleName },
         ) { item ->
             itemSlots[item::class]?.let { it(item) }
         }
@@ -113,7 +113,7 @@ fun FiberglassLazyColumn(
         if (!reverseLayout) Arrangement.Top else Arrangement.Bottom,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
-    userScrollEnabled: Boolean = true
+    userScrollEnabled: Boolean = true,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -123,12 +123,12 @@ fun FiberglassLazyColumn(
         verticalArrangement = verticalArrangement,
         horizontalAlignment = horizontalAlignment,
         flingBehavior = flingBehavior,
-        userScrollEnabled = userScrollEnabled
+        userScrollEnabled = userScrollEnabled,
     ) {
         items(
             count = items.itemCount,
             key = items.itemKey { it.id },
-            contentType = items.itemContentType { it::class.simpleName }
+            contentType = items.itemContentType { it::class.simpleName },
         ) { index ->
             items[index]?.let {
                 itemSlots[it::class]?.let { slot -> slot(it) }
@@ -167,7 +167,7 @@ fun FiberglassLazyColumn(
         if (!reverseLayout) Arrangement.Top else Arrangement.Bottom,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
-    userScrollEnabled: Boolean = true
+    userScrollEnabled: Boolean = true,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -177,12 +177,12 @@ fun FiberglassLazyColumn(
         verticalArrangement = verticalArrangement,
         horizontalAlignment = horizontalAlignment,
         flingBehavior = flingBehavior,
-        userScrollEnabled = userScrollEnabled
+        userScrollEnabled = userScrollEnabled,
     ) {
         sections.forEach { (header, compositeItems) ->
             stickyHeader(
                 key = header.id,
-                contentType = header::class.simpleName
+                contentType = header::class.simpleName,
             ) {
                 headerSlot(header)
             }
@@ -190,7 +190,7 @@ fun FiberglassLazyColumn(
             items(
                 items = compositeItems,
                 key = { it.id },
-                contentType = { it::class.simpleName }
+                contentType = { it::class.simpleName },
             ) { item ->
                 itemSlots[item::class]?.let { it(item) }
             }

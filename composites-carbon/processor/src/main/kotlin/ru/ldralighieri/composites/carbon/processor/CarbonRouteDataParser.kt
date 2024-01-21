@@ -24,34 +24,18 @@ import com.google.devtools.ksp.symbol.KSNode
 import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import ru.ldralighieri.composites.carbon.core.ArgumentData
 import ru.ldralighieri.composites.carbon.core.ArgumentDefaultValue
-import ru.ldralighieri.composites.carbon.core.CarbonRoute
 import ru.ldralighieri.composites.carbon.core.CarbonRouteData
 import ru.ldralighieri.composites.carbon.core.DefaultValue
+import ru.ldralighieri.composites.carbon.processor.model.ROUTE_ARGUMENT_NAME
+import ru.ldralighieri.composites.carbon.processor.model.ROUTE_DEEPLINK_SCHEMA_NAME
+import ru.ldralighieri.composites.carbon.processor.model.ROUTE_FILE_NAME_POSTFIX
+import ru.ldralighieri.composites.carbon.processor.model.carbonAnnotationTypeName
+import ru.ldralighieri.composites.carbon.processor.model.validTypes
 import java.util.Locale
-
-private const val NAVIGATION_ROUTE_ARGUMENT_NAME = "route"
-private const val NAVIGATION_ROUTE_DEEPLINK_SCHEMA_NAME = "deeplinkSchema"
-private const val NAVIGATION_ROUTE_FILE_NAME_POSTFIX = "Route"
-
-private val carbonAnnotationTypeName: TypeName = CarbonRoute::class.java.asTypeName()
-
-private val validArgumentTypes: List<TypeName> = listOf(
-    Int::class.asTypeName(),
-    Int::class.asTypeName().copy(nullable = true),
-    Long::class.asTypeName(),
-    Long::class.asTypeName().copy(nullable = true),
-    Float::class.asTypeName(),
-    Float::class.asTypeName().copy(nullable = true),
-    Boolean::class.asTypeName(),
-    Boolean::class.asTypeName().copy(nullable = true),
-    String::class.asTypeName(),
-    String::class.asTypeName().copy(nullable = true),
-)
 
 internal class CarbonRouteDataParser {
 
@@ -70,25 +54,25 @@ internal class CarbonRouteDataParser {
         val route: String =
             annotation
                 .arguments
-                .filter { it.name?.getShortName() == NAVIGATION_ROUTE_ARGUMENT_NAME }
+                .filter { it.name?.getShortName() == ROUTE_ARGUMENT_NAME }
                 .map {
                     val value = it.value.toString()
                     if (value.endsWith("/")) value.dropLast(1) else value
                 }
                 .firstOrNull()
                 ?: return Result.Failure(
-                    message = "Error to process. There is no argument named $NAVIGATION_ROUTE_ARGUMENT_NAME",
+                    message = "Error to process. There is no argument named $ROUTE_ARGUMENT_NAME",
                     symbol = symbol
                 )
 
         val deeplinkSchema: String =
             annotation
                 .arguments
-                .filter { it.name?.getShortName() == NAVIGATION_ROUTE_DEEPLINK_SCHEMA_NAME }
+                .filter { it.name?.getShortName() == ROUTE_DEEPLINK_SCHEMA_NAME }
                 .map { it.value.toString() }
                 .firstOrNull()
                 ?: return Result.Failure(
-                    message = "Error to process. There is no argument named $NAVIGATION_ROUTE_ARGUMENT_NAME",
+                    message = "Error to process. There is no argument named $ROUTE_ARGUMENT_NAME",
                     symbol = symbol
                 )
 
@@ -115,7 +99,7 @@ internal class CarbonRouteDataParser {
     private fun String.getFileName(): String =
         this
             .split("[-,/]".toRegex())
-            .joinToString(separator = "", postfix = NAVIGATION_ROUTE_FILE_NAME_POSTFIX) { string ->
+            .joinToString(separator = "", postfix = ROUTE_FILE_NAME_POSTFIX) { string ->
                 string.replaceFirstChar { char ->
                     with(char) {
                         if (isLowerCase()) titlecase(Locale.getDefault())
@@ -136,7 +120,7 @@ internal class CarbonRouteDataParser {
 
                 val type: KSType = it.type.resolve()
                 val typeName: TypeName = type.toTypeName()
-                if (typeName !in validArgumentTypes) error("$typeName is not a valid argument type")
+                if (typeName !in validTypes) error("$typeName is not a valid argument type")
 
                 val isNullable: Boolean = type.isMarkedNullable
 

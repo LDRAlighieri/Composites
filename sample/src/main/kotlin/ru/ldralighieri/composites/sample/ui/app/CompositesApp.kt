@@ -78,14 +78,14 @@ fun ComponentActivity.CompositesApp() {
             Scaffold(
                 containerColor = Color.Transparent,
                 contentColor = AppTheme.colors.onBackground,
-                contentWindowInsets = WindowInsets(0, 0, 0, 0)
+                contentWindowInsets = WindowInsets(0, 0, 0, 0),
             ) { innerPadding ->
                 AppNavHost(
                     navController = navController,
                     modifier = Modifier
                         .background(color = AppTheme.colors.background)
                         .padding(innerPadding)
-                        .consumeWindowInsets(innerPadding)
+                        .consumeWindowInsets(innerPadding),
                 )
             }
         }
@@ -101,7 +101,6 @@ private fun ComponentActivity.ChangeSystemBarsTheme(isDarkMode: Boolean) {
                 lightScrim = android.graphics.Color.TRANSPARENT,
                 darkScrim = android.graphics.Color.TRANSPARENT,
             ) { isDarkMode },
-
             navigationBarStyle = SystemBarStyle.auto(
                 lightScrim = barColor,
                 darkScrim = barColor,
@@ -116,7 +115,7 @@ private fun ProvideDefaults(content: @Composable () -> Unit) {
         @OptIn(ExperimentalFoundationApi::class)
         CompositionLocalProvider(
             LocalOverscrollConfiguration provides null,
-            content = content
+            content = content,
         )
     }
 }

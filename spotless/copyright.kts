@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Vladimir Raupov
+ * Copyright $YEAR Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,3 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.carbon.processor.ext
-
-import ru.ldralighieri.composites.carbon.core.ArgumentDefaultValue
-
-internal fun ArgumentDefaultValue.castValue(): Any = type.cast(value)

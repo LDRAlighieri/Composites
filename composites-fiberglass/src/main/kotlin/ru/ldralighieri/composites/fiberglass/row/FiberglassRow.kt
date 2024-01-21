@@ -51,7 +51,7 @@ fun FiberglassRow(
     scrollState: ScrollState? = null,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    verticalAlignment: Alignment.Vertical = Alignment.Top
+    verticalAlignment: Alignment.Vertical = Alignment.Top,
 ) {
     Box(modifier = modifier) {
         Row(
@@ -59,7 +59,7 @@ fun FiberglassRow(
                 .then(if (scrollState != null) Modifier.horizontalScroll(scrollState) else Modifier)
                 .padding(contentPadding),
             horizontalArrangement = horizontalArrangement,
-            verticalAlignment = verticalAlignment
+            verticalAlignment = verticalAlignment,
         ) {
             items.forEach { item ->
                 key(item.id) {

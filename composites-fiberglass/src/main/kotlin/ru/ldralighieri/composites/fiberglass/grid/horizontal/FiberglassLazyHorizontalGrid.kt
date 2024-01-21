@@ -59,7 +59,7 @@ fun FiberglassLazyHorizontalGrid(
         if (!reverseLayout) Arrangement.Start else Arrangement.End,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
-    userScrollEnabled: Boolean = true
+    userScrollEnabled: Boolean = true,
 ) {
     LazyHorizontalGrid(
         rows = rows,
@@ -69,12 +69,12 @@ fun FiberglassLazyHorizontalGrid(
         horizontalArrangement = horizontalArrangement,
         verticalArrangement = verticalArrangement,
         flingBehavior = flingBehavior,
-        userScrollEnabled = userScrollEnabled
+        userScrollEnabled = userScrollEnabled,
     ) {
         items(
             items = items,
             key = { it.id },
-            contentType = { it::class.simpleName }
+            contentType = { it::class.simpleName },
         ) { item ->
             itemSlots[item::class]?.let { it(item) }
         }

@@ -21,7 +21,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 
 class CompositesApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
         setUpNightMode()
@@ -29,8 +28,11 @@ class CompositesApplication : Application() {
 
     private fun setUpNightMode() {
         AppCompatDelegate.setDefaultNightMode(
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            else AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            } else {
+                AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
+            },
         )
     }
 }

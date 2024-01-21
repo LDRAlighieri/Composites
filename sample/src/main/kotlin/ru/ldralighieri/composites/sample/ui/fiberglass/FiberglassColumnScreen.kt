@@ -74,8 +74,8 @@ fun FiberglassColumnScreen(args: CompositesFiberglassColumnArgs) {
                 containerColor = AppTheme.colors.surfaceColorAtElevation(3.dp),
                 navigationIconContentColor = AppTheme.colors.onSurface,
                 titleContentColor = AppTheme.colors.onSurface,
-                actionIconContentColor = AppTheme.colors.onSurfaceVariant
-            )
+                actionIconContentColor = AppTheme.colors.onSurfaceVariant,
+            ),
         )
 
         FiberglassColumnContent()
@@ -84,22 +84,24 @@ fun FiberglassColumnScreen(args: CompositesFiberglassColumnArgs) {
 
 @Composable
 private fun FiberglassColumnContent() {
-    val sections: Map<FiberglassStickyHeaderItem, List<FiberglassItem>> = remember {
-        buildMap {
-            val count = 6
-            repeat(count) {
-                val number = it + 1
-                val header = StickyHeaderItem("Block №$number")
-                val items: List<FiberglassItem> = buildList {
-                    add(ImagesRowItem(number * 2))
-                    add(TagsFlowRowItem(number * 3))
-                    add(LoremIpsumItem(20 * number))
-                    if (number < count) add(SpacerItem(16))
+    val sections: Map<FiberglassStickyHeaderItem, List<FiberglassItem>> =
+        remember {
+            buildMap {
+                val count = 6
+                repeat(count) {
+                    val number = it + 1
+                    val header = StickyHeaderItem("Block №$number")
+                    val items: List<FiberglassItem> =
+                        buildList {
+                            add(ImagesRowItem(number * 2))
+                            add(TagsFlowRowItem(number * 3))
+                            add(LoremIpsumItem(20 * number))
+                            if (number < count) add(SpacerItem(16))
+                        }
+                    put(header, items)
                 }
-                put(header, items)
             }
         }
-    }
 
     FiberglassLazyColumn(
         sections = sections,
@@ -108,14 +110,14 @@ private fun FiberglassColumnContent() {
             SpacerItem::class to spacerItemSlot(),
             LoremIpsumItem::class to loremIpsumSlot(),
             ImagesRowItem::class to imagesRowSlot(),
-            TagsFlowRowItem::class to tagsFlowRowSlot()
+            TagsFlowRowItem::class to tagsFlowRowSlot(),
         ),
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             bottom = WindowInsets.navigationBars
                 .only(WindowInsetsSides.Bottom)
                 .asPaddingValues()
-                .calculateBottomPadding() + AppTheme.dimensions.bottomGuideline
-        )
+                .calculateBottomPadding() + AppTheme.dimensions.bottomGuideline,
+        ),
     )
 }
