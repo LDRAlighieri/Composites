@@ -32,4 +32,10 @@ data class ArgumentData(
     val name: String,
     val typeName: TypeName,
     val isNullable: Boolean,
+    val defaultValue: ArgumentDefaultValue? = null,
+)
+
+data class ArgumentDefaultValue(
+    val value: String,
+    val type: TypeName,
 )
