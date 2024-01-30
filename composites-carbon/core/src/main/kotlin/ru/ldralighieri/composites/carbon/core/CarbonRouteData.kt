@@ -16,6 +16,7 @@
 
 package ru.ldralighieri.composites.carbon.core
 
+import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
 
@@ -30,12 +31,12 @@ data class CarbonRouteData(
 
 data class ArgumentData(
     val name: String,
-    val typeName: TypeName,
+    val type: KSType,
     val isNullable: Boolean,
     val defaultValue: ArgumentDefaultValue? = null,
 )
 
 data class ArgumentDefaultValue(
     val value: String,
-    val type: TypeName,
+    val type: KSType,
 )

@@ -16,6 +16,7 @@
 
 package ru.ldralighieri.composites.carbon.processor.ext
 
+import com.google.devtools.ksp.processing.Resolver
 import ru.ldralighieri.composites.carbon.core.ArgumentDefaultValue
 
-internal fun ArgumentDefaultValue.castValue(): Any = type.cast(value)
+internal fun ArgumentDefaultValue.castValue(resolver: Resolver): Any = type.cast(resolver, value)

@@ -1,6 +1,7 @@
 package ru.ldralighieri.composites.carbon.processor.model
 
 import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
 import ru.ldralighieri.composites.carbon.core.CarbonRoute
 
