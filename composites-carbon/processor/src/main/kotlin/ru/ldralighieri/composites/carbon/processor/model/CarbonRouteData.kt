@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.carbon.core
+package ru.ldralighieri.composites.carbon.processor.model
 
+import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.TypeName
 
-data class CarbonRouteData(
+internal data class CarbonRouteData(
     val route: String,
     val deeplinkSchema: String,
     val fileName: String,
@@ -28,14 +28,14 @@ data class CarbonRouteData(
     val arguments: List<ArgumentData>,
 )
 
-data class ArgumentData(
+internal data class ArgumentData(
     val name: String,
-    val typeName: TypeName,
+    val type: KSType,
     val isNullable: Boolean,
     val defaultValue: ArgumentDefaultValue? = null,
 )
 
-data class ArgumentDefaultValue(
+internal data class ArgumentDefaultValue(
     val value: String,
-    val type: TypeName,
+    val type: KSType,
 )

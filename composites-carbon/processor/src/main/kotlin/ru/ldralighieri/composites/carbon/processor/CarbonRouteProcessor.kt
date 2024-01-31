@@ -33,14 +33,14 @@ internal class CarbonRouteProcessor(
         resolver.getSymbolsWithAnnotation(CarbonRoute::class.java.canonicalName)
             .toList()
             .filterIsInstance<KSClassDeclaration>()
-            .forEach(::parse)
+            .forEach { symbol -> parse(resolver, symbol) }
 
         return emptyList()
     }
 
-    private fun parse(symbol: KSClassDeclaration) {
-        when (val result = parser.parse(symbol)) {
-            is CarbonRouteDataParser.Result.Success -> generator.generate(result.data)
+    private fun parse(resolver: Resolver, symbol: KSClassDeclaration) {
+        when (val result = parser.parse(resolver, symbol)) {
+            is CarbonRouteDataParser.Result.Success -> generator.generate(resolver, result.data)
             is CarbonRouteDataParser.Result.Failure -> logger.error(result.message, result.symbol)
         }
     }

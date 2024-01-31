@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright 2024 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,11 @@
 
 package ru.ldralighieri.composites.carbon.processor.ext
 
+import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.ksp.toTypeName
 import ru.ldralighieri.composites.carbon.processor.model.booleanNullableTypeName
 import ru.ldralighieri.composites.carbon.processor.model.booleanTypeName
 import ru.ldralighieri.composites.carbon.processor.model.floatNullableTypeName
@@ -33,9 +36,36 @@ import ru.ldralighieri.composites.carbon.processor.model.navTypeLongClassName
 import ru.ldralighieri.composites.carbon.processor.model.navTypeStringClassName
 import ru.ldralighieri.composites.carbon.processor.model.stringNullableTypeName
 import ru.ldralighieri.composites.carbon.processor.model.stringTypeName
+import ru.ldralighieri.composites.carbon.processor.model.validTypes
 
-internal fun TypeName.toNavTypeClassName(): ClassName =
-    when(this) {
+internal fun KSType.isAcceptableType(resolver: Resolver): Boolean =
+    toTypeName() in validTypes || resolver.isEnumType(this)
+
+internal fun KSType.getSimpleName(): String = declaration.simpleName.getShortName()
+
+internal fun KSType.cast(resolver: Resolver, value: String): Any {
+    val typeName: TypeName = toTypeName()
+    return String.format(
+        format = "%s%s",
+        when {
+            typeName == intTypeName -> value.toInt()
+            typeName == longTypeName -> value.toLong()
+            typeName == floatTypeName -> value.toFloat()
+            typeName == booleanTypeName -> value.toBoolean()
+            typeName == stringTypeName -> "\"$value\""
+            resolver.isEnumType(this) -> "enumValueOf<${getSimpleName()}>(\"$value\")"
+            else -> "\"$value\""
+        },
+        when (typeName) {
+            longTypeName -> "L"
+            floatTypeName -> "F"
+            else -> ""
+        }
+    )
+}
+
+internal fun KSType.toNavTypeClassName(): ClassName =
+    when(toTypeName()) {
         intTypeName, intNullableTypeName -> navTypeIntClassName
         longTypeName, longNullableTypeName -> navTypeLongClassName
         floatTypeName, floatNullableTypeName -> navTypeFloatClassName
@@ -43,21 +73,3 @@ internal fun TypeName.toNavTypeClassName(): ClassName =
         stringTypeName, stringNullableTypeName -> navTypeStringClassName
         else -> navTypeStringClassName
     }
-
-internal fun TypeName.cast(value: String): Any =
-    String.format(
-        format = "%s%s",
-        when(this) {
-            intTypeName -> value.toInt()
-            longTypeName -> value.toLong()
-            floatTypeName -> value.toFloat()
-            booleanTypeName -> value.toBoolean()
-            stringTypeName -> "\"$value\""
-            else -> "\"$value\""
-        },
-        when(this) {
-            longTypeName -> "L"
-            floatTypeName -> "F"
-            else -> ""
-        }
-    )

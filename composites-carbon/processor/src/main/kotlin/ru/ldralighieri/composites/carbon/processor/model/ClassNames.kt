@@ -21,3 +21,6 @@ internal val navTypeBooleanClassName =
 
 internal val navTypeStringClassName =
     ClassName("androidx.navigation.NavType.Companion", "StringType")
+
+internal val navTypeEnumClassName =
+    ClassName("androidx.navigation.NavType", "EnumType")

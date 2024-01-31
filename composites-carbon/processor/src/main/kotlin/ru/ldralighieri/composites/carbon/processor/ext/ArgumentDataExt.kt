@@ -16,9 +16,12 @@
 
 package ru.ldralighieri.composites.carbon.processor.ext
 
+import com.google.devtools.ksp.processing.Resolver
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
-import ru.ldralighieri.composites.carbon.core.ArgumentData
+import com.squareup.kotlinpoet.ksp.toTypeName
+import ru.ldralighieri.composites.carbon.processor.model.ArgumentData
 import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
 import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME
 import ru.ldralighieri.composites.carbon.processor.model.booleanNullableTypeName
@@ -58,47 +61,57 @@ internal fun List<ArgumentData>.getOptionalPathArguments(): String =
 internal fun List<ArgumentData>.getOptionalCreateArguments(): String =
     getOptionalArguments { "${it.name}=\$${it.name}" }
 
-internal fun ArgumentData.toBackStackGetter(): CodeBlock = buildCodeBlock {
-    add(
-        format = "${PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME}.arguments?.%L(\"$name\")",
-        when(typeName) {
-            intTypeName, intNullableTypeName -> "getInt"
-            longTypeName, longNullableTypeName -> "getLong"
-            floatTypeName, floatNullableTypeName -> "getFloat"
-            booleanTypeName, booleanNullableTypeName -> "getBoolean"
-            stringTypeName, stringNullableTypeName -> "getString"
-            else -> "getString"
-        }
-    )
-
-    if (!isNullable) {
+internal fun ArgumentData.toBackStackGetter(resolver: Resolver): CodeBlock = buildCodeBlock {
+    if (resolver.isEnumType(type)) {
         add(
-            format = " ?: %L",
-            toDefaultValueLiteral()
+            format = "enumValueOf<%T>(${PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME}" +
+                ".arguments?.getString(\"$name\") ?: \"\")",
+            type.makeNotNullable().toTypeName()
         )
+    } else {
+        add(
+            format = "${PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME}.arguments?.%L(\"$name\")",
+            when (type.toTypeName()) {
+                intTypeName, intNullableTypeName -> "getInt"
+                longTypeName, longNullableTypeName -> "getLong"
+                floatTypeName, floatNullableTypeName -> "getFloat"
+                booleanTypeName, booleanNullableTypeName -> "getBoolean"
+                stringTypeName, stringNullableTypeName -> "getString"
+                else -> "getString"
+            }
+        )
+
+        if (!isNullable) {
+            add(
+                format = " ?: %L",
+                toDefaultValueLiteral(resolver)
+            )
+        }
     }
 }
 
-internal fun ArgumentData.toSavedStateHandleGetter(): CodeBlock = buildCodeBlock {
+internal fun ArgumentData.toSavedStateHandleGetter(resolver: Resolver): CodeBlock = buildCodeBlock {
     add("${PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME}[\"$name\"]")
 
     if (!isNullable) {
         add(
             format = " ?: %L",
-            toDefaultValueLiteral()
+            toDefaultValueLiteral(resolver)
         )
     }
 }
 
-internal fun ArgumentData.toDefaultValueLiteral(): Any? =
-    defaultValue?.castValue()
+internal fun ArgumentData.toDefaultValueLiteral(resolver: Resolver): Any? =
+    defaultValue?.castValue(resolver)
         ?: run {
-            when(typeName) {
-                intTypeName -> "0"
-                longTypeName -> "0L"
-                floatTypeName -> "0.0f"
-                booleanTypeName -> "false"
-                stringTypeName -> "\"\""
+            val typeName: TypeName = type.toTypeName()
+            when {
+                typeName == intTypeName -> "0"
+                typeName == longTypeName -> "0L"
+                typeName == floatTypeName -> "0.0F"
+                typeName == booleanTypeName -> "false"
+                typeName == stringTypeName -> "\"\""
+                resolver.isEnumType(type) -> "${type.getSimpleName()}.entries.first()"
                 else -> null
             }
         }

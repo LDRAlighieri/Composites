@@ -1,11 +1,11 @@
 [versions]
 # Plugins
-agp = "8.2.1"
+agp = "8.2.2"
 dokka = "1.9.10"
-spotless = "6.24.0"
+spotless = "6.25.0"
 mavenPublish = "0.27.0"
-bcv = "0.13.2"
-gver = "0.50.0"
+bcv = "0.14.0"
+gver = "0.51.0"
 ksp = "1.9.22-1.0.17"
 
 # Kotlin
@@ -18,7 +18,7 @@ androidxNavigation = "2.7.6"
 androidxPagingCompose = "3.2.1"
 # Compose
 androidxComposeCompiler = "1.5.8"
-androidxComposeBom = "2023.10.01"
+androidxComposeBom = "2024.01.00"
 
 # Google
 googleMaterial="1.11.0"
@@ -46,17 +46,12 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidxPagingCompose" }
 # Compose
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
-androidx-compose-animation = { module = "androidx.compose.animation:animation" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
-androidx-compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
 androidx-compose-material-iconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-compose-material = { module = "androidx.compose.material:material" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
-androidx-compose-material3-windowSizeClass = { module = "androidx.compose.material3:material3-window-size-class"}
-androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
-androidx-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4" }
-androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
 
 # Google

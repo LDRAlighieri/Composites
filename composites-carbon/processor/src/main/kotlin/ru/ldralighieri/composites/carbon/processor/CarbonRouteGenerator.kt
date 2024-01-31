@@ -17,6 +17,7 @@
 package ru.ldralighieri.composites.carbon.processor
 
 import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.Resolver
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
@@ -27,15 +28,17 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.joinToCode
+import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import com.squareup.kotlinpoet.withIndent
-import ru.ldralighieri.composites.carbon.core.CarbonRouteData
+import ru.ldralighieri.composites.carbon.processor.model.CarbonRouteData
 import ru.ldralighieri.composites.carbon.core.Destination
 import ru.ldralighieri.composites.carbon.processor.ext.castValue
 import ru.ldralighieri.composites.carbon.processor.ext.getCreateArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getOptionalCreateArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getOptionalPathArguments
 import ru.ldralighieri.composites.carbon.processor.ext.getPathArguments
+import ru.ldralighieri.composites.carbon.processor.ext.isEnumType
 import ru.ldralighieri.composites.carbon.processor.ext.toBackStackGetter
 import ru.ldralighieri.composites.carbon.processor.ext.toNavTypeClassName
 import ru.ldralighieri.composites.carbon.processor.ext.toSavedStateHandleGetter
@@ -51,10 +54,11 @@ import ru.ldralighieri.composites.carbon.processor.model.navArgumentMemberName
 import ru.ldralighieri.composites.carbon.processor.model.navBackStackEntryClassName
 import ru.ldralighieri.composites.carbon.processor.model.navDeepLinkClassName
 import ru.ldralighieri.composites.carbon.processor.model.navDeepLinkMemberName
+import ru.ldralighieri.composites.carbon.processor.model.navTypeEnumClassName
 import ru.ldralighieri.composites.carbon.processor.model.savedStateHandleClassName
 
 internal class CarbonRouteGenerator(private val codeGenerator: CodeGenerator) {
-    fun generate(data: CarbonRouteData) {
+    fun generate(resolver: Resolver, data: CarbonRouteData) {
         FileSpec
             .builder(
                 packageName = data.packageName,
@@ -63,13 +67,13 @@ internal class CarbonRouteGenerator(private val codeGenerator: CodeGenerator) {
             .addType(
                 TypeSpec.objectBuilder(data.fileName)
                     .addProperty(data.routeProperty())
-                    .addProperty(data.argumentsProperty())
+                    .addProperty(data.argumentsProperty(resolver))
                     .addProperty(data.deepLinksProperty())
-                    .addFunction(data.createFunction())
+                    .addFunction(data.createFunction(resolver))
                     .apply {
                         if (data.arguments.isNotEmpty()) {
-                            addFunction(data.parseArgumentsByStackEntryFunction())
-                            addFunction(data.parseArgumentsBySavedStateHandleFunction())
+                            addFunction(data.parseArgumentsByStackEntryFunction(resolver))
+                            addFunction(data.parseArgumentsBySavedStateHandleFunction(resolver))
                         }
                     }
                     .build()
@@ -98,7 +102,7 @@ private fun CarbonRouteData.routeProperty(): PropertySpec =
         )
         .build()
 
-private fun CarbonRouteData.argumentsProperty(): PropertySpec =
+private fun CarbonRouteData.argumentsProperty(resolver: Resolver): PropertySpec =
     PropertySpec
         .builder(
             name = ARGUMENTS_PROPERTY_NAME,
@@ -116,17 +120,26 @@ private fun CarbonRouteData.argumentsProperty(): PropertySpec =
                                     addStatement("%M(%S) {", navArgumentMemberName, argument.name)
 
                                     withIndent {
-                                        addStatement(
-                                            format = "type = %T",
-                                            argument.typeName.toNavTypeClassName()
-                                        )
+                                        when {
+                                             resolver.isEnumType(argument.type) ->
+                                                 addStatement(
+                                                     format = "type = %T(%T::class.java)",
+                                                     navTypeEnumClassName,
+                                                     argument.type.makeNotNullable().toTypeName()
+                                                 )
+                                            else ->
+                                                addStatement(
+                                                    format = "type = %T",
+                                                    argument.type.toNavTypeClassName()
+                                                )
+                                        }
 
                                         addStatement("nullable = %L", argument.isNullable)
 
                                         argument.defaultValue?.let {
                                             addStatement(
                                                 format = "defaultValue = %L",
-                                                it.castValue()
+                                                it.castValue(resolver)
                                             )
                                         }
                                     }
@@ -175,19 +188,19 @@ private fun CarbonRouteData.deepLinksProperty(): PropertySpec =
         )
         .build()
 
-private fun CarbonRouteData.createFunction() = FunSpec
+private fun CarbonRouteData.createFunction(resolver: Resolver) = FunSpec
     .builder(CREATE_FUNCTION_NAME)
     .addParameters(
         arguments
             .map { data ->
-                ParameterSpec.builder(data.name, data.typeName)
+                ParameterSpec.builder(data.name, data.type.toTypeName())
                     .apply {
                         when {
                             data.isNullable -> defaultValue(format = "%L", null)
                             data.defaultValue != null ->
                                 defaultValue(
                                     format = "%L",
-                                    data.defaultValue?.castValue()
+                                    data.defaultValue?.castValue(resolver)
                                 )
                         }
                     }
@@ -204,7 +217,7 @@ private fun CarbonRouteData.createFunction() = FunSpec
     )
     .build()
 
-private fun CarbonRouteData.parseArgumentsByStackEntryFunction() =
+private fun CarbonRouteData.parseArgumentsByStackEntryFunction(resolver: Resolver) =
     FunSpec
         .builder(PARSE_ARGUMENTS_FUNCTION_NAME)
         .addParameter(
@@ -224,7 +237,7 @@ private fun CarbonRouteData.parseArgumentsByStackEntryFunction() =
                                 addStatement(
                                     format = "%L = %L,",
                                     argument.name,
-                                    argument.toBackStackGetter()
+                                    argument.toBackStackGetter(resolver)
                                 )
                             }
                         }
@@ -236,7 +249,7 @@ private fun CarbonRouteData.parseArgumentsByStackEntryFunction() =
         )
         .build()
 
-private fun CarbonRouteData.parseArgumentsBySavedStateHandleFunction() =
+private fun CarbonRouteData.parseArgumentsBySavedStateHandleFunction(resolver: Resolver) =
     FunSpec
         .builder(PARSE_ARGUMENTS_FUNCTION_NAME)
         .addParameter(
@@ -256,7 +269,7 @@ private fun CarbonRouteData.parseArgumentsBySavedStateHandleFunction() =
                                 addStatement(
                                     format = "%L = %L,",
                                     argument.name,
-                                    argument.toSavedStateHandleGetter()
+                                    argument.toSavedStateHandleGetter(resolver)
                                 )
                             }
                         }

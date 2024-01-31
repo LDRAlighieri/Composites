@@ -1,5 +1,5 @@
 
-# Carbon
+# Carbon (work in progress 🚧🔧️👷⛏🚧)
 
 Annotation processor ([Kotlin Symbol Processing, KSP][ksp]) for generating Route objects that help with navigation based on the [Navigation Component][navigation].
 Allows you to significantly reduce routine and time spent on creating `Route` objects manually.
@@ -14,7 +14,8 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 
 - [X] KSP `Route` object generation
 - [X] Default arguments (without reflection)
-- [ ] Enums and Parcelable support (using parcelable is not best practice. It is recommended to use primitives)
+- [X] Enums support
+- [ ] Parcelable and Serializable support (using parcelable and serializable is not best practice. It is recommended to use primitives)
 - [ ] Optional. Default arguments (with reflection)
 
 

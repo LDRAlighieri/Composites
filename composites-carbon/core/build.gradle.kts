@@ -20,5 +20,9 @@ plugins {
 }
 
 dependencies {
+    // Ksp devtools
+    implementation(libs.google.ksp.api)
+
+    // KotlinPoet
     implementation(libs.kotlinpoet.jvm)
 }
