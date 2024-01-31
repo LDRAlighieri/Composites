@@ -31,7 +31,7 @@ import com.squareup.kotlinpoet.joinToCode
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import com.squareup.kotlinpoet.withIndent
-import ru.ldralighieri.composites.carbon.core.CarbonRouteData
+import ru.ldralighieri.composites.carbon.processor.model.CarbonRouteData
 import ru.ldralighieri.composites.carbon.core.Destination
 import ru.ldralighieri.composites.carbon.processor.ext.castValue
 import ru.ldralighieri.composites.carbon.processor.ext.getCreateArguments

@@ -26,9 +26,9 @@ import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
-import ru.ldralighieri.composites.carbon.core.ArgumentData
-import ru.ldralighieri.composites.carbon.core.ArgumentDefaultValue
-import ru.ldralighieri.composites.carbon.core.CarbonRouteData
+import ru.ldralighieri.composites.carbon.processor.model.ArgumentData
+import ru.ldralighieri.composites.carbon.processor.model.ArgumentDefaultValue
+import ru.ldralighieri.composites.carbon.processor.model.CarbonRouteData
 import ru.ldralighieri.composites.carbon.core.DefaultValue
 import ru.ldralighieri.composites.carbon.processor.ext.getSimpleName
 import ru.ldralighieri.composites.carbon.processor.ext.isAcceptableType

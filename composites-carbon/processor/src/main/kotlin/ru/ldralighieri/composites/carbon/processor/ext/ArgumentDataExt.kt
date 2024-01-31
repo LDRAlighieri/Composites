@@ -21,7 +21,7 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
-import ru.ldralighieri.composites.carbon.core.ArgumentData
+import ru.ldralighieri.composites.carbon.processor.model.ArgumentData
 import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
 import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME
 import ru.ldralighieri.composites.carbon.processor.model.booleanNullableTypeName
