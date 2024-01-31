@@ -1,58 +1,6 @@
-public final class ru/ldralighieri/composites/carbon/core/ArgumentData {
-	public fun <init> (Ljava/lang/String;Lcom/squareup/kotlinpoet/TypeName;ZLru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;)V
-	public synthetic fun <init> (Ljava/lang/String;Lcom/squareup/kotlinpoet/TypeName;ZLru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lcom/squareup/kotlinpoet/TypeName;
-	public final fun component3 ()Z
-	public final fun component4 ()Lru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;
-	public final fun copy (Ljava/lang/String;Lcom/squareup/kotlinpoet/TypeName;ZLru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;)Lru/ldralighieri/composites/carbon/core/ArgumentData;
-	public static synthetic fun copy$default (Lru/ldralighieri/composites/carbon/core/ArgumentData;Ljava/lang/String;Lcom/squareup/kotlinpoet/TypeName;ZLru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;ILjava/lang/Object;)Lru/ldralighieri/composites/carbon/core/ArgumentData;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDefaultValue ()Lru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;
-	public final fun getName ()Ljava/lang/String;
-	public final fun getTypeName ()Lcom/squareup/kotlinpoet/TypeName;
-	public fun hashCode ()I
-	public final fun isNullable ()Z
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class ru/ldralighieri/composites/carbon/core/ArgumentDefaultValue {
-	public fun <init> (Ljava/lang/String;Lcom/squareup/kotlinpoet/TypeName;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lcom/squareup/kotlinpoet/TypeName;
-	public final fun copy (Ljava/lang/String;Lcom/squareup/kotlinpoet/TypeName;)Lru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;
-	public static synthetic fun copy$default (Lru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;Ljava/lang/String;Lcom/squareup/kotlinpoet/TypeName;ILjava/lang/Object;)Lru/ldralighieri/composites/carbon/core/ArgumentDefaultValue;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getType ()Lcom/squareup/kotlinpoet/TypeName;
-	public final fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
 public abstract interface annotation class ru/ldralighieri/composites/carbon/core/CarbonRoute : java/lang/annotation/Annotation {
 	public abstract fun deeplinkSchema ()Ljava/lang/String;
 	public abstract fun route ()Ljava/lang/String;
-}
-
-public final class ru/ldralighieri/composites/carbon/core/CarbonRouteData {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/squareup/kotlinpoet/ClassName;Ljava/lang/String;Ljava/util/List;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lcom/squareup/kotlinpoet/ClassName;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/squareup/kotlinpoet/ClassName;Ljava/lang/String;Ljava/util/List;)Lru/ldralighieri/composites/carbon/core/CarbonRouteData;
-	public static synthetic fun copy$default (Lru/ldralighieri/composites/carbon/core/CarbonRouteData;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/squareup/kotlinpoet/ClassName;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lru/ldralighieri/composites/carbon/core/CarbonRouteData;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getArguments ()Ljava/util/List;
-	public final fun getClassName ()Lcom/squareup/kotlinpoet/ClassName;
-	public final fun getDeeplinkSchema ()Ljava/lang/String;
-	public final fun getFileName ()Ljava/lang/String;
-	public final fun getPackageName ()Ljava/lang/String;
-	public final fun getRoute ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface annotation class ru/ldralighieri/composites/carbon/core/DefaultValue : java/lang/annotation/Annotation {
