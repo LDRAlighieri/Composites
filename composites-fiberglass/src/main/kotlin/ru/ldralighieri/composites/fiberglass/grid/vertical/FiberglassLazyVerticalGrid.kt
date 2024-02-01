@@ -23,7 +23,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -72,12 +72,12 @@ fun FiberglassLazyVerticalGrid(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
     ) {
-        items(
+        itemsIndexed(
             items = items,
-            key = { it.id },
-            contentType = { it::class.simpleName },
-        ) { item ->
-            itemSlots[item::class]?.let { it(item) }
+            key = { _, item -> item.id },
+            contentType = { _, item -> item::class.simpleName },
+        ) { position, item ->
+            itemSlots[item::class]?.let { it(position, item) }
         }
     }
 }

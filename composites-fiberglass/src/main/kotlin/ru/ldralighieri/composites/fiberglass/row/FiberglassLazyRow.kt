@@ -22,7 +22,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,12 +70,12 @@ fun FiberglassLazyRow(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
     ) {
-        items(
+        itemsIndexed(
             items = items,
-            key = { it.id },
-            contentType = { it::class.simpleName },
-        ) { item ->
-            itemSlots[item::class]?.let { it(item) }
+            key = { _, item -> item.id },
+            contentType = { _, item -> item::class.simpleName },
+        ) { position, item ->
+            itemSlots[item::class]?.let { it(position, item) }
         }
     }
 }

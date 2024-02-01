@@ -57,9 +57,9 @@ fun FiberglassFlowColumn(
             horizontalArrangement = horizontalArrangement,
             maxItemsInEachColumn = maxItemsInEachColumn,
         ) {
-            items.forEach { item ->
+            items.forEachIndexed { position, item ->
                 key(item.id) {
-                    itemSlots[item::class]?.let { it(item) }
+                    itemSlots[item::class]?.let { it(position, item) }
                 }
             }
         }

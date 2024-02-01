@@ -23,7 +23,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -76,12 +76,12 @@ fun FiberglassLazyColumn(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
     ) {
-        items(
+        itemsIndexed(
             items = items,
-            key = { it.id },
-            contentType = { it::class.simpleName },
-        ) { item ->
-            itemSlots[item::class]?.let { it(item) }
+            key = { _, item -> item.id },
+            contentType = { _, item -> item::class.simpleName },
+        ) { position, item ->
+            itemSlots[item::class]?.let { it(position, item) }
         }
     }
 }
@@ -129,9 +129,9 @@ fun FiberglassLazyColumn(
             count = items.itemCount,
             key = items.itemKey { it.id },
             contentType = items.itemContentType { it::class.simpleName },
-        ) { index ->
-            items[index]?.let {
-                itemSlots[it::class]?.let { slot -> slot(it) }
+        ) { position ->
+            items[position]?.let { item ->
+                itemSlots[item::class]?.let { slot -> slot(position, item) }
             }
         }
     }
@@ -187,12 +187,12 @@ fun FiberglassLazyColumn(
                 headerSlot(header)
             }
 
-            items(
+            itemsIndexed(
                 items = compositeItems,
-                key = { it.id },
-                contentType = { it::class.simpleName },
-            ) { item ->
-                itemSlots[item::class]?.let { it(item) }
+                key = { _, item -> item.id },
+                contentType = { _, item -> item::class.simpleName },
+            ) { position, item ->
+                itemSlots[item::class]?.let { it(position, item) }
             }
         }
     }

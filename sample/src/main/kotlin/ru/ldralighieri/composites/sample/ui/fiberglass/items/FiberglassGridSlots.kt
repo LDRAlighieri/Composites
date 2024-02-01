@@ -30,7 +30,7 @@ import ru.ldralighieri.composites.sample.theme.AppTheme
 import kotlin.random.Random
 
 private fun gridSlot(backgroundColor: Color): FiberglassLazyGridItemSlot =
-    {
+    { _, _ ->
         Box(
             modifier = Modifier
                 .aspectRatio(1f)

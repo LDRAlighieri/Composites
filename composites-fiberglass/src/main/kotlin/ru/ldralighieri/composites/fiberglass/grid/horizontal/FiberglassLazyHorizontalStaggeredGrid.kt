@@ -24,7 +24,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
 import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -76,12 +76,12 @@ fun FiberglassLazyHorizontalStaggeredGrid(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
     ) {
-        items(
+        itemsIndexed(
             items = items,
-            key = { it.id },
-            contentType = { it::class.simpleName },
-        ) { item ->
-            itemSlots[item::class]?.let { it(item) }
+            key = { _, item -> item.id },
+            contentType = { _, item -> item::class.simpleName },
+        ) { position, item ->
+            itemSlots[item::class]?.let { it(position, item) }
         }
     }
 }
