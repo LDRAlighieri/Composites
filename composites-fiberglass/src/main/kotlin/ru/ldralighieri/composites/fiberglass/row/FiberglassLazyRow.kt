@@ -22,7 +22,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -45,6 +45,8 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
  * @param flingBehavior Logic describing fling behavior.
  * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
  * is allowed. You can still scroll programmatically using the state even when it is disabled.
+ * @param itemKey A factory of stable and unique keys representing the item.
+ * @param itemContentType A factory of the content types for the item.
  */
 @Composable
 fun FiberglassLazyRow(
@@ -59,6 +61,10 @@ fun FiberglassLazyRow(
     verticalAlignment: Alignment.Vertical = Alignment.Top,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
+    itemContentType: (position: Int, item: FiberglassItem) -> Any? = { _, item ->
+        item::class.simpleName
+    },
 ) {
     LazyRow(
         modifier = modifier,
@@ -70,12 +76,12 @@ fun FiberglassLazyRow(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
     ) {
-        items(
+        itemsIndexed(
             items = items,
-            key = { it.id },
-            contentType = { it::class.simpleName },
-        ) { item ->
-            itemSlots[item::class]?.let { it(item) }
+            key = itemKey,
+            contentType = itemContentType,
+        ) { position, item ->
+            itemSlots[item::class]?.let { it(position, item) }
         }
     }
 }

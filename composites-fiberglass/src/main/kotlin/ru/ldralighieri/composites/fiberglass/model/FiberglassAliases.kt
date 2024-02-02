@@ -27,7 +27,8 @@ import kotlin.reflect.KClass
 /**
  * FiberglassLazyColumn and FiberglassLazyRow slot alias
  */
-typealias FiberglassLazyItemSlot = @Composable LazyItemScope.(item: FiberglassItem) -> Unit
+typealias FiberglassLazyItemSlot =
+    @Composable LazyItemScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * FiberglassLazyColumn and FiberglassLazyRow slots map alias
@@ -37,7 +38,8 @@ typealias FiberglassLazyItemSlots = Map<KClass<out FiberglassItem>, FiberglassLa
 /**
  * FiberglassColumn slot alias
  */
-typealias FiberglassColumnItemSlot = @Composable ColumnScope.(item: FiberglassItem) -> Unit
+typealias FiberglassColumnItemSlot =
+    @Composable ColumnScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * FiberglassColumn sticky header slot alias
@@ -53,7 +55,7 @@ typealias FiberglassColumnItemSlots = Map<KClass<out FiberglassItem>, Fiberglass
 /**
  * FiberglassRow slot alias
  */
-typealias FiberglassRowItemSlot = @Composable RowScope.(item: FiberglassItem) -> Unit
+typealias FiberglassRowItemSlot = @Composable RowScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * FiberglassRow slots map alias
@@ -63,7 +65,8 @@ typealias FiberglassRowItemSlots = Map<KClass<out FiberglassItem>, FiberglassRow
 /**
  * Fiberglass[Vertical|Horizontal]Grid slot alias
  */
-typealias FiberglassLazyGridItemSlot = @Composable LazyGridItemScope.(item: FiberglassItem) -> Unit
+typealias FiberglassLazyGridItemSlot =
+    @Composable LazyGridItemScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slots map alias
@@ -74,7 +77,7 @@ typealias FiberglassLazyGridItemSlots = Map<KClass<out FiberglassItem>, Fibergla
  * Fiberglass[Vertical|Horizontal]Grid slot alias
  */
 typealias FiberglassLazyStaggeredGridItemSlot =
-    @Composable LazyStaggeredGridItemScope.(item: FiberglassItem) -> Unit
+    @Composable LazyStaggeredGridItemScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slots map alias

@@ -66,20 +66,18 @@ fun stickyHeaderSlot(): FiberglassStickyHeaderSlot =
         )
     }
 
-fun spacerItemSlot(): FiberglassLazyItemSlot =
-    {
-        Spacer(modifier = Modifier.height((it as SpacerItem).height.dp))
-    }
+fun spacerItemSlot(): FiberglassLazyItemSlot = { _, item ->
+    Spacer(modifier = Modifier.height((item as SpacerItem).height.dp))
+}
 
-fun loremIpsumSlot(): FiberglassLazyItemSlot =
-    {
-        Text(
-            text = (it as LoremIpsumItem).text,
-            modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
-            color = AppTheme.colors.onBackground,
-            style = AppTheme.typography.bodyMedium,
-        )
-    }
+fun loremIpsumSlot(): FiberglassLazyItemSlot = { _, item ->
+    Text(
+        text = (item as LoremIpsumItem).text,
+        modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
+        color = AppTheme.colors.onBackground,
+        style = AppTheme.typography.bodyMedium,
+    )
+}
 
 @Composable
 private fun ImageSlot(width: Dp) {
@@ -99,40 +97,38 @@ private fun ImageSlot(width: Dp) {
     }
 }
 
-fun smallImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 160.dp) }
+fun smallImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 160.dp) }
 
-fun bigImageSlot(): FiberglassLazyItemSlot = { ImageSlot(width = 256.dp) }
+fun bigImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 256.dp) }
 
-fun imagesRowSlot(): FiberglassLazyItemSlot =
-    {
-        with(it as ImagesRowItem) {
-            FiberglassLazyRow(
-                items = images,
-                itemSlots = mapOf(
-                    SmallImageItem::class to smallImageSlot(),
-                    BigImageItem::class to bigImageSlot(),
-                ),
-                contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            )
-        }
+fun imagesRowSlot(): FiberglassLazyItemSlot = { _, item ->
+    with(item as ImagesRowItem) {
+        FiberglassLazyRow(
+            items = images,
+            itemSlots = mapOf(
+                SmallImageItem::class to smallImageSlot(),
+                BigImageItem::class to bigImageSlot(),
+            ),
+            contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        )
     }
+}
 
 @OptIn(ExperimentalMaterialApi::class)
-private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot =
-    {
-        Chip(
-            onClick = {},
-            colors = ChipDefaults.chipColors(backgroundColor = backgroundColor),
-        ) {
-            Text(
-                text = (it as TagItem).text,
-                modifier = Modifier.padding(horizontal = 8.dp),
-                color = AppTheme.colors.contentColorFor(backgroundColor),
-                style = AppTheme.typography.labelSmall,
-            )
-        }
+private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot = { _, item ->
+    Chip(
+        onClick = {},
+        colors = ChipDefaults.chipColors(backgroundColor = backgroundColor),
+    ) {
+        Text(
+            text = (item as TagItem).text,
+            modifier = Modifier.padding(horizontal = 8.dp),
+            color = AppTheme.colors.contentColorFor(backgroundColor),
+            style = AppTheme.typography.labelSmall,
+        )
     }
+}
 
 @Composable
 fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
@@ -140,20 +136,19 @@ fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondar
 @Composable
 fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
 
-fun tagsFlowRowSlot(): FiberglassLazyItemSlot =
-    {
-        with(it as TagsFlowRowItem) {
-            FiberglassFlowRow(
-                items = tags,
-                itemSlots = mapOf(
-                    SecondaryTagItem::class to secondaryTagSlot(),
-                    TertiaryTagItem::class to tertiaryTagSlot(),
-                ),
-                contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            )
-        }
+fun tagsFlowRowSlot(): FiberglassLazyItemSlot = { _, item ->
+    with(item as TagsFlowRowItem) {
+        FiberglassFlowRow(
+            items = tags,
+            itemSlots = mapOf(
+                SecondaryTagItem::class to secondaryTagSlot(),
+                TertiaryTagItem::class to tertiaryTagSlot(),
+            ),
+            contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        )
     }
+}
 
 // Previews
 @OptIn(ExperimentalFoundationApi::class)
@@ -186,9 +181,7 @@ private fun ItemSlotPreview(content: @Composable LazyItemScope.() -> Unit) {
 @ThemePreviews
 private fun LoremIpsumSlotPreview() {
     ItemSlotPreview {
-        loremIpsumSlot()(
-            LoremIpsumItem(20),
-        )
+        loremIpsumSlot()(0, LoremIpsumItem(20))
     }
 }
 
@@ -196,9 +189,7 @@ private fun LoremIpsumSlotPreview() {
 @ThemePreviews
 private fun SmallImageSlotPreview() {
     ItemSlotPreview {
-        smallImageSlot()(
-            SmallImageItem(),
-        )
+        smallImageSlot()(0, SmallImageItem())
     }
 }
 
@@ -206,9 +197,7 @@ private fun SmallImageSlotPreview() {
 @ThemePreviews
 private fun BigImageSlotPreview() {
     ItemSlotPreview {
-        bigImageSlot()(
-            BigImageItem(),
-        )
+        bigImageSlot()(0, BigImageItem())
     }
 }
 
@@ -216,9 +205,7 @@ private fun BigImageSlotPreview() {
 @ThemePreviews
 private fun ImagesRowSlotPreview() {
     ItemSlotPreview {
-        imagesRowSlot()(
-            ImagesRowItem(2),
-        )
+        imagesRowSlot()(0, ImagesRowItem(2))
     }
 }
 
@@ -227,9 +214,7 @@ private fun ImagesRowSlotPreview() {
 private fun TagSlotPreview() {
     AppTheme(dynamicColor = false) {
         Row {
-            secondaryTagSlot()(
-                SecondaryTagItem(2),
-            )
+            secondaryTagSlot()(0, SecondaryTagItem(2))
         }
     }
 }
@@ -238,8 +223,6 @@ private fun TagSlotPreview() {
 @ThemePreviews
 private fun TagsRowSlotPreview() {
     ItemSlotPreview {
-        tagsFlowRowSlot()(
-            TagsFlowRowItem(2),
-        )
+        tagsFlowRowSlot()(0, TagsFlowRowItem(2))
     }
 }

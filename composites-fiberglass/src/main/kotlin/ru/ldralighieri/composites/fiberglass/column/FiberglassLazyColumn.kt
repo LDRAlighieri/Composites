@@ -23,7 +23,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -51,6 +51,8 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderSlot
  * @param flingBehavior Logic describing fling behavior.
  * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
  * is allowed.
+ * @param itemKey A factory of stable and unique keys representing the item.
+ * @param itemContentType A factory of the content types for the item.
  */
 @Composable
 fun FiberglassLazyColumn(
@@ -65,6 +67,10 @@ fun FiberglassLazyColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
+    itemContentType: (position: Int, item: FiberglassItem) -> Any? = { _, item ->
+        item::class.simpleName
+    },
 ) {
     LazyColumn(
         modifier = modifier,
@@ -76,12 +82,12 @@ fun FiberglassLazyColumn(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
     ) {
-        items(
+        itemsIndexed(
             items = items,
-            key = { it.id },
-            contentType = { it::class.simpleName },
-        ) { item ->
-            itemSlots[item::class]?.let { it(item) }
+            key = itemKey,
+            contentType = itemContentType,
+        ) { position, item ->
+            itemSlots[item::class]?.let { it(position, item) }
         }
     }
 }
@@ -100,6 +106,8 @@ fun FiberglassLazyColumn(
  * @param flingBehavior Logic describing fling behavior.
  * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
  * is allowed.
+ * @param itemKey A factory of stable and unique keys representing the item.
+ * @param itemContentType A factory of the content types for the item.
  */
 @Composable
 fun FiberglassLazyColumn(
@@ -114,6 +122,8 @@ fun FiberglassLazyColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    itemKey: ((item: FiberglassItem) -> Any)? = { it.id },
+    itemContentType: ((item: FiberglassItem) -> Any?)? = { it::class.simpleName },
 ) {
     LazyColumn(
         modifier = modifier,
@@ -127,11 +137,11 @@ fun FiberglassLazyColumn(
     ) {
         items(
             count = items.itemCount,
-            key = items.itemKey { it.id },
-            contentType = items.itemContentType { it::class.simpleName },
-        ) { index ->
-            items[index]?.let {
-                itemSlots[it::class]?.let { slot -> slot(it) }
+            key = items.itemKey(itemKey),
+            contentType = items.itemContentType(itemContentType),
+        ) { position ->
+            items[position]?.let { item ->
+                itemSlots[item::class]?.let { slot -> slot(position, item) }
             }
         }
     }
@@ -152,6 +162,10 @@ fun FiberglassLazyColumn(
  * @param flingBehavior Logic describing fling behavior.
  * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
  * is allowed.
+ * @param headerKey A factory of stable and unique keys representing the header.
+ * @param headerContentType A factory of the content types for the header.
+ * @param itemKey A factory of stable and unique keys representing the item.
+ * @param itemContentType A factory of the content types for the item.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -168,6 +182,15 @@ fun FiberglassLazyColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    headerKey: ((position: Int, header: FiberglassStickyHeaderItem) -> Any?)? = { _, header ->
+        header.id
+    },
+    headerContentType: ((position: Int, header: FiberglassStickyHeaderItem) -> Any?)? =
+        { _, header -> header::class.simpleName },
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
+    itemContentType: (position: Int, item: FiberglassItem) -> Any? = { _, item ->
+        item::class.simpleName
+    },
 ) {
     LazyColumn(
         modifier = modifier,
@@ -179,20 +202,20 @@ fun FiberglassLazyColumn(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
     ) {
-        sections.forEach { (header, compositeItems) ->
+        sections.onEachIndexed { sectionPosition, (header, compositeItems) ->
             stickyHeader(
-                key = header.id,
-                contentType = header::class.simpleName,
+                key = headerKey?.invoke(sectionPosition, header),
+                contentType = headerContentType?.invoke(sectionPosition, header),
             ) {
                 headerSlot(header)
             }
 
-            items(
+            itemsIndexed(
                 items = compositeItems,
-                key = { it.id },
-                contentType = { it::class.simpleName },
-            ) { item ->
-                itemSlots[item::class]?.let { it(item) }
+                key = itemKey,
+                contentType = itemContentType,
+            ) { itemPosition, item ->
+                itemSlots[item::class]?.let { it(itemPosition, item) }
             }
         }
     }

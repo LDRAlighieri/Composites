@@ -42,6 +42,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlots
  * will cause IllegalArgumentException.
  * @param horizontalArrangement The horizontal arrangement of the layout's children.
  * @param verticalAlignment The vertical alignment of the layout's children.
+ * @param itemKey A factory of stable and unique keys representing the item.
  */
 @Composable
 fun FiberglassRow(
@@ -52,6 +53,7 @@ fun FiberglassRow(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     verticalAlignment: Alignment.Vertical = Alignment.Top,
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
 ) {
     Box(modifier = modifier) {
         Row(
@@ -61,9 +63,9 @@ fun FiberglassRow(
             horizontalArrangement = horizontalArrangement,
             verticalAlignment = verticalAlignment,
         ) {
-            items.forEach { item ->
-                key(item.id) {
-                    itemSlots[item::class]?.let { it(item) }
+            items.forEachIndexed { position, item ->
+                key(itemKey?.invoke(position, item)) {
+                    itemSlots[item::class]?.let { it(position, item) }
                 }
             }
         }
