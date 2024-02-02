@@ -45,6 +45,8 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlots
  * @param flingBehavior Logic describing fling behavior.
  * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
  * is allowed. You can still scroll programmatically using the state even when it is disabled.
+ * @param itemKey A factory of stable and unique keys representing the item.
+ * @param itemContentType A factory of the content types for the item.
  */
 @Composable
 fun FiberglassLazyVerticalGrid(
@@ -60,6 +62,10 @@ fun FiberglassLazyVerticalGrid(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
+    itemContentType: (position: Int, item: FiberglassItem) -> Any? = { _, item ->
+        item::class.simpleName
+    },
 ) {
     LazyVerticalGrid(
         columns = columns,
@@ -74,8 +80,8 @@ fun FiberglassLazyVerticalGrid(
     ) {
         itemsIndexed(
             items = items,
-            key = { _, item -> item.id },
-            contentType = { _, item -> item::class.simpleName },
+            key = itemKey,
+            contentType = itemContentType,
         ) { position, item ->
             itemSlots[item::class]?.let { it(position, item) }
         }

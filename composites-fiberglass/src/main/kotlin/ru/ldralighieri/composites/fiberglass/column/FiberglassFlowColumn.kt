@@ -38,7 +38,8 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * will cause IllegalArgumentException.
  * @param verticalArrangement The vertical arrangement of the layout's children.
  * @param horizontalArrangement The horizontal arrangement of the layout's virtual columns.
- * @param maxItemsInEachColumn The maximum number of items per column
+ * @param maxItemsInEachColumn The maximum number of items per column.
+ * @param itemKey A factory of the content types for the item.
  */
 @Composable
 fun FiberglassFlowColumn(
@@ -49,6 +50,7 @@ fun FiberglassFlowColumn(
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     maxItemsInEachColumn: Int = Int.MAX_VALUE,
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
 ) {
     Box(modifier = modifier) {
         FlowColumn(
@@ -58,7 +60,7 @@ fun FiberglassFlowColumn(
             maxItemsInEachColumn = maxItemsInEachColumn,
         ) {
             items.forEachIndexed { position, item ->
-                key(item.id) {
+                key(itemKey?.invoke(position, item)) {
                     itemSlots[item::class]?.let { it(position, item) }
                 }
             }

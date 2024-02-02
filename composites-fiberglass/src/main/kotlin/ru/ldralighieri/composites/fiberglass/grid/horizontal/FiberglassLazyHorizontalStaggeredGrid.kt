@@ -49,6 +49,8 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyStaggeredGridIt
  * @param userScrollEnabled Whether scroll with gestures or accessibility actions are allowed. It
  * is still possible to scroll programmatically through state when [userScrollEnabled] is set to
  * false.
+ * @param itemKey A factory of stable and unique keys representing the item.
+ * @param itemContentType A factory of the content types for the item.
  */
 @ExperimentalFoundationApi
 @Composable
@@ -64,6 +66,10 @@ fun FiberglassLazyHorizontalStaggeredGrid(
     horizontalItemSpacing: Dp = 0.dp,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
+    itemContentType: (position: Int, item: FiberglassItem) -> Any? = { _, item ->
+        item::class.simpleName
+    },
 ) {
     LazyHorizontalStaggeredGrid(
         rows = rows,
@@ -78,8 +84,8 @@ fun FiberglassLazyHorizontalStaggeredGrid(
     ) {
         itemsIndexed(
             items = items,
-            key = { _, item -> item.id },
-            contentType = { _, item -> item::class.simpleName },
+            key = itemKey,
+            contentType = itemContentType,
         ) { position, item ->
             itemSlots[item::class]?.let { it(position, item) }
         }

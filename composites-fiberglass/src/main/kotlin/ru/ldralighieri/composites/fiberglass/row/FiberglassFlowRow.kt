@@ -38,7 +38,8 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlots
  * will cause IllegalArgumentException.
  * @param horizontalArrangement The horizontal arrangement of the layout's children.
  * @param verticalArrangement The vertical arrangement of the layout's virtual rows.
- * @param maxItemsInEachRow The maximum number of items per row
+ * @param maxItemsInEachRow The maximum number of items per row.
+ * @param itemKey A factory of the content types for the item.
  */
 @Composable
 fun FiberglassFlowRow(
@@ -49,6 +50,7 @@ fun FiberglassFlowRow(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     maxItemsInEachRow: Int = Int.MAX_VALUE,
+    itemKey: ((position: Int, item: FiberglassItem) -> Any)? = { _, item -> item.id },
 ) {
     Box(modifier = modifier) {
         FlowRow(
@@ -58,7 +60,7 @@ fun FiberglassFlowRow(
             maxItemsInEachRow = maxItemsInEachRow,
         ) {
             items.forEachIndexed { position, item ->
-                key(item.id) {
+                key(itemKey?.invoke(position, item)) {
                     itemSlots[item::class]?.let { it(position, item) }
                 }
             }
