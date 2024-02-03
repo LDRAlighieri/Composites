@@ -200,7 +200,7 @@ private fun CarbonRouteData.createFunction(resolver: Resolver) = FunSpec
                             data.defaultValue != null ->
                                 defaultValue(
                                     format = "%L",
-                                    data.defaultValue?.castValue(resolver)
+                                    data.defaultValue.castValue(resolver)
                                 )
                         }
                     }

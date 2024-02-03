@@ -26,6 +26,7 @@ import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_ENTRY_P
 import ru.ldralighieri.composites.carbon.processor.model.PARSE_ARGUMENTS_HANDLE_PARAMETER_NAME
 import ru.ldralighieri.composites.carbon.processor.model.booleanNullableTypeName
 import ru.ldralighieri.composites.carbon.processor.model.booleanTypeName
+import ru.ldralighieri.composites.carbon.processor.model.buildClassName
 import ru.ldralighieri.composites.carbon.processor.model.floatNullableTypeName
 import ru.ldralighieri.composites.carbon.processor.model.floatTypeName
 import ru.ldralighieri.composites.carbon.processor.model.intNullableTypeName
@@ -63,10 +64,21 @@ internal fun List<ArgumentData>.getOptionalCreateArguments(): String =
 
 internal fun ArgumentData.toBackStackGetter(resolver: Resolver): CodeBlock = buildCodeBlock {
     if (resolver.isEnumType(type)) {
+        val typeName = type.makeNotNullable().toTypeName()
         add(
-            format = "enumValueOf<%T>(${PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME}" +
-                ".arguments?.getString(\"$name\") ?: \"\")",
-            type.makeNotNullable().toTypeName()
+            format = """
+                if (%T.VERSION.SDK_INT >= %T.VERSION_CODES.TIRAMISU) {
+                    $PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
+                        .arguments?.getSerializable("$name", %T::class.java) 
+                            ?: ${toDefaultValueLiteral(resolver)}
+                } else {
+                    @Suppress("DEPRECATION")
+                    $PARSE_ARGUMENTS_ENTRY_PARAMETER_NAME
+                        .arguments?.getSerializable("$name") ${if (isNullable) "as?" else "as"} %T
+                }
+            """.trimIndent(),
+            buildClassName, buildClassName,
+            typeName, typeName
         )
     } else {
         add(

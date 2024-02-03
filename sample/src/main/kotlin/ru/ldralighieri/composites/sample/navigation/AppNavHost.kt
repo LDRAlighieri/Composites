@@ -27,22 +27,29 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassColumnScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassGridScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassRootScreen
 
+enum class FiberglassType { Column, Grid }
+
 @CarbonRoute(route = "composites")
 data object CompositesArgs
 
+/*
+adb shell am start \
+    -a android.intent.action.VIEW \
+    -d "composites://composites/fiberglass/<title>" ru.ldralighieri.composites.sample
+ */
 @CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
 data class CompositesFiberglassArgs(
     @DefaultValue("Fiberglass composites") val title: String,
 )
 
-@CarbonRoute(route = "composites/fiberglass/column")
-data class CompositesFiberglassColumnArgs(
-    val title: String,
-)
-
-@CarbonRoute(route = "composites/fiberglass/grid")
-data class CompositesFiberglassGridArgs(
-    val title: String,
+/*
+ adb shell am start \
+    -a android.intent.action.VIEW \
+    -d "composites://composites/fiberglass/example/<Column|Grid>" ru.ldralighieri.composites.sample
+ */
+@CarbonRoute(route = "composites/fiberglass/example", deeplinkSchema = "composites")
+data class CompositesFiberglassExampleArgs(
+    val type: FiberglassType,
 )
 
 @Composable
@@ -72,23 +79,16 @@ fun AppNavHost(
         }
 
         composable(
-            route = CompositesFiberglassColumnRoute.route,
-            arguments = CompositesFiberglassColumnRoute.arguments,
-            deepLinks = CompositesFiberglassColumnRoute.deepLinks,
+            route = CompositesFiberglassExampleRoute.route,
+            arguments = CompositesFiberglassExampleRoute.arguments,
+            deepLinks = CompositesFiberglassExampleRoute.deepLinks,
         ) { navBackStackEntry ->
-            FiberglassColumnScreen(
-                args = CompositesFiberglassColumnRoute.parseArguments(navBackStackEntry),
-            )
-        }
-
-        composable(
-            route = CompositesFiberglassGridRoute.route,
-            arguments = CompositesFiberglassGridRoute.arguments,
-            deepLinks = CompositesFiberglassGridRoute.deepLinks,
-        ) { navBackStackEntry ->
-            FiberglassGridScreen(
-                args = CompositesFiberglassGridRoute.parseArguments(navBackStackEntry),
-            )
+            val args: CompositesFiberglassExampleArgs =
+                CompositesFiberglassExampleRoute.parseArguments(navBackStackEntry)
+            when (args.type) {
+                FiberglassType.Column -> FiberglassColumnScreen(args)
+                FiberglassType.Grid -> FiberglassGridScreen(args)
+            }
         }
     }
 }
