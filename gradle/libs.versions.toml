@@ -37,6 +37,10 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv" }
 gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
 
+composites-library-compose = { id = "composites.library.compose", version = "unspecified" }
+composites-spotless = { id = "composites.spotless", version = "unspecified" }
+composites-dokka = { id = "composites.dokka", version = "unspecified" }
+
 
 [libraries]
 # Androidx

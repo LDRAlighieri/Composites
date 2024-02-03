@@ -1,7 +1,7 @@
 
-# Carbon (work in progress 🚧🔧️👷⛏🚧)
+# Carbon
 
-Annotation processor ([Kotlin Symbol Processing, KSP][ksp]) for generating Route objects that help with navigation based on the [Navigation Component][navigation].
+Lightweight annotation processor ([Kotlin Symbol Processing, KSP][ksp]) for generating Route objects that help with navigation based on the [Navigation Component][navigation].
 Allows you to significantly reduce routine and time spent on creating `Route` objects manually.
 
 
@@ -12,9 +12,11 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 
 ## Roadmap
 
-- [X] KSP `Route` object generation
-- [X] Default arguments (without reflection)
+- [X] KSP `Route` objects generation
+- [X] Default arguments support (without reflection)
 - [X] Enums support
+- [ ] Generate `NavGraphBuilder.composable` extension
+- [ ] Arrays support
 - [ ] Parcelable and Serializable support (using parcelable and serializable is not best practice. It is recommended to use primitives)
 - [ ] Optional. Default arguments (with reflection)
 
@@ -25,8 +27,8 @@ Add dependency:
 
 ```kotlin
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.0-SNAPSHOT")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.0-SNAPSHOT")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.0")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.0")
 }
 ```
 
@@ -85,8 +87,8 @@ public object CompositesFiberglassRoute {
 ```
 The object contains the components necessary for navigation:
 - `route`, `arguments` and `deeplink` are used for navigation
-- `parseArguments` and `parseArguments` for parsing the argument class from `NavBackStackEntry` and `SavedStateHandle` respectively
 - `create` creates a Destination class for [navigator]
+- `parseArguments` and `parseArguments` for parsing the argument class from `NavBackStackEntry` and `SavedStateHandle` respectively
 
 If the base object contains no arguments:
 ```kotlin

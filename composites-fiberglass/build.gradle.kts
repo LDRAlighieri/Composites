@@ -15,9 +15,9 @@
  */
 
 plugins {
-    id("composites.library.compose")
-    id("composites.spotless")
-    id("composites.dokka")
+    alias(libs.plugins.composites.library.compose)
+    alias(libs.plugins.composites.spotless)
+    alias(libs.plugins.composites.dokka)
 }
 
 android {

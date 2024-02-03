@@ -21,7 +21,7 @@ Please consider giving this repository a star ⭐ if you like the project.
 
 
 ## Modules
-* [composites-carbon] &mdash; Annotation processor for generating Route objects that help with navigation based on the Navigation Component
+* [composites-carbon] &mdash; Lightweight annotation processor for generating Route objects that help with navigation based on the Navigation Component
 * [composites-fiberglass] &mdash; A tool for building complex screens based on simple blocks.
 
 
@@ -40,7 +40,7 @@ Add one or more dependencies:
 
 ```kotlin
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.3.1")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.4.0")
 }
 ```
 
