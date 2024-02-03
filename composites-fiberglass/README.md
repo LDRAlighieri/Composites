@@ -30,7 +30,7 @@ Add dependency:
 
 ```kotlin
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.3.1")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.4.0")
 }
 ```
 

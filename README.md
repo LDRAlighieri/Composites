@@ -27,11 +27,11 @@ Please consider giving this repository a star ⭐ if you like the project.
 
 ## Current versions
 
-| Module                                           | Version                                                                                                                                                                                                                                                    |
-|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [composites-carbon-core][composites-carbon]      | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-core?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-core/)           |
-| [composites-carbon-processor][composites-carbon] | [![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-carbon-processor?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/composites-carbon-processor/) |
-| [composites-fiberglass]                          | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.composites/composites-fiberglass)                                                                        |
+| Module                                           | Version                                                                                                                                                                                                          |
+|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [composites-carbon-core][composites-carbon]      | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-carbon-core.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.composites/composites-carbon-core)           |
+| [composites-carbon-processor][composites-carbon] | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-carbon-processor.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.composites/composites-carbon-processor) |
+| [composites-fiberglass]                          | [![Maven Central](https://img.shields.io/maven-central/v/ru.ldralighieri.composites/composites-fiberglass.svg)](https://mvnrepository.com/artifact/ru.ldralighieri.composites/composites-fiberglass)             |
 
 
 ## Using in your projects
@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-   implementation("ru.ldralighieri.composites:{module}:0.4.0-SNAPSHOT")
+   implementation("ru.ldralighieri.composites:{module}:0.5.0-SNAPSHOT")
 }
 ```
 
