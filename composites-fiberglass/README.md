@@ -62,25 +62,25 @@ data class LoremIpsumItem(private val words: Int) : FiberglassItem {
 
 List of slots:
 ```kotlin
-fun spacerItemSlot(): FiberglassLazyItemSlot = {
-    Spacer(modifier = Modifier.height((it as SpacerItem).height.dp))
+fun spacerItemSlot(): FiberglassLazyItemSlot = { _, item ->
+    Spacer(modifier = Modifier.height((item as SpacerItem).height.dp))
 }
 
-fun titleItemSlot(): FiberglassLazyItemSlot = {
+fun titleItemSlot(): FiberglassLazyItemSlot = { _, item ->
     Text(
-        text = (it as TitleItem).title,
+        text = (item as TitleItem).title,
         modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
         color = AppTheme.colors.onBackground,
         style = AppTheme.typography.headlineMedium
     )
 }
 
-fun loremIpsumSlot(): FiberglassLazyItemSlot = {
+fun loremIpsumSlot(): FiberglassLazyItemSlot = { _, item ->
     Text(
-        text = (it as LoremIpsumItem).text,
+        text = (item as LoremIpsumItem).text,
         modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
         color = AppTheme.colors.onBackground,
-        style = AppTheme.typography.bodyMedium
+        style = AppTheme.typography.bodyMedium,
     )
 }
 ```
@@ -88,7 +88,7 @@ fun loremIpsumSlot(): FiberglassLazyItemSlot = {
 Composite:
 ```kotlin
 @Composable
-private fun FiberglassContent() {
+private fun FiberglassColumnContent() {
     val items: List<FiberglassItem> = remember {
         buildList {
             val count = 4
@@ -101,17 +101,13 @@ private fun FiberglassContent() {
         }
     }
 
-    val slots: FiberglassLazyItemSlots = remember {
-        mapOf(
+    FiberglassLazyColumn(
+        items = items,
+        itemSlots = mapOf(
             SpacerItem::class to spacerItemSlot(),
             TitleItem::class to titleItemSlot(),
             LoremIpsumItem::class to loremIpsumSlot()
-        )
-    }
-
-    FiberglassLazyColumn(
-        items = items,
-        itemSlots = slots,
+        ),
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             top = AppTheme.dimensions.topGuideline,
