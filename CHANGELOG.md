@@ -1,6 +1,20 @@
 # ChangeLog
 
 
+## Version 0.4.0
+
+* New: Carbon(`composites-carbon`) module:
+  - KSP `Route` objects generation that help with navigation based on the Navigation Component
+  - Default arguments support (without reflection)
+  - Enums support
+* Update: Fiberglass(`composites-fiberglass`) module:
+  - Add position index to item slot
+  - Add key and contentType factories
+* Update: Kotlin to v1.9.22.
+* Update: Compose BOM to v2024.01.00.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.3.1
 
 * Update: Kotlin to v1.9.21.
@@ -21,7 +35,7 @@
 
 ## Version 0.2.0
 
-* New: Fiberglass(`composites-fiberglass`) module:
+* Update: Fiberglass(`composites-fiberglass`) module:
   - Fiberglass flow column Composite
   - Fiberglass flow row Composite
   - Fiberglass lazy horizontal grid Composite

@@ -2,6 +2,7 @@ package ru.ldralighieri.composites.carbon.processor.model
 
 import com.squareup.kotlinpoet.ClassName
 
+internal val buildClassName = ClassName("android.os", "Build")
 internal val namedNavArgumentClassName = ClassName("androidx.navigation", "NamedNavArgument")
 internal val navDeepLinkClassName = ClassName("androidx.navigation", "NavDeepLink")
 internal val navBackStackEntryClassName = ClassName("androidx.navigation", "NavBackStackEntry")

@@ -38,8 +38,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassArgs
-import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassColumnRoute
-import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassGridRoute
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassExampleRoute
+import ru.ldralighieri.composites.sample.navigation.FiberglassType
 import ru.ldralighieri.composites.sample.navigation.LocalNavigator
 import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.theme.AppTheme
@@ -70,18 +70,14 @@ internal fun FiberglassRootScreen(args: CompositesFiberglassArgs) {
         FiberglassScreenItem(
             title = "Column",
             onClick = {
-                navigator.navigateTo(
-                    CompositesFiberglassColumnRoute.create(title = "Fiberglass column"),
-                )
+                navigator.navigateTo(CompositesFiberglassExampleRoute.create(FiberglassType.Column))
             },
         )
 
         FiberglassScreenItem(
             title = "Grid",
             onClick = {
-                navigator.navigateTo(
-                    CompositesFiberglassGridRoute.create(title = "Fiberglass grid"),
-                )
+                navigator.navigateTo(CompositesFiberglassExampleRoute.create(FiberglassType.Grid))
             },
         )
     }

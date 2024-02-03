@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.column.FiberglassLazyColumn
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderItem
-import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassColumnArgs
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassExampleArgs
 import ru.ldralighieri.composites.sample.navigation.LocalNavigator
 import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.theme.AppTheme
@@ -57,13 +57,13 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.items.tagsFlowRowSlot
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiberglassColumnScreen(args: CompositesFiberglassColumnArgs) {
+fun FiberglassColumnScreen(args: CompositesFiberglassExampleArgs) {
     val navigator: Navigator = LocalNavigator.current
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = args.title, style = AppTheme.typography.headlineSmall)
+                Text(text = "Fiberglass ${args.type}", style = AppTheme.typography.headlineSmall)
             },
             navigationIcon = {
                 IconButton(onClick = { navigator.navigateBack() }) {
