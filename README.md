@@ -40,6 +40,11 @@ Add one or more dependencies:
 
 ```kotlin
 dependencies {
+    // Carbon
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.0")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.0")
+
+    // Fiberglass
     implementation("ru.ldralighieri.composites:composites-fiberglass:0.4.0")
 }
 ```
