@@ -1,5 +1,5 @@
-﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.9.22-blue.svg?logo=kotlin)](https://kotlinlang.org)
-[![Compose BOM Version](https://img.shields.io/badge/Compose-v2024.01.00-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
+﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v1.9.23-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Compose BOM Version](https://img.shields.io/badge/Compose-v2024.05.00-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
@@ -41,11 +41,11 @@ Add one or more dependencies:
 ```kotlin
 dependencies {
     // Carbon
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.0")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.0")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.1")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.1")
 
     // Fiberglass
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.4.0")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.4.1")
 }
 ```
 
