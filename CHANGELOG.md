@@ -1,6 +1,13 @@
 # ChangeLog
 
 
+## Version 0.4.1
+
+* Update: Kotlin to v1.9.23.
+* Update: Compose BOM to v2024.05.00.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.4.0
 
 * New: Carbon(`composites-carbon`) module:

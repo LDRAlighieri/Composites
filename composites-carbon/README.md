@@ -27,8 +27,8 @@ Add dependency:
 
 ```kotlin
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.0")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.0")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.1")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.1")
 }
 ```
 
