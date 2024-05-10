@@ -6,10 +6,10 @@ spotless = "6.25.0"
 mavenPublish = "0.28.0"
 bcv = "0.14.0"
 gver = "0.51.0"
-ksp = "1.9.22-1.0.17"
+ksp = "1.9.23-1.0.20"
 
 # Kotlin
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
@@ -17,7 +17,7 @@ androidxActivity = "1.8.2"
 androidxNavigation = "2.7.6"
 androidxPagingCompose = "3.2.1"
 # Compose
-androidxComposeCompiler = "1.5.8"
+androidxComposeCompiler = "1.5.13"
 androidxComposeBom = "2024.01.00"
 
 # Google
