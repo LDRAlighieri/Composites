@@ -18,6 +18,7 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import ru.ldralighieri.composites.libs
 
 @Suppress("unused")
 internal class SpotlessConventionPlugin : Plugin<Project> {
@@ -30,11 +31,8 @@ internal class SpotlessConventionPlugin : Plugin<Project> {
                     target("**/*.kt")
                     targetExclude("**/build/**/*.kt")
 
-                    ktlint().editorConfigOverride(
-                        mapOf(
-                            "android" to "true",
-                        ),
-                    )
+                    ktlint(libs.findVersion("ktlint").get().toString())
+                        .editorConfigOverride(mapOf("android" to "true"))
 
                     licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
                 }
