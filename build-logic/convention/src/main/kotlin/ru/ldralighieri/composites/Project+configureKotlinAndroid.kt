@@ -24,7 +24,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.provideDelegate
 
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     val compileSdk: String by project
     val minSdk: String by project
