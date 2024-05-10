@@ -21,7 +21,7 @@ androidxComposeCompiler = "1.5.13"
 androidxComposeBom = "2024.05.00"
 
 # Google
-googleMaterial="1.11.0"
+googleMaterial="1.12.0"
 
 # KotlinPoet
 kotlinpoet="1.16.0"
