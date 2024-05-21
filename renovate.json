@@ -6,11 +6,10 @@
   "prHourlyLimit": 5,
   "packageRules": [
     {
-      "groupName": "Kotlin, KSP and Compose",
-      "matchPackageNames": [
-        "org.jetbrains.kotlin:kotlin",
-        "com.google.devtools.ksp",
-        "androidx.compose.compiler"
+      "groupName": "Kotlin and Compose",
+      "matchPackagePrefixes": [
+        "androidx.compose.compiler",
+        "org.jetbrains.kotlin:kotlin"
       ]
     },
     {
