@@ -35,6 +35,7 @@ internal class LibraryComposeConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.library")
                 apply("kotlin-android")
+                apply("org.jetbrains.kotlin.plugin.compose")
                 apply("com.vanniktech.maven.publish")
             }
 

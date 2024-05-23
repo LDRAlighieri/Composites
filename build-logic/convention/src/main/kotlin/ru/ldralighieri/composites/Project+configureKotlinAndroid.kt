@@ -14,37 +14,45 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
-
 package ru.ldralighieri.composites
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.provideDelegate
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    extension: CommonExtension<*, *, *, *, *, *>,
 ) {
     val compileSdk: String by project
     val minSdk: String by project
 
-    commonExtension.apply {
+    val javaLanguageVersion: JavaLanguageVersion =
+        JavaLanguageVersion.of(JavaLanguageVersion.of(JavaVersion.VERSION_17.majorVersion).asInt())
+
+    extension.apply {
         this.compileSdk = compileSdk.toInt()
 
         defaultConfig {
             this.minSdk = minSdk.toInt()
         }
+    }
 
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
-        }
+    java {
+        toolchain { languageVersion.set(javaLanguageVersion) }
+    }
 
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_17.toString()
-            allWarningsAsErrors = true
-            freeCompilerArgs = freeCompilerArgs + buildCustomCompilerArgs()
+    kotlin {
+        jvmToolchain { languageVersion.set(javaLanguageVersion) }
+
+        compilerOptions {
+            allWarningsAsErrors.set(true)
+            jvmTarget.set(JvmTarget.JVM_17)
+            languageVersion.set(KotlinVersion.KOTLIN_2_0)
+            freeCompilerArgs.addAll(buildCustomCompilerArgs())
         }
     }
 }
