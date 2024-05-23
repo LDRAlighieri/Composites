@@ -20,16 +20,18 @@ package ru.ldralighieri.composites
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import java.io.File
 
 internal fun Project.configureAndroidCompose(
     extension: CommonExtension<*, *, *, *, *, *>,
 ) {
-    extension.apply {
-        buildFeatures.compose = true
+    extension.buildFeatures.compose = true
 
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
+    kotlin {
+        compilerOptions {
+            languageVersion.set(KotlinVersion.KOTLIN_2_0)
+            freeCompilerArgs.addAll(buildComposeMetricsParameters())
         }
     }
 }
