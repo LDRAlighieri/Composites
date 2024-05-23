@@ -28,11 +28,6 @@ internal fun Project.configureAndroidCompose(
     extension.apply {
         buildFeatures.compose = true
 
-        composeOptions {
-            kotlinCompilerExtensionVersion =
-                libs.findVersion("androidxComposeCompiler").get().toString()
-        }
-
         kotlinOptions {
             freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
         }
