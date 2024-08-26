@@ -34,10 +34,6 @@ internal fun Project.configureAndroidCompose(
             freeCompilerArgs.addAll(buildComposeMetricsParameters())
         }
     }
-
-    composeCompiler {
-        enableStrongSkippingMode.set(true)
-    }
 }
 
 private fun Project.buildComposeMetricsParameters(): List<String> = buildList {
