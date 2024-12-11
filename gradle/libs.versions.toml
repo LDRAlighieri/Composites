@@ -17,7 +17,7 @@ androidxActivity = "1.9.3"
 androidxNavigation = "2.8.4"
 androidxPagingCompose = "3.3.4"
 # Compose
-androidxComposeBom = "2024.11.00"
+androidxComposeBom = "2024.12.01"
 
 # Google
 googleMaterial="1.12.0"
