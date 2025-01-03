@@ -23,7 +23,7 @@ androidxComposeBom = "2024.12.01"
 googleMaterial="1.12.0"
 
 # KotlinPoet
-kotlinpoet="1.18.1"
+kotlinpoet="2.0.0"
 
 # Lint
 ktlint = "1.2.1"
