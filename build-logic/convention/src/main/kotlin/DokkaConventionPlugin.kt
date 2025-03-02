@@ -19,7 +19,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaTask
-import java.net.URL
+import java.net.URI
 
 @Suppress("unused")
 internal class DokkaConventionPlugin : Plugin<Project> {
@@ -29,7 +29,7 @@ internal class DokkaConventionPlugin : Plugin<Project> {
 
             tasks.withType<DokkaTask>().configureEach {
                 dokkaSourceSets.named("main") {
-                    jdkVersion.set(JavaVersion.VERSION_17.majorVersion.toInt())
+                    jdkVersion.set(JavaVersion.VERSION_21.majorVersion.toInt())
 
                     skipDeprecated.set(false)
                     reportUndocumented.set(false)
@@ -38,23 +38,23 @@ internal class DokkaConventionPlugin : Plugin<Project> {
                     sourceLink {
                         val relPath = rootProject.projectDir.toPath().relativize(projectDir.toPath())
                         localDirectory.set(file("src/main/kotlin"))
-                        remoteUrl.set(URL("https://github.com/LDRAlighieri/Composites/tree/master/$relPath/src/main/kotlin"))
+                        remoteUrl.set(URI.create("https://github.com/LDRAlighieri/Composites/tree/master/$relPath/src/main/kotlin").toURL())
                         remoteLineSuffix.set("#L")
                     }
 
                     externalDocumentationLink {
-                        url.set(URL("https://developer.android.com/reference/"))
-                        packageListUrl.set(URL("https://developer.android.com/reference/package-list"))
+                        url.set(URI.create("https://developer.android.com/reference/").toURL())
+                        packageListUrl.set(URI.create("https://developer.android.com/reference/package-list").toURL())
                     }
 
                     externalDocumentationLink {
-                        url.set(URL("https://developer.android.com/reference/kotlin/androidx/"))
-                        packageListUrl.set(URL("https://developer.android.com/reference/kotlin/androidx/package-list"))
+                        url.set(URI.create("https://developer.android.com/reference/kotlin/androidx/").toURL())
+                        packageListUrl.set(URI.create("https://developer.android.com/reference/kotlin/androidx/package-list").toURL())
                     }
 
                     externalDocumentationLink {
-                        url.set(URL("https://developer.android.com/reference/com/google/android/material/"))
-                        packageListUrl.set(URL("https://developer.android.com/reference/com/google/android/material/package-list"))
+                        url.set(URI.create("https://developer.android.com/reference/com/google/android/material/").toURL())
+                        packageListUrl.set(URI.create("https://developer.android.com/reference/com/google/android/material/package-list").toURL())
                     }
                 }
             }
