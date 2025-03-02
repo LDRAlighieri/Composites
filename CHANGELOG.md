@@ -1,6 +1,13 @@
 # ChangeLog
 
 
+## Version 0.4.2
+
+* Update: Kotlin to v2.1.10.
+* Update: Compose BOM to v2025.02.00.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.4.1
 
 * Update: Kotlin to v1.9.23.
