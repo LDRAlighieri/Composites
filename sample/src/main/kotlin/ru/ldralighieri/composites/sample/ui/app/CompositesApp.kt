@@ -21,6 +21,7 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.LocalOverscrollConfiguration
+import androidx.compose.foundation.LocalOverscrollFactory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
@@ -114,7 +115,7 @@ private fun ProvideDefaults(content: @Composable () -> Unit) {
     AppTheme(dynamicColor = true) {
         @OptIn(ExperimentalFoundationApi::class)
         CompositionLocalProvider(
-            LocalOverscrollConfiguration provides null,
+            LocalOverscrollFactory provides null,
             content = content,
         )
     }
