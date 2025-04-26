@@ -19,8 +19,6 @@ package ru.ldralighieri.composites.sample.ui.app
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.LocalOverscrollConfiguration
 import androidx.compose.foundation.LocalOverscrollFactory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -113,7 +111,6 @@ private fun ComponentActivity.ChangeSystemBarsTheme(isDarkMode: Boolean) {
 @Composable
 private fun ProvideDefaults(content: @Composable () -> Unit) {
     AppTheme(dynamicColor = true) {
-        @OptIn(ExperimentalFoundationApi::class)
         CompositionLocalProvider(
             LocalOverscrollFactory provides null,
             content = content,
