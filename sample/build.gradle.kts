@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 /*
  * Copyright 2023 Vladimir Raupov
  *
@@ -17,22 +15,29 @@
  */
 
 plugins {
-    id("composites.application.compose")
-    id("composites.ksp")
-    id("composites.spotless")
+    id("com.android.application")
+    alias(libs.plugins.composites.kotlin.multiplatform)
+    alias(libs.plugins.composites.compose.multiplatform)
+    alias(libs.plugins.composites.ksp)
+    alias(libs.plugins.composites.spotless)
 }
 
 android {
     namespace = "ru.ldralighieri.composites.sample"
 
+    val targetSdk: String by project
     val buildTools: String by project
+    val compileSdk: String by project
+    val minSdk: String by project
     @Suppress("LocalVariableName") val VERSION_NAME: String by project
 
+    this.compileSdk = compileSdk.toInt()
     buildToolsVersion = buildTools
 
     defaultConfig {
+        this.targetSdk = targetSdk.toInt()
         applicationId = "ru.ldralighieri.composites.sample"
-        minSdk = 23
+        this.minSdk = minSdk.toInt()
         versionCode = 1
         versionName = VERSION_NAME
 
@@ -54,28 +59,48 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
+
+    buildFeatures.compose = true
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            // Projects
+            // Fiberglass
+            implementation(projects.composites.compositesFiberglass)
+        }
+
+        androidMain.dependencies {
+            // Projects
+            // Carbon
+            implementation(projects.composites.compositesCarbon.core)
+            // Fiberglass
+            implementation(projects.composites.compositesFiberglass)
+
+            // Androidx
+            implementation(libs.androidx.core.splashscreen)
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.navigation.compose)
+
+            // Compose
+            implementation(compose.material)
+            implementation(compose.materialIconsExtended)
+            implementation(compose.material3)
+            implementation(compose.uiTooling)
+
+            // Google
+            implementation(libs.google.material)
+        }
+    }
 }
 
 dependencies {
     // Projects
     // Carbon
-    implementation(projects.composites.compositesCarbon.core)
-    ksp(projects.composites.compositesCarbon.processor)
-    // Fiberglass
-    implementation(projects.composites.compositesFiberglass)
-
-    // Androidx
-    implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.navigation.compose)
-
-    // Compose
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.material.iconsExtended)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.ui.tooling)
-
-    // Google
-    implementation(libs.google.material)
+    add("kspAndroid", projects.composites.compositesCarbon.processor)
 }

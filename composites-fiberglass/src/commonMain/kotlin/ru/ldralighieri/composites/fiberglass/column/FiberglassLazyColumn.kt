@@ -16,7 +16,6 @@
 
 package ru.ldralighieri.composites.fiberglass.column
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
@@ -109,7 +108,6 @@ fun FiberglassLazyColumn(
  * @param itemKey A factory of stable and unique keys representing the item.
  * @param itemContentType A factory of the content types for the item.
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FiberglassLazyColumn(
     sections: Map<FiberglassStickyHeaderItem, List<FiberglassItem>>,

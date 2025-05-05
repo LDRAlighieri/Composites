@@ -18,7 +18,6 @@ package ru.ldralighieri.composites.fiberglass.column
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -42,7 +41,6 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * @param maxItemsInEachColumn The maximum number of items per column.
  * @param itemKey A factory of the content types for the item.
  */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun FiberglassFlowColumn(
     items: List<FiberglassItem>,
