@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 /*
  * Copyright 2023 Vladimir Raupov
  *
@@ -19,14 +17,8 @@
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.provideDelegate
-import ru.ldralighieri.composites.configureAndroidCompose
-import ru.ldralighieri.composites.configureKotlinAndroid
-import ru.ldralighieri.composites.getLibrary
-import ru.ldralighieri.composites.libs
 
 @Suppress("unused")
 internal class LibraryComposeConventionPlugin : Plugin<Project> {
@@ -34,38 +26,28 @@ internal class LibraryComposeConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("kotlin-android")
                 apply("org.jetbrains.kotlin.plugin.compose")
-                apply("com.vanniktech.maven.publish")
             }
 
             extensions.configure<LibraryExtension> {
                 val targetSdk: String by project
-                defaultConfig.targetSdk = targetSdk.toInt()
+                val compileSdk: String by project
+                val minSdk: String by project
 
-                configureKotlinAndroid(this)
-                configureAndroidCompose(this)
+                defaultConfig.targetSdk = targetSdk.toInt()
+                this.compileSdk = compileSdk.toInt()
+                defaultConfig {
+                    this.minSdk = minSdk.toInt()
+                }
 
                 buildTypes {
                     release {
                         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
                     }
                 }
-            }
 
-            dependencies {
-                // Compose
-                add("implementation", platform(libs.composeBom()))
-                add("implementation", libs.composeRuntime())
-                add("implementation", libs.composeFoundation())
-                add("implementation", libs.composeUiTooling())
+                buildFeatures.compose = true
             }
         }
     }
 }
-
-// Compose
-private fun VersionCatalog.composeBom() = getLibrary("androidx.compose.bom")
-private fun VersionCatalog.composeRuntime() = getLibrary("androidx.compose.runtime")
-private fun VersionCatalog.composeFoundation() = getLibrary("androidx.compose.foundation")
-private fun VersionCatalog.composeUiTooling() = getLibrary("androidx.compose.ui.tooling")

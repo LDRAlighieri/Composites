@@ -16,7 +16,6 @@
 
 package ru.ldralighieri.composites.fiberglass.column
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
@@ -29,9 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.itemContentType
-import androidx.paging.compose.itemKey
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderItem
@@ -93,61 +89,6 @@ fun FiberglassLazyColumn(
 }
 
 /**
- * Fiberglass lazy column Composite for [LazyPagingItems]
- *
- * @param items LazyPagingItems items.
- * @param itemSlots FiberglassLazyColumn [slots map][FiberglassLazyItemSlots]..
- * @param modifier The modifier to apply to this layout.
- * @param state The state object to be used to control or observe the list's state.
- * @param contentPadding A padding around the whole content.
- * @param reverseLayout Reverse the direction of scrolling and layout.
- * @param verticalArrangement The vertical arrangement of the layout's children.
- * @param horizontalAlignment The horizontal alignment applied to the items.
- * @param flingBehavior Logic describing fling behavior.
- * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
- * is allowed.
- * @param itemKey A factory of stable and unique keys representing the item.
- * @param itemContentType A factory of the content types for the item.
- */
-@Composable
-fun FiberglassLazyColumn(
-    items: LazyPagingItems<out FiberglassItem>,
-    itemSlots: FiberglassLazyItemSlots,
-    modifier: Modifier = Modifier,
-    state: LazyListState = rememberLazyListState(),
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-    reverseLayout: Boolean = false,
-    verticalArrangement: Arrangement.Vertical =
-        if (!reverseLayout) Arrangement.Top else Arrangement.Bottom,
-    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
-    userScrollEnabled: Boolean = true,
-    itemKey: ((item: FiberglassItem) -> Any)? = { it.id },
-    itemContentType: ((item: FiberglassItem) -> Any?)? = { it::class.simpleName },
-) {
-    LazyColumn(
-        modifier = modifier,
-        state = state,
-        contentPadding = contentPadding,
-        reverseLayout = reverseLayout,
-        verticalArrangement = verticalArrangement,
-        horizontalAlignment = horizontalAlignment,
-        flingBehavior = flingBehavior,
-        userScrollEnabled = userScrollEnabled,
-    ) {
-        items(
-            count = items.itemCount,
-            key = items.itemKey(itemKey),
-            contentType = items.itemContentType(itemContentType),
-        ) { position ->
-            items[position]?.let { item ->
-                itemSlots[item::class]?.let { slot -> slot(position, item) }
-            }
-        }
-    }
-}
-
-/**
  * Fiberglass lazy column Composite with sticky headers
  *
  * @param sections Map of column sections.
@@ -167,7 +108,6 @@ fun FiberglassLazyColumn(
  * @param itemKey A factory of stable and unique keys representing the item.
  * @param itemContentType A factory of the content types for the item.
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FiberglassLazyColumn(
     sections: Map<FiberglassStickyHeaderItem, List<FiberglassItem>>,

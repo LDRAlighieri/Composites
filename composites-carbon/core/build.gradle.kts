@@ -16,7 +16,8 @@
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.maven.publish)
+    alias(libs.plugins.composites.dokka)
+    alias(libs.plugins.composites.maven.publish.kotlin.jvm)
 }
 
 dependencies {

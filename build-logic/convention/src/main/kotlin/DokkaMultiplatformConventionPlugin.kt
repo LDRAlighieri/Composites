@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright 2025 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,17 @@
  */
 
 import org.gradle.api.Action
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.gradle.GradleDokkaSourceSetBuilder
 import ru.ldralighieri.composites.action.getDokkaSourceStBuilderAction
+import java.net.URI
 
 @Suppress("unused")
-internal class DokkaConventionPlugin : Plugin<Project> {
+internal class DokkaMultiplatformConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply("org.jetbrains.dokka")
@@ -31,7 +33,9 @@ internal class DokkaConventionPlugin : Plugin<Project> {
             val action: Action<GradleDokkaSourceSetBuilder> = getDokkaSourceStBuilderAction()
 
             tasks.withType<DokkaTask>().configureEach {
-                dokkaSourceSets.named("main", action)
+                dokkaSourceSets.named("commonMain", action)
+                dokkaSourceSets.named("androidMain", action)
+                dokkaSourceSets.named("iosMain", action)
             }
         }
     }
