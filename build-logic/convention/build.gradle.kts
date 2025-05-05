@@ -1,4 +1,3 @@
-@file:Suppress("UnstableApiUsage")
 
 /*
 * Copyright 2023 Vladimir Raupov
@@ -24,17 +23,21 @@ group = "ru.ldralighieri.composites.buildlogic"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion)
     }
 }
 
 dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.compose.compiler.gradlePlugin)
+    compileOnly(libs.jetbrains.compose.gradlePlugin)
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.spotless.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.maven.publish.gradlePlugin)
     implementation(libs.dokka.gradlePlugin)
+
+    implementation(files((libs as Any).javaClass.superclass.protectionDomain.codeSource.location))
 }
 
 tasks {
@@ -46,14 +49,28 @@ tasks {
 
 gradlePlugin {
     plugins {
-        register("applicationCompose") {
-            id = "composites.application.compose"
-            implementationClass = "ApplicationComposeConventionPlugin"
+        plugins {
+            register("composeMultiplatform") {
+                id = "composites.compose.multiplatform"
+                implementationClass = "ComposeMultiplatformConventionPlugin"
+            }
         }
 
         register("dokka") {
             id = "composites.dokka"
             implementationClass = "DokkaConventionPlugin"
+        }
+
+        register("dokkaMultiplaform") {
+            id = "composites.dokka.multiplatform"
+            implementationClass = "DokkaMultiplatformConventionPlugin"
+        }
+
+        plugins {
+            register("kotlinMultiplatform") {
+                id = "composites.kotlin.multiplatform"
+                implementationClass = "KotlinMultiplatformConventionPlugin"
+            }
         }
 
         register("ksp") {
@@ -64,6 +81,16 @@ gradlePlugin {
         register("libraryCompose") {
             id = "composites.library.compose"
             implementationClass = "LibraryComposeConventionPlugin"
+        }
+
+        register("mavenPublishKotlinJvm") {
+            id = "composites.maven.publish.kotlin.jvm"
+            implementationClass = "MavenPublishKotlinJvmConventionPlugin"
+        }
+
+        register("mavenPublishMultiplatform") {
+            id = "composites.maven.publish.multiplatform"
+            implementationClass = "MavenPublishMultiplatformConventionPlugin"
         }
 
         register("spotless") {

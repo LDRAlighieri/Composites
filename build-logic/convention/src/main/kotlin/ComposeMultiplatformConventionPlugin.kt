@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright 2025 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,16 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites
+import org.gradle.api.Plugin
+import org.gradle.api.Project
 
-import org.gradle.api.artifacts.VersionCatalog
+@Suppress("unused")
+class ComposeMultiplatformConventionPlugin : Plugin<Project> {
 
-internal fun VersionCatalog.getLibrary(library: String) = findLibrary(library).get()
+    override fun apply(target: Project) = with(target) {
+        with(pluginManager) {
+            apply("org.jetbrains.kotlin.plugin.compose")
+            apply("org.jetbrains.compose")
+        }
+    }
+}

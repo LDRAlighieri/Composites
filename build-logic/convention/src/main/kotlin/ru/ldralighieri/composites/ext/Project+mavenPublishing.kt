@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright 2025 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites
+package ru.ldralighieri.composites.ext
 
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalog
-import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.configure
 
-val Project.libs
-    get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+internal fun Project.mavenPublishing(action: MavenPublishBaseExtension.() -> Unit) =
+    extensions.configure(action)

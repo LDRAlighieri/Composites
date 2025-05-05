@@ -31,7 +31,6 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         mavenLocal()
-        maven("https://androidx.dev/storage/compose-compiler/repository/")
     }
 }
 
