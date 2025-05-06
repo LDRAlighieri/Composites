@@ -1,7 +1,7 @@
 [versions]
 # Plugins
 agp = "8.9.2"
-composeMultiplatform = "1.8.0-rc01"
+composeMultiplatform = "1.8.0"
 dokka = "1.9.20"
 spotless = "7.0.3"
 mavenPublish = "0.31.0"
