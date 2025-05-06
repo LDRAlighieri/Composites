@@ -16,6 +16,9 @@
 
 package ru.ldralighieri.composites.carbon.core
 
+/**
+ * Destination types
+ */
 sealed interface Destination {
     data class Compose(val route: String) : Destination
 }

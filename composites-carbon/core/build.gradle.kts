@@ -15,15 +15,12 @@
  */
 
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.composites.dokka)
-    alias(libs.plugins.composites.maven.publish.kotlin.jvm)
+    alias(libs.plugins.composites.library)
+    alias(libs.plugins.composites.kotlin.multiplatform)
+    alias(libs.plugins.composites.dokka.multiplatform)
+    alias(libs.plugins.composites.maven.publish.multiplatform)
 }
 
-dependencies {
-    // Ksp devtools
-    implementation(libs.google.ksp.api)
-
-    // KotlinPoet
-    implementation(libs.kotlinpoet.jvm)
+android {
+    namespace = "ru.ldralighieri.composites.carbon.core"
 }
