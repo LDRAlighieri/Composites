@@ -71,14 +71,13 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             // Projects
+            // Carbon
+            implementation(projects.composites.compositesCarbon.core)
             // Fiberglass
             implementation(projects.composites.compositesFiberglass)
         }
 
         androidMain.dependencies {
-            // Projects
-            // Carbon
-            implementation(projects.composites.compositesCarbon.core)
             // Fiberglass
             implementation(projects.composites.compositesFiberglass)
 
