@@ -43,12 +43,11 @@ binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibil
 gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
 
 composites-library-compose = { id = "composites.library.compose", version = "unspecified" }
+composites-library = { id = "composites.library", version = "unspecified" }
 composites-compose-multiplatform = { id = "composites.compose.multiplatform", version = "unspecified" }
-composites-dokka = { id = "composites.dokka", version = "unspecified" }
 composites-dokka-multiplatform = { id = "composites.dokka.multiplatform", version = "unspecified" }
 composites-kotlin-multiplatform = { id = "composites.kotlin.multiplatform", version = "unspecified" }
 composites-ksp = { id = "composites.ksp", version = "unspecified" }
-composites-maven-publish-kotlin-jvm = { id = "composites.maven.publish.kotlin.jvm", version = "unspecified" }
 composites-maven-publish-multiplatform = { id = "composites.maven.publish.multiplatform", version = "unspecified" }
 composites-spotless = { id = "composites.spotless", version = "unspecified" }
 
