@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.carbon.processor
+package ru.ldralighieri.composites.carbon.processor.ext
 
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+import com.google.devtools.ksp.getClassDeclarationByName
+import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.symbol.KSType
+import com.squareup.kotlinpoet.asTypeName
 
-internal class CarbonRouteProvider : SymbolProcessorProvider {
-    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
-        CarbonRouteProcessor(
-            parser = CarbonRouteDataParser(),
-            generator = CarbonRouteGenerator(environment.codeGenerator),
-            logger = environment.logger
-        )
+internal fun Resolver.isEnumType(type: KSType): Boolean {
+    val enum: KSType? =
+        getClassDeclarationByName(Enum::class.asTypeName().canonicalName)?.asStarProjectedType()
+
+    return enum?.run { isAssignableFrom(type) || makeNullable().isAssignableFrom(type) } ?: false
 }

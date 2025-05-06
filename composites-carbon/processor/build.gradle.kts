@@ -15,18 +15,28 @@
  */
 
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.composites.dokka)
-    alias(libs.plugins.composites.maven.publish.kotlin.jvm)
+    id("org.jetbrains.kotlin.multiplatform")
+    alias(libs.plugins.composites.dokka.multiplatform)
+    alias(libs.plugins.composites.maven.publish.multiplatform)
 }
 
-dependencies {
-    // Projects
-    implementation(projects.compositesCarbon.core)
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
+    }
 
-    // Ksp devtools
-    implementation(libs.google.ksp.api)
+    jvm()
 
-    // KotlinPoet
-    implementation(libs.kotlinpoet.ksp)
+    sourceSets {
+        commonMain.dependencies {
+            // Projects
+            implementation(projects.compositesCarbon.core)
+
+            // Ksp devtools
+            implementation(libs.google.ksp.api)
+
+            // KotlinPoet
+            implementation(libs.kotlinpoet.ksp)
+        }
+    }
 }

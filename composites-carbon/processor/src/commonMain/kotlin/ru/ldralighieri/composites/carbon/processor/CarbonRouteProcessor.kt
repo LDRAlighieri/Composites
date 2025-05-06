@@ -19,10 +19,14 @@ package ru.ldralighieri.composites.carbon.processor
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.processing.SymbolProcessorProvider
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import ru.ldralighieri.composites.carbon.core.CarbonRoute
 
+/**
+ * Carbon ksp [SymbolProcessor]
+ */
 internal class CarbonRouteProcessor(
     private val parser: CarbonRouteDataParser,
     private val generator: CarbonRouteGenerator,
