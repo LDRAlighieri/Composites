@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-plugins {
-    alias(libs.plugins.composites.library)
-    alias(libs.plugins.composites.kotlin.multiplatform)
-    alias(libs.plugins.composites.dokka.multiplatform)
-    alias(libs.plugins.composites.maven.publish.multiplatform)
-}
+package ru.ldralighieri.composites.carbon.core
 
-android {
-    namespace = "ru.ldralighieri.composites.carbon.core"
-}
+/**
+ * Route class annotation
+ *
+ * @param route Navigation route
+ * @param deeplinkSchema Route deeplink schema
+ */
+@Target(AnnotationTarget.CLASS)
+annotation class CarbonRoute(val route: String, val deeplinkSchema: String = "")
+
+/**
+ * Annotation for assigning default value without reflection
+ *
+ * @param value Default value
+ */
+@Target(AnnotationTarget.VALUE_PARAMETER)
+annotation class DefaultValue(val value: String)

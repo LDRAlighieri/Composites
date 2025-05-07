@@ -56,11 +56,6 @@ gradlePlugin {
             }
         }
 
-        register("dokka") {
-            id = "composites.dokka"
-            implementationClass = "DokkaConventionPlugin"
-        }
-
         register("dokkaMultiplaform") {
             id = "composites.dokka.multiplatform"
             implementationClass = "DokkaMultiplatformConventionPlugin"
@@ -81,6 +76,11 @@ gradlePlugin {
         register("libraryCompose") {
             id = "composites.library.compose"
             implementationClass = "LibraryComposeConventionPlugin"
+        }
+
+        register("library") {
+            id = "composites.library"
+            implementationClass = "LibraryConventionPlugin"
         }
 
         register("mavenPublishKotlinJvm") {

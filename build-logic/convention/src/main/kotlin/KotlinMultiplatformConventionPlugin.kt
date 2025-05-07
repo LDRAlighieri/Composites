@@ -38,8 +38,7 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
             iosArm64()
             iosSimulatorArm64()
 
-            // todo add support for jvm
-            // jvm("desktop")
+            jvm()
 
             targets.all {
                 compilations.all {

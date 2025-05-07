@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.carbon.processor
+package ru.ldralighieri.composites.carbon.core
 
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
-
-internal class CarbonRouteProvider : SymbolProcessorProvider {
-    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
-        CarbonRouteProcessor(
-            parser = CarbonRouteDataParser(),
-            generator = CarbonRouteGenerator(environment.codeGenerator),
-            logger = environment.logger
-        )
+/**
+ * Destination types
+ */
+sealed interface Destination {
+    data class Compose(val route: String) : Destination
 }

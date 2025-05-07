@@ -18,10 +18,12 @@ import org.gradle.api.Action
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.gradle.GradleDokkaSourceSetBuilder
-import ru.ldralighieri.composites.action.getDokkaSourceStBuilderAction
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import java.net.URI
 
 @Suppress("unused")
@@ -30,13 +32,54 @@ internal class DokkaMultiplatformConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply("org.jetbrains.dokka")
 
-            val action: Action<GradleDokkaSourceSetBuilder> = getDokkaSourceStBuilderAction()
+            val action: Action<GradleDokkaSourceSetBuilder> = Action {
+                jdkVersion.set(JavaVersion.VERSION_21.majorVersion.toInt())
+
+                skipDeprecated.set(false)
+                reportUndocumented.set(false)
+                skipEmptyPackages.set(true)
+
+                sourceLink {
+                    val relPath = rootProject.projectDir.toPath().relativize(projectDir.toPath())
+                    localDirectory.set(file("src/main/kotlin"))
+                    remoteUrl.set(URI.create("https://github.com/LDRAlighieri/Composites/tree/master/$relPath/src/main/kotlin").toURL())
+                    remoteLineSuffix.set("#L")
+                }
+
+                externalDocumentationLink {
+                    url.set(URI.create("https://developer.android.com/reference/").toURL())
+                    packageListUrl.set(URI.create("https://developer.android.com/reference/package-list").toURL())
+                }
+
+                externalDocumentationLink {
+                    url.set(URI.create("https://developer.android.com/reference/kotlin/androidx/").toURL())
+                    packageListUrl.set(URI.create("https://developer.android.com/reference/kotlin/androidx/package-list").toURL())
+                }
+
+                externalDocumentationLink {
+                    url.set(URI.create("https://developer.android.com/reference/com/google/android/material/").toURL())
+                    packageListUrl.set(URI.create("https://developer.android.com/reference/com/google/android/material/package-list").toURL())
+                }
+            }
+
+            val currentSourceSets: Set<String> = buildSet {
+                kotlin {
+                    addAll(
+                        sourceSets
+                            .map(KotlinSourceSet::getName)
+                            .filter { name -> name.endsWith("Main") })
+                }
+            }
 
             tasks.withType<DokkaTask>().configureEach {
-                dokkaSourceSets.named("commonMain", action)
-                dokkaSourceSets.named("androidMain", action)
-                dokkaSourceSets.named("iosMain", action)
+                currentSourceSets.forEach {
+                    dokkaSourceSets.named(it, action)
+                }
             }
         }
     }
 }
+
+private fun Project.kotlin(configure: Action<KotlinMultiplatformExtension>) =
+    (this as ExtensionAware).extensions.configure("kotlin", configure)
+

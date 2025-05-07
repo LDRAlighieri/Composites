@@ -18,6 +18,7 @@ package ru.ldralighieri.composites.carbon.processor
 
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.processing.SymbolProcessorProvider
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
@@ -58,6 +59,7 @@ import ru.ldralighieri.composites.carbon.processor.model.navTypeEnumClassName
 import ru.ldralighieri.composites.carbon.processor.model.savedStateHandleClassName
 
 internal class CarbonRouteGenerator(private val codeGenerator: CodeGenerator) {
+
     fun generate(resolver: Resolver, data: CarbonRouteData) {
         FileSpec
             .builder(

@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.carbon.core
+package ru.ldralighieri.composites.carbon.processor.model
 
-@Target(AnnotationTarget.CLASS)
-annotation class CarbonRoute(val route: String, val deeplinkSchema: String = "")
+import com.squareup.kotlinpoet.MemberName
 
-@Target(AnnotationTarget.VALUE_PARAMETER)
-annotation class DefaultValue(val value: String)
+internal val navArgumentMemberName = MemberName("androidx.navigation", "navArgument")
+internal val navDeepLinkMemberName = MemberName("androidx.navigation", "navDeepLink")
