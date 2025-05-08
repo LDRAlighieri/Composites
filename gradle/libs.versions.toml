@@ -15,7 +15,7 @@ kotlin = "2.1.20"
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
 androidxActivity = "1.10.1"
-androidxNavigation = "2.8.9"
+androidxNavigation = "2.9.0-beta01"
 androidxPagingCompose = "3.3.6"
 
 # Google
@@ -56,7 +56,7 @@ composites-spotless = { id = "composites.spotless", version = "unspecified" }
 # Androidx
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
+androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
 # paging
 androidx-paging-compose-android = { module = "androidx.paging:paging-compose-android", version.ref = "androidxPagingCompose" }
 
@@ -67,7 +67,6 @@ google-ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", ver
 
 
 # KotlinPoet
-kotlinpoet-jvm = { module = "com.squareup:kotlinpoet-jvm", version.ref = "kotlinpoet" }
 kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinpoet" }
 
 
