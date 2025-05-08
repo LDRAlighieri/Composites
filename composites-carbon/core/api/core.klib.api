@@ -1,0 +1,38 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Composites.composites-carbon:core>
+open annotation class ru.ldralighieri.composites.carbon.core/CarbonRoute : kotlin/Annotation { // ru.ldralighieri.composites.carbon.core/CarbonRoute|null[0]
+    constructor <init>(kotlin/String, kotlin/String = ...) // ru.ldralighieri.composites.carbon.core/CarbonRoute.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+    final val deeplinkSchema // ru.ldralighieri.composites.carbon.core/CarbonRoute.deeplinkSchema|{}deeplinkSchema[0]
+        final fun <get-deeplinkSchema>(): kotlin/String // ru.ldralighieri.composites.carbon.core/CarbonRoute.deeplinkSchema.<get-deeplinkSchema>|<get-deeplinkSchema>(){}[0]
+    final val route // ru.ldralighieri.composites.carbon.core/CarbonRoute.route|{}route[0]
+        final fun <get-route>(): kotlin/String // ru.ldralighieri.composites.carbon.core/CarbonRoute.route.<get-route>|<get-route>(){}[0]
+}
+
+open annotation class ru.ldralighieri.composites.carbon.core/DefaultValue : kotlin/Annotation { // ru.ldralighieri.composites.carbon.core/DefaultValue|null[0]
+    constructor <init>(kotlin/String) // ru.ldralighieri.composites.carbon.core/DefaultValue.<init>|<init>(kotlin.String){}[0]
+
+    final val value // ru.ldralighieri.composites.carbon.core/DefaultValue.value|{}value[0]
+        final fun <get-value>(): kotlin/String // ru.ldralighieri.composites.carbon.core/DefaultValue.value.<get-value>|<get-value>(){}[0]
+}
+
+sealed interface ru.ldralighieri.composites.carbon.core/Destination { // ru.ldralighieri.composites.carbon.core/Destination|null[0]
+    final class Compose : ru.ldralighieri.composites.carbon.core/Destination { // ru.ldralighieri.composites.carbon.core/Destination.Compose|null[0]
+        constructor <init>(kotlin/String) // ru.ldralighieri.composites.carbon.core/Destination.Compose.<init>|<init>(kotlin.String){}[0]
+
+        final val route // ru.ldralighieri.composites.carbon.core/Destination.Compose.route|{}route[0]
+            final fun <get-route>(): kotlin/String // ru.ldralighieri.composites.carbon.core/Destination.Compose.route.<get-route>|<get-route>(){}[0]
+
+        final fun component1(): kotlin/String // ru.ldralighieri.composites.carbon.core/Destination.Compose.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): ru.ldralighieri.composites.carbon.core/Destination.Compose // ru.ldralighieri.composites.carbon.core/Destination.Compose.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.carbon.core/Destination.Compose.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.carbon.core/Destination.Compose.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // ru.ldralighieri.composites.carbon.core/Destination.Compose.toString|toString(){}[0]
+    }
+}
