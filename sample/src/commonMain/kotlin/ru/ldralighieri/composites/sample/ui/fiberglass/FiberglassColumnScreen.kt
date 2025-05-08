@@ -43,7 +43,6 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderItem
 import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassExampleArgs
 import ru.ldralighieri.composites.sample.navigation.LocalNavigator
 import ru.ldralighieri.composites.sample.navigation.Navigator
-import ru.ldralighieri.composites.sample.theme.AppTheme
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.ImagesRowItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.LoremIpsumItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.SpacerItem
@@ -54,10 +53,11 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.items.loremIpsumSlot
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.spacerItemSlot
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.stickyHeaderSlot
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.tagsFlowRowSlot
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiberglassColumnScreen(args: CompositesFiberglassExampleArgs) {
+internal fun FiberglassColumnScreen(args: CompositesFiberglassExampleArgs) {
     val navigator: Navigator = LocalNavigator.current
 
     Column(modifier = Modifier.fillMaxSize()) {

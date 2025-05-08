@@ -16,26 +16,16 @@
 
 package ru.ldralighieri.composites.sample.ui.app
 
-import androidx.activity.ComponentActivity
-import androidx.activity.SystemBarStyle
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.LocalOverscrollFactory
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.launchIn
@@ -44,17 +34,12 @@ import ru.ldralighieri.composites.carbon.core.Destination
 import ru.ldralighieri.composites.sample.navigation.AppNavHost
 import ru.ldralighieri.composites.sample.navigation.LocalNavigator
 import ru.ldralighieri.composites.sample.navigation.Navigator
-import ru.ldralighieri.composites.sample.theme.AppTheme
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
 @Composable
-fun ComponentActivity.CompositesApp() {
-    val currentThemeIsDark = isSystemInDarkTheme()
-    val isDarkMode by rememberSaveable { mutableStateOf(currentThemeIsDark) }
-
+fun CompositesApp() {
     val navController: NavHostController = rememberNavController()
     val navigator: Navigator = LocalNavigator.current
-
-    ChangeSystemBarsTheme(isDarkMode)
 
     LaunchedEffect(Unit) {
         navigator.destinations
@@ -72,7 +57,7 @@ fun ComponentActivity.CompositesApp() {
             .launchIn(this)
     }
 
-    ProvideDefaults {
+    AppTheme {
         Column {
             Scaffold(
                 containerColor = Color.Transparent,
@@ -88,32 +73,5 @@ fun ComponentActivity.CompositesApp() {
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun ComponentActivity.ChangeSystemBarsTheme(isDarkMode: Boolean) {
-    val barColor = AppTheme.colors.background.toArgb()
-    LaunchedEffect(isDarkMode) {
-        enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.auto(
-                lightScrim = android.graphics.Color.TRANSPARENT,
-                darkScrim = android.graphics.Color.TRANSPARENT,
-            ) { isDarkMode },
-            navigationBarStyle = SystemBarStyle.auto(
-                lightScrim = barColor,
-                darkScrim = barColor,
-            ) { isDarkMode },
-        )
-    }
-}
-
-@Composable
-private fun ProvideDefaults(content: @Composable () -> Unit) {
-    AppTheme(dynamicColor = true) {
-        CompositionLocalProvider(
-            LocalOverscrollFactory provides null,
-            content = content,
-        )
     }
 }

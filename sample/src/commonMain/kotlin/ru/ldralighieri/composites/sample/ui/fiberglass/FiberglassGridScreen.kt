@@ -43,15 +43,15 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassExampleArgs
 import ru.ldralighieri.composites.sample.navigation.LocalNavigator
 import ru.ldralighieri.composites.sample.navigation.Navigator
-import ru.ldralighieri.composites.sample.theme.AppTheme
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.ErrorGridItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.PrimaryGridItem
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.errorGridSlot
 import ru.ldralighieri.composites.sample.ui.fiberglass.items.primaryGridSlot
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FiberglassGridScreen(args: CompositesFiberglassExampleArgs) {
+internal fun FiberglassGridScreen(args: CompositesFiberglassExampleArgs) {
     val navigator: Navigator = LocalNavigator.current
 
     Column(modifier = Modifier.fillMaxSize()) {

@@ -14,88 +14,97 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.sample.ui.fiberglass
+package ru.ldralighieri.composites.sample.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassArgs
-import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassExampleRoute
-import ru.ldralighieri.composites.sample.navigation.FiberglassType
+import composites.sample.generated.resources.Res
+import composites.sample.generated.resources.fiberglass
+import org.jetbrains.compose.resources.painterResource
+import ru.ldralighieri.composites.sample.navigation.CompositesFiberglassRoute
 import ru.ldralighieri.composites.sample.navigation.LocalNavigator
 import ru.ldralighieri.composites.sample.navigation.Navigator
-import ru.ldralighieri.composites.sample.theme.AppTheme
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun FiberglassRootScreen(args: CompositesFiberglassArgs) {
-    val navigator: Navigator = LocalNavigator.current
-
+fun CompositesScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(
+        CenterAlignedTopAppBar(
             title = {
-                Text(text = args.title, style = AppTheme.typography.headlineSmall)
+                Text(
+                    text = "Composites Materials Catalog",
+                    style = AppTheme.typography.headlineSmall,
+                )
             },
-            navigationIcon = {
-                IconButton(onClick = { navigator.navigateBack() }) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "")
-                }
-            },
-            colors = TopAppBarDefaults.topAppBarColors(
+            colors = topAppBarColors(
                 containerColor = AppTheme.colors.surfaceColorAtElevation(3.dp),
-                navigationIconContentColor = AppTheme.colors.onSurface,
                 titleContentColor = AppTheme.colors.onSurface,
                 actionIconContentColor = AppTheme.colors.onSurfaceVariant,
             ),
         )
 
-        FiberglassScreenItem(
-            title = "Column",
-            onClick = {
-                navigator.navigateTo(CompositesFiberglassExampleRoute.create(FiberglassType.Column))
-            },
-        )
-
-        FiberglassScreenItem(
-            title = "Grid",
-            onClick = {
-                navigator.navigateTo(CompositesFiberglassExampleRoute.create(FiberglassType.Grid))
-            },
-        )
+        CompositesContent()
     }
 }
 
 @Composable
-private fun FiberglassScreenItem(
+private fun CompositesContent() {
+    val navigator: Navigator = LocalNavigator.current
+
+    LazyColumn {
+        item(key = "fiberglass") {
+            CompositeItem(
+                title = "Fiberglass",
+                onClick = { navigator.navigateTo(CompositesFiberglassRoute.create()) },
+            )
+        }
+    }
+}
+
+@Composable
+fun CompositeItem(
     title: String,
     onClick: () -> Unit,
 ) {
-    Box(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp)
             .clickable(onClick = onClick)
             .padding(horizontal = AppTheme.dimensions.horizontalGuideline, vertical = 8.dp),
-        contentAlignment = Alignment.CenterStart,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
+        Image(
+            painter = painterResource(Res.drawable.fiberglass),
+            contentDescription = "",
+            modifier = Modifier.size(48.dp),
+            colorFilter = ColorFilter.tint(color = AppTheme.colors.onBackground),
+        )
+
+        Spacer(modifier = Modifier.width(12.dp))
+
         Text(
             text = title,
             color = AppTheme.colors.onBackground,

@@ -20,37 +20,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import ru.ldralighieri.composites.carbon.core.CarbonRoute
-import ru.ldralighieri.composites.carbon.core.DefaultValue
 import ru.ldralighieri.composites.sample.ui.CompositesScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassColumnScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassGridScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassRootScreen
-
-enum class FiberglassType { Column, Grid }
-
-@CarbonRoute(route = "composites")
-data object CompositesArgs
-
-/*
-adb shell am start \
-    -a android.intent.action.VIEW \
-    -d "composites://composites/fiberglass/<title>" ru.ldralighieri.composites.sample
- */
-@CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
-data class CompositesFiberglassArgs(
-    @DefaultValue("Fiberglass composites") val title: String,
-)
-
-/*
- adb shell am start \
-    -a android.intent.action.VIEW \
-    -d "composites://composites/fiberglass/example/<Column|Grid>" ru.ldralighieri.composites.sample
- */
-@CarbonRoute(route = "composites/fiberglass/example", deeplinkSchema = "composites")
-data class CompositesFiberglassExampleArgs(
-    val type: FiberglassType,
-)
 
 @Composable
 fun AppNavHost(

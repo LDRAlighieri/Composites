@@ -16,7 +16,6 @@
 
 package ru.ldralighieri.composites.sample.navigation
 
-import android.os.Parcelable
 import androidx.compose.runtime.staticCompositionLocalOf
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -32,13 +31,13 @@ class Navigator {
     }
 
     fun navigateBack() {
-        _destinations.trySend(Event.Back())
+        _destinations.trySend(Event.Back)
     }
 
     sealed interface Event {
         data class ToDestination(val destination: Destination) : Event
 
-        data class Back(val result: Parcelable? = null) : Event
+        data object Back : Event
     }
 }
 
