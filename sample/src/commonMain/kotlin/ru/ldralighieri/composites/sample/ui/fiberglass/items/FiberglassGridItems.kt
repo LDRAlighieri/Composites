@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Vladimir Raupov
+ * Copyright 2023 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,17 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.carbon.processor.ext
+package ru.ldralighieri.composites.sample.ui.fiberglass.items
 
-import ru.ldralighieri.composites.carbon.processor.model.ArgumentDefaultValue
+import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
-internal fun ArgumentDefaultValue.castValue(): Any = type.cast(value)
+abstract class GridItem : FiberglassItem {
+    @OptIn(ExperimentalUuidApi::class)
+    override val id: String = Uuid.random().toString()
+}
+
+internal class PrimaryGridItem : GridItem()
+
+internal class ErrorGridItem : GridItem()

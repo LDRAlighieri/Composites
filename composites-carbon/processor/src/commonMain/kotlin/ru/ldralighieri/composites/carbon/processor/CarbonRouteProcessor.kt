@@ -19,7 +19,6 @@ package ru.ldralighieri.composites.carbon.processor
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import ru.ldralighieri.composites.carbon.core.CarbonRoute
@@ -37,14 +36,14 @@ internal class CarbonRouteProcessor(
         resolver.getSymbolsWithAnnotation(CarbonRoute::class.java.canonicalName)
             .toList()
             .filterIsInstance<KSClassDeclaration>()
-            .forEach { symbol -> parse(resolver, symbol) }
+            .forEach(::parse)
 
         return emptyList()
     }
 
-    private fun parse(resolver: Resolver, symbol: KSClassDeclaration) {
-        when (val result = parser.parse(resolver, symbol)) {
-            is CarbonRouteDataParser.Result.Success -> generator.generate(resolver, result.data)
+    private fun parse(symbol: KSClassDeclaration) {
+        when (val result = parser.parse(symbol)) {
+            is CarbonRouteDataParser.Result.Success -> generator.generate(result.data)
             is CarbonRouteDataParser.Result.Failure -> logger.error(result.message, result.symbol)
         }
     }

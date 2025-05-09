@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.sample.theme
+package ru.ldralighieri.composites.sample.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

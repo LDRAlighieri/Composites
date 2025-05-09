@@ -14,15 +14,23 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.sample.ui.fiberglass.items
+package ru.ldralighieri.composites.sample.ui.theme
 
-import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
-import java.util.UUID
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.unit.Dp
 
-abstract class GridItem : FiberglassItem {
-    override val id: String = UUID.randomUUID().toString()
-}
+@Immutable
+data class AppDimensions(
+    val shapeAppearanceSmall: Dp,
+    val shapeAppearanceMedium: Dp,
+    val shapeAppearanceLarge: Dp,
+    val horizontalGuideline: Dp,
+    val topGuideline: Dp,
+    val bottomGuideline: Dp,
+)
 
-internal class PrimaryGridItem : GridItem()
-
-internal class ErrorGridItem : GridItem()
+val LocalAppDimensions =
+    staticCompositionLocalOf<AppDimensions> {
+        error("No LocalAppDimensions specified")
+    }

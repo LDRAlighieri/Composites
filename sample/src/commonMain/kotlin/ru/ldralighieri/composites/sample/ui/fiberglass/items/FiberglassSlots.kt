@@ -16,20 +16,16 @@
 
 package ru.ldralighieri.composites.sample.ui.fiberglass.items
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
@@ -49,8 +45,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderSlot
 import ru.ldralighieri.composites.fiberglass.row.FiberglassFlowRow
 import ru.ldralighieri.composites.fiberglass.row.FiberglassLazyRow
-import ru.ldralighieri.composites.sample.ThemePreviews
-import ru.ldralighieri.composites.sample.theme.AppTheme
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
 fun stickyHeaderSlot(): FiberglassStickyHeaderSlot =
     {
@@ -147,82 +142,5 @@ fun tagsFlowRowSlot(): FiberglassLazyItemSlot = { _, item ->
             contentPadding = PaddingValues(horizontal = AppTheme.dimensions.horizontalGuideline),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         )
-    }
-}
-
-// Previews
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-@ThemePreviews
-private fun StickyHeaderSlotPreview() {
-    AppTheme(dynamicColor = false) {
-        LazyColumn {
-            stickyHeader {
-                stickyHeaderSlot()(
-                    StickyHeaderItem("Title"),
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun ItemSlotPreview(content: @Composable LazyItemScope.() -> Unit) {
-    AppTheme(dynamicColor = false) {
-        LazyColumn {
-            item {
-                content()
-            }
-        }
-    }
-}
-
-@Composable
-@ThemePreviews
-private fun LoremIpsumSlotPreview() {
-    ItemSlotPreview {
-        loremIpsumSlot()(0, LoremIpsumItem(20))
-    }
-}
-
-@Composable
-@ThemePreviews
-private fun SmallImageSlotPreview() {
-    ItemSlotPreview {
-        smallImageSlot()(0, SmallImageItem())
-    }
-}
-
-@Composable
-@ThemePreviews
-private fun BigImageSlotPreview() {
-    ItemSlotPreview {
-        bigImageSlot()(0, BigImageItem())
-    }
-}
-
-@Composable
-@ThemePreviews
-private fun ImagesRowSlotPreview() {
-    ItemSlotPreview {
-        imagesRowSlot()(0, ImagesRowItem(2))
-    }
-}
-
-@Composable
-@ThemePreviews
-private fun TagSlotPreview() {
-    AppTheme(dynamicColor = false) {
-        Row {
-            secondaryTagSlot()(0, SecondaryTagItem(2))
-        }
-    }
-}
-
-@Composable
-@ThemePreviews
-private fun TagsRowSlotPreview() {
-    ItemSlotPreview {
-        tagsFlowRowSlot()(0, TagsFlowRowItem(2))
     }
 }

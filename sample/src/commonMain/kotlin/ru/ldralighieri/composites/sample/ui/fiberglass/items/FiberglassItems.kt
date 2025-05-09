@@ -1,4 +1,22 @@
 /*
+ * Copyright 2025 Vladimir Raupov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@file:OptIn(ExperimentalUuidApi::class)
+
+/*
  * Copyright 2023 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +36,8 @@ package ru.ldralighieri.composites.sample.ui.fiberglass.items
 
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderItem
-import java.util.UUID
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 private val LOREM_IPSUM_SOURCE = (
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales laoreet commodo. " +
@@ -42,7 +61,7 @@ data class StickyHeaderItem(override val title: String) : FiberglassStickyHeader
 }
 
 data class SpacerItem(val height: Int) : FiberglassItem {
-    override val id: String = UUID.randomUUID().toString()
+    override val id: String = Uuid.random().toString()
 }
 
 data class LoremIpsumItem(private val words: Int) : FiberglassItem {
@@ -50,9 +69,9 @@ data class LoremIpsumItem(private val words: Int) : FiberglassItem {
     override val id: Int = words
 }
 
-data class SmallImageItem(override val id: String = UUID.randomUUID().toString()) : FiberglassItem
+data class SmallImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
 
-data class BigImageItem(override val id: String = UUID.randomUUID().toString()) : FiberglassItem
+data class BigImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
 
 data class ImagesRowItem(val count: Int) : FiberglassItem {
     override val id: String = "ImagesRowItem_$count"
@@ -66,7 +85,7 @@ data class ImagesRowItem(val count: Int) : FiberglassItem {
 }
 
 open class TagItem(number: Int) : FiberglassItem {
-    override val id: String = UUID.randomUUID().toString()
+    override val id: String = Uuid.random().toString()
     open val text: String = "tag $number"
 }
 

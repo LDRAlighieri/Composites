@@ -26,7 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlot
-import ru.ldralighieri.composites.sample.theme.AppTheme
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 import kotlin.random.Random
 
 private fun gridSlot(backgroundColor: Color): FiberglassLazyGridItemSlot =

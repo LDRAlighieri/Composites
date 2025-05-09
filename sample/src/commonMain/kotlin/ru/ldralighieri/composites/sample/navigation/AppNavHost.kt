@@ -29,6 +29,7 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassRootScreen
 
 enum class FiberglassType { Column, Grid }
 
+@Suppress("unused")
 @CarbonRoute(route = "composites")
 data object CompositesArgs
 
@@ -49,7 +50,7 @@ data class CompositesFiberglassArgs(
  */
 @CarbonRoute(route = "composites/fiberglass/example", deeplinkSchema = "composites")
 data class CompositesFiberglassExampleArgs(
-    val type: FiberglassType,
+    val type: String,
 )
 
 @Composable
@@ -86,8 +87,8 @@ fun AppNavHost(
             val args: CompositesFiberglassExampleArgs =
                 CompositesFiberglassExampleRoute.parseArguments(navBackStackEntry)
             when (args.type) {
-                FiberglassType.Column -> FiberglassColumnScreen(args)
-                FiberglassType.Grid -> FiberglassGridScreen(args)
+                FiberglassType.Column.name -> FiberglassColumnScreen(args)
+                FiberglassType.Grid.name -> FiberglassGridScreen(args)
             }
         }
     }

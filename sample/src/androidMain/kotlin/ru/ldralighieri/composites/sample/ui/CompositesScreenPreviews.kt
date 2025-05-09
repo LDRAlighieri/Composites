@@ -14,23 +14,16 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.sample.theme
+package ru.ldralighieri.composites.sample.ui
 
-import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.unit.Dp
+import androidx.compose.runtime.Composable
+import ru.ldralighieri.composites.sample.ThemePreviews
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
-@Immutable
-data class AppDimensions(
-    val shapeAppearanceSmall: Dp,
-    val shapeAppearanceMedium: Dp,
-    val shapeAppearanceLarge: Dp,
-    val horizontalGuideline: Dp,
-    val topGuideline: Dp,
-    val bottomGuideline: Dp,
-)
-
-val LocalAppDimensions =
-    staticCompositionLocalOf<AppDimensions> {
-        error("No LocalAppDimensions specified")
+@Composable
+@ThemePreviews
+private fun CompositeItemPreview() {
+    AppTheme {
+        CompositeItem(title = "Fiberglass", onClick = {})
     }
+}

@@ -1,3 +1,6 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+
 /*
  * Copyright 2023 Vladimir Raupov
  *
@@ -69,37 +72,71 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            // Projects
-            // Carbon
-            implementation(projects.composites.compositesCarbon.core)
-            // Fiberglass
-            implementation(projects.composites.compositesFiberglass)
+        commonMain {
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+
+            dependencies {
+                // Projects
+                // Carbon
+                implementation(projects.composites.compositesCarbon.core)
+                // Fiberglass
+                implementation(projects.composites.compositesFiberglass)
+
+                // Compose
+                implementation(compose.material)
+                implementation(compose.materialIconsExtended)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
+
+                // Navigation
+                implementation(libs.androidx.navigation.compose)
+            }
         }
 
         androidMain.dependencies {
-            // Fiberglass
-            implementation(projects.composites.compositesFiberglass)
-
             // Androidx
             implementation(libs.androidx.core.splashscreen)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.androidx.navigation.compose)
 
             // Compose
-            implementation(compose.material)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.material3)
             implementation(compose.uiTooling)
 
             // Google
             implementation(libs.google.material)
         }
+
+        jvmMain.dependencies {
+            // Compose
+            implementation(compose.desktop.currentOs)
+        }
     }
 }
 
 dependencies {
-    // Projects
-    // Carbon
-    add("kspAndroid", projects.composites.compositesCarbon.processor)
+    add("kspCommonMainMetadata", projects.composites.compositesCarbon.processor)
+}
+
+// https://github.com/google/ksp/issues/567
+tasks.withType<KotlinCompilationTask<*>>().all {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+// ./gradlew :sample:run
+compose {
+    desktop {
+        application {
+            mainClass = "ru.ldralighieri.composites.sample.MainKt"
+
+            nativeDistributions {
+                targetFormats(TargetFormat.Dmg)
+                packageName = "composites"
+                packageVersion = "1.0"
+                macOS {
+                    bundleID = "ru.ldralighieri.composites.desktopapp"
+                }
+            }
+        }
+    }
 }

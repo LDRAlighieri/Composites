@@ -14,7 +14,7 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 
 - [X] KSP `Route` objects generation
 - [X] Default arguments support (without reflection)
-- [X] Enums support
+- [ ] Enums support
 - [ ] Generate `NavGraphBuilder.composable` extension
 - [ ] Arrays support
 - [ ] Parcelable and Serializable support (using parcelable and serializable is not best practice. It is recommended to use primitives)
