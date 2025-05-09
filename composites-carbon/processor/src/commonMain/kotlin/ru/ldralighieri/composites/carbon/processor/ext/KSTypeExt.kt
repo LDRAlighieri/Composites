@@ -38,22 +38,20 @@ import ru.ldralighieri.composites.carbon.processor.model.stringNullableTypeName
 import ru.ldralighieri.composites.carbon.processor.model.stringTypeName
 import ru.ldralighieri.composites.carbon.processor.model.validTypes
 
-internal fun KSType.isAcceptableType(resolver: Resolver): Boolean =
-    toTypeName() in validTypes || resolver.isEnumType(this)
+internal fun KSType.isAcceptableType(): Boolean = toTypeName() in validTypes
 
 internal fun KSType.getSimpleName(): String = declaration.simpleName.getShortName()
 
-internal fun KSType.cast(resolver: Resolver, value: String): Any {
+internal fun KSType.cast(value: String): Any {
     val typeName: TypeName = toTypeName()
     return String.format(
         format = "%s%s",
-        when {
-            typeName == intTypeName -> value.toInt()
-            typeName == longTypeName -> value.toLong()
-            typeName == floatTypeName -> value.toFloat()
-            typeName == booleanTypeName -> value.toBoolean()
-            typeName == stringTypeName -> "\"$value\""
-            resolver.isEnumType(this) -> "enumValueOf<${getSimpleName()}>(\"$value\")"
+        when (typeName) {
+            intTypeName -> value.toInt()
+            longTypeName -> value.toLong()
+            floatTypeName -> value.toFloat()
+            booleanTypeName -> value.toBoolean()
+            stringTypeName -> "\"$value\""
             else -> "\"$value\""
         },
         when (typeName) {

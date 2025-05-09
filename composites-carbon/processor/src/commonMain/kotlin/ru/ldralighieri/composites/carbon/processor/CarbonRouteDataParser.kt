@@ -18,7 +18,6 @@ package ru.ldralighieri.composites.carbon.processor
 
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.getAnnotationsByType
-import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSNode
@@ -26,12 +25,12 @@ import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
-import ru.ldralighieri.composites.carbon.processor.model.ArgumentData
-import ru.ldralighieri.composites.carbon.processor.model.ArgumentDefaultValue
-import ru.ldralighieri.composites.carbon.processor.model.CarbonRouteData
 import ru.ldralighieri.composites.carbon.core.DefaultValue
 import ru.ldralighieri.composites.carbon.processor.ext.getSimpleName
 import ru.ldralighieri.composites.carbon.processor.ext.isAcceptableType
+import ru.ldralighieri.composites.carbon.processor.model.ArgumentData
+import ru.ldralighieri.composites.carbon.processor.model.ArgumentDefaultValue
+import ru.ldralighieri.composites.carbon.processor.model.CarbonRouteData
 import ru.ldralighieri.composites.carbon.processor.model.ROUTE_ARGUMENT_NAME
 import ru.ldralighieri.composites.carbon.processor.model.ROUTE_DEEPLINK_SCHEMA_NAME
 import ru.ldralighieri.composites.carbon.processor.model.ROUTE_FILE_NAME_POSTFIX
@@ -40,7 +39,7 @@ import java.util.Locale
 
 internal class CarbonRouteDataParser {
 
-    fun parse(resolver: Resolver, symbol: KSClassDeclaration): Result {
+    fun parse(symbol: KSClassDeclaration): Result {
 
         val annotation: KSAnnotation =
             symbol
@@ -72,17 +71,14 @@ internal class CarbonRouteDataParser {
                 .filter { it.name?.getShortName() == ROUTE_DEEPLINK_SCHEMA_NAME }
                 .map { it.value.toString() }
                 .firstOrNull()
-                ?: return Result.Failure(
-                    message = "Error to process. There is no argument named $ROUTE_ARGUMENT_NAME",
-                    symbol = symbol
-                )
+                .orEmpty()
 
         val packageName: String = symbol.packageName.asString()
         val fileName: String = route.getFileName()
         val className: ClassName = symbol.toClassName()
 
         val arguments: List<ArgumentData> =
-            try { symbol.getArguments(resolver) }
+            try { symbol.getArguments() }
             catch (e: IllegalArgumentException) { return Result.Failure(e.message.orEmpty()) }
 
         val data = CarbonRouteData(
@@ -111,14 +107,14 @@ internal class CarbonRouteDataParser {
 
     @OptIn(KspExperimental::class)
     @Throws(IllegalStateException::class)
-    private fun KSClassDeclaration.getArguments(resolver: Resolver): List<ArgumentData> =
+    private fun KSClassDeclaration.getArguments(): List<ArgumentData> =
         this
             .primaryConstructor
             ?.parameters
             .orEmpty()
             .map {
                 val type: KSType = it.type.resolve()
-                if (!type.isAcceptableType(resolver))
+                if (!type.isAcceptableType())
                     error("${type.getSimpleName()} is not a valid argument type")
 
                 val name: String = it.name?.getShortName().orEmpty()
