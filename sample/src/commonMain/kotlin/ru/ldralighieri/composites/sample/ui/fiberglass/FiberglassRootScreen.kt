@@ -70,14 +70,18 @@ internal fun FiberglassRootScreen(args: CompositesFiberglassArgs) {
         FiberglassScreenItem(
             title = "Column",
             onClick = {
-                navigator.navigateTo(CompositesFiberglassExampleRoute.create(FiberglassType.Column))
+                navigator.navigateTo(
+                    CompositesFiberglassExampleRoute.create(FiberglassType.Column.name),
+                )
             },
         )
 
         FiberglassScreenItem(
             title = "Grid",
             onClick = {
-                navigator.navigateTo(CompositesFiberglassExampleRoute.create(FiberglassType.Grid))
+                navigator.navigateTo(
+                    CompositesFiberglassExampleRoute.create(FiberglassType.Grid.name),
+                )
             },
         )
     }

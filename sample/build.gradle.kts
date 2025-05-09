@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 /*
  * Copyright 2023 Vladimir Raupov
@@ -72,6 +73,8 @@ kotlin {
 
     sourceSets {
         commonMain {
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+
             dependencies {
                 // Projects
                 // Carbon
@@ -106,6 +109,17 @@ kotlin {
             // Compose
             implementation(compose.desktop.currentOs)
         }
+    }
+}
+
+dependencies {
+    add("kspCommonMainMetadata", projects.composites.compositesCarbon.processor)
+}
+
+// https://github.com/google/ksp/issues/567
+tasks.withType<KotlinCompilationTask<*>>().all {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
     }
 }
 
