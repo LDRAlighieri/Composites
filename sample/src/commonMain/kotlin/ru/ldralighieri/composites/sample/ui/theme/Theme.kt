@@ -16,11 +16,9 @@
 
 package ru.ldralighieri.composites.sample.ui.theme
 
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.LocalOverscrollFactory
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.LocalRippleConfiguration
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
@@ -31,8 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.unit.dp
-import ru.ldralighieri.composites.sample.ui.expected.PlatformClickIndication
-import ru.ldralighieri.composites.sample.ui.expected.PlatformRippleConfiguration
 
 // Colors
 private val DefaultLightColorScheme =
@@ -125,8 +121,6 @@ fun AppTheme(
     CompositionLocalProvider(
         LocalOverscrollFactory provides null,
         LocalAppDimensions provides DefaultAppDimensions,
-        LocalRippleConfiguration provides PlatformRippleConfiguration,
-        LocalIndication provides PlatformClickIndication,
     ) {
         MaterialTheme(
             colorScheme = materialColorScheme,
