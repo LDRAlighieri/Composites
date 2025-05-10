@@ -41,6 +41,8 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
             ).forEach { iosTarget ->
                 iosTarget.binaries.framework {
                     baseName = "CompositesSampleApp"
+                    binaryOption("bundleId", "ru.ldralighieri.composites.sample")
+                    binaryOption("bundleVersion", "2")
                     isStatic = true
                 }
             }
