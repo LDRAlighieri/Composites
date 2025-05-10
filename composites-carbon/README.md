@@ -14,7 +14,7 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 
 - [X] KSP `Route` objects generation
 - [X] Default arguments support (without reflection)
-- [ ] Enums support
+- [ ] Serializable support
 - [ ] Generate `NavGraphBuilder.composable` extension
 - [ ] Arrays support
 - [ ] Parcelable and Serializable support (using parcelable and serializable is not best practice. It is recommended to use primitives)
@@ -23,12 +23,37 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 
 ## Using in your projects
 
-Add dependency:
+Android only:
 
-```kotlin
+```groovy
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.2")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.2")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
+}
+```
+
+Multiplatform:
+
+```groovy
+kotlin {
+    sourceSets {
+        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+
+        dependencies {
+            implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+        }
+    }
+}
+
+dependencies {
+    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
+}
+
+// https://github.com/google/ksp/issues/567
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().all {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
 }
 ```
 
@@ -74,14 +99,14 @@ public object CompositesFiberglassRoute {
   public fun create(title: String = "Fiberglass composites"): Destination.Compose = 
       Destination.Compose("composites/fiberglass/$title")
 
-  public fun parseArguments(backStackEntry: NavBackStackEntry): CompositesFiberglassArgs = 
+  public fun parseArguments(navBackStackEntry: NavBackStackEntry): CompositesFiberglassArgs = 
       CompositesFiberglassArgs(
-          title = backStackEntry.arguments?.getString("title") ?: "Fiberglass composites",
+          title = navBackStackEntry.savedStateHandle.get<String>("title") ?: "Fiberglass composites",
       )
 
   public fun parseArguments(savedStateHandle: SavedStateHandle): CompositesFiberglassArgs = 
       CompositesFiberglassArgs(
-          title = savedStateHandle["title"] ?: "Fiberglass composites",
+          title = savedStateHandle.get<String>("title") ?: "Fiberglass composites",
       )
 }
 ```

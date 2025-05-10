@@ -1,6 +1,16 @@
 # ChangeLog
 
 
+## Version 0.5.0
+
+* New: KMP support (android, ios, jvm targets)
+* New: Sample desktop application
+* New: Sample iOS application
+* Replace: Compose BOM with Compose Multiplatform
+* Update: Kotlin to v2.1.20.
+* Update: Minor update of other libraries.
+
+
 ## Version 0.4.2
 
 * Update: Kotlin to v2.1.10.

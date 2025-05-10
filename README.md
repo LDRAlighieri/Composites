@@ -1,5 +1,5 @@
-﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v2.1.10-blue.svg?logo=kotlin)](https://kotlinlang.org)
-[![Compose BOM Version](https://img.shields.io/badge/Compose-v2025.02.00-blue.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
+﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v2.1.20-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Compose Multiplatform Version](https://img.shields.io/badge/Compose_Multiplatform-v1.8.0-blue.svg?logo=jetpackcompose)](https://www.jetbrains.com/compose-multiplatform)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
@@ -36,16 +36,46 @@ Please consider giving this repository a star ⭐ if you like the project.
 
 ## Using in your projects
 
-Add one or more dependencies:
+Android only:
 
-```kotlin
+```groovy
 dependencies {
     // Carbon
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.4.2")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.4.2")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
 
     // Fiberglass
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.4.2")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.0")
+}
+```
+
+Multiplatform:
+
+```groovy
+kotlin {
+    sourceSets {
+        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+
+        dependencies {
+            // Carbon
+            implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+            
+            // Fiberglass
+            implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.0")
+        }
+    }
+}
+
+dependencies {
+    // Carbon
+    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
+}
+
+// https://github.com/google/ksp/issues/567
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().all {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
 }
 ```
 
@@ -68,6 +98,17 @@ dependencies {
    implementation("ru.ldralighieri.composites:{module}:0.5.0-SNAPSHOT")
 }
 ```
+
+
+## Run desktop version
+
+```shell
+./gradlew :sample:run
+```
+
+## Run iOS version
+
+Just run `sampleIOSApp` configuration
 
 
 ## If you're finding performance issues

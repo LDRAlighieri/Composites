@@ -113,6 +113,8 @@ kotlin {
 }
 
 dependencies {
+    // Projects
+    // Carbon
     add("kspCommonMainMetadata", projects.composites.compositesCarbon.processor)
 }
 
