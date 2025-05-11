@@ -26,17 +26,27 @@ FiberglassColumn and FiberglassRow are great for small and not very complex case
 
 ## Using in your projects
 
-Add dependency:
+Android only:
 
-```kotlin
+```groovy
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.4.2")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.0")
+}
+```
+
+Multiplatform:
+
+```groovy
+kotlin {
+    commonMain.dependencies {
+        implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.0")
+    }
 }
 ```
 
 Make sure that you have `mavenCentral()` in the list of repositories:
 
-```kotlin
+```groovy
 repositories {
     mavenCentral()
 }

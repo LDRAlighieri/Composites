@@ -37,10 +37,12 @@ Multiplatform:
 ```groovy
 kotlin {
     sourceSets {
-        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+        commonMain {
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
 
-        dependencies {
-            implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+            dependencies {
+                implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+            }
         }
     }
 }
@@ -59,7 +61,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().all
 
 Make sure that you have `mavenCentral()` in the list of repositories:
 
-```kotlin
+```groovy
 repositories {
     mavenCentral()
 }
