@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright 2025 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,16 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
+package ru.ldralighieri.composites.sample
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.window.ComposeViewport
+import org.jetbrains.skiko.wasm.onWasmReady
+import ru.ldralighieri.composites.sample.ui.app.CompositesApp
+
+@OptIn(ExperimentalComposeUiApi::class)
+fun main() {
+    onWasmReady {
+        ComposeViewport("CompositesSampleJsApp") { CompositesApp() }
     }
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-    }
-}
-
-rootProject.name = "Composites"
-
-include(":composites-carbon:core")
-include(":composites-carbon:processor")
-include(":composites-fiberglass")
-include(":sample")
