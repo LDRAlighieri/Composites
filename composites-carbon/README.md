@@ -27,8 +27,8 @@ Android only:
 
 ```groovy
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.1")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.5.1")
 }
 ```
 
@@ -41,14 +41,14 @@ kotlin {
             kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
 
             dependencies {
-                implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+                implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.1")
             }
         }
     }
 }
 
 dependencies {
-    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
+    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.5.1")
 }
 
 // https://github.com/google/ksp/issues/567

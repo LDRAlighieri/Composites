@@ -41,11 +41,11 @@ Android only:
 ```groovy
 dependencies {
     // Carbon
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.1")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.5.1")
 
     // Fiberglass
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.0")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.1")
 }
 ```
 
@@ -59,10 +59,10 @@ kotlin {
 
             dependencies {
                 // Carbon
-                implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.0")
+                implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.1")
                 
                 // Fiberglass
-                implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.0")
+                implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.1")
             }
         }
     }
@@ -70,7 +70,7 @@ kotlin {
 
 dependencies {
     // Carbon
-    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.5.0")
+    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.5.1")
 }
 
 // https://github.com/google/ksp/issues/567
@@ -102,15 +102,13 @@ dependencies {
 ```
 
 
-## Run desktop version
+## Run `Sample` app:
 
-```shell
-./gradlew :sample:run
-```
-
-## Run iOS version
-
-Just run `sampleIOSApp` configuration
+- Android: use the `sample` run configuration
+- iOS: use the `sampleIOSApp` run configuration
+- Desktop: `./gradlew :sample:run`
+- Web (WASM): `./gradlew :sample:wasmJsBrowserDevelopmentRun`
+- Web (JS): `./gradlew :sample:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
 
 
 ## If you're finding performance issues

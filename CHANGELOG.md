@@ -1,6 +1,11 @@
 # ChangeLog
 
 
+## Version 0.5.1
+
+* New: Add JS and WASM targets
+
+
 ## Version 0.5.0
 
 * New: KMP support (android, ios, jvm targets)
