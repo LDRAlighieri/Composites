@@ -20,6 +20,7 @@ import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 @Suppress("unused")
 class KotlinMultiplatformConventionPlugin : Plugin<Project> {
@@ -48,6 +49,31 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
             }
 
             jvm()
+
+            js {
+                binaries.executable()
+                browser {
+                    commonWebpackConfig {
+                        outputFileName = "composites-js.js"
+                    }
+                }
+            }
+
+            @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+            wasmJs {
+                binaries.executable()
+                browser {
+                    commonWebpackConfig {
+                        outputFileName = "composites-wasm-js.js"
+                        devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                            static = (static ?: mutableListOf()).apply {
+                                add(project.projectDir.path)
+                                add(project.rootDir.path)
+                            }
+                        }
+                    }
+                }
+            }
 
             targets.all {
                 compilations.all {

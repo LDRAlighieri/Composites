@@ -1,4 +1,7 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 /*
@@ -71,6 +74,15 @@ kotlin {
         languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
     }
 
+    applyDefaultHierarchyTemplate {
+        common {
+            group("web") {
+                withJs()
+                withWasmJs()
+            }
+        }
+    }
+
     sourceSets {
         commonMain {
             kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
@@ -129,7 +141,7 @@ tasks.withType<KotlinCompilationTask<*>>().all {
 compose {
     desktop {
         application {
-            mainClass = "ru.ldralighieri.composites.sample.MainKt"
+            mainClass = "ru.ldralighieri.composites.sample.Main_jvmKt"
 
             nativeDistributions {
                 targetFormats(TargetFormat.Dmg)
