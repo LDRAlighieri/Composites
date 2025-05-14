@@ -7,10 +7,10 @@ spotless = "7.0.3"
 mavenPublish = "0.31.0"
 bcv = "0.17.0"
 gver = "0.52.0"
-ksp = "2.1.20-2.0.1"
+ksp = "2.1.21-2.0.1"
 
 # Kotlin
-kotlin = "2.1.20"
+kotlin = "2.1.21"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
