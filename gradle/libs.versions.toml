@@ -22,7 +22,7 @@ androidxPagingCompose = "3.3.6"
 googleMaterial="1.12.0"
 
 # KotlinPoet
-kotlinpoet="2.1.0"
+kotlinpoet="2.2.0"
 
 # Lint
 ktlint = "1.2.1"
