@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import ru.ldralighieri.composites.carbon.core.Destination
 
-class Navigator {
+internal class Navigator {
     private val _destinations = Channel<Event>(Channel.CONFLATED)
     val destinations: Flow<Event> = _destinations.receiveAsFlow()
 
@@ -41,4 +41,4 @@ class Navigator {
     }
 }
 
-val LocalNavigator = staticCompositionLocalOf { Navigator() }
+internal val LocalNavigator = staticCompositionLocalOf { Navigator() }

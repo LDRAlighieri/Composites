@@ -27,60 +27,63 @@ import kotlin.reflect.KClass
 /**
  * FiberglassLazyColumn and FiberglassLazyRow slot alias
  */
-typealias FiberglassLazyItemSlot =
+public typealias FiberglassLazyItemSlot =
     @Composable LazyItemScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * FiberglassLazyColumn and FiberglassLazyRow slots map alias
  */
-typealias FiberglassLazyItemSlots = Map<KClass<out FiberglassItem>, FiberglassLazyItemSlot>
+public typealias FiberglassLazyItemSlots = Map<KClass<out FiberglassItem>, FiberglassLazyItemSlot>
 
 /**
  * FiberglassColumn slot alias
  */
-typealias FiberglassColumnItemSlot =
+public typealias FiberglassColumnItemSlot =
     @Composable ColumnScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * FiberglassColumn sticky header slot alias
  */
-typealias FiberglassStickyHeaderSlot =
+public typealias FiberglassStickyHeaderSlot =
     @Composable LazyItemScope.(header: FiberglassStickyHeaderItem) -> Unit
 
 /**
  * FiberglassColumn slots map alias
  */
-typealias FiberglassColumnItemSlots = Map<KClass<out FiberglassItem>, FiberglassColumnItemSlot>
+public typealias FiberglassColumnItemSlots =
+    Map<KClass<out FiberglassItem>, FiberglassColumnItemSlot>
 
 /**
  * FiberglassRow slot alias
  */
-typealias FiberglassRowItemSlot = @Composable RowScope.(position: Int, item: FiberglassItem) -> Unit
+public typealias FiberglassRowItemSlot =
+    @Composable RowScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * FiberglassRow slots map alias
  */
-typealias FiberglassRowItemSlots = Map<KClass<out FiberglassItem>, FiberglassRowItemSlot>
+public typealias FiberglassRowItemSlots = Map<KClass<out FiberglassItem>, FiberglassRowItemSlot>
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slot alias
  */
-typealias FiberglassLazyGridItemSlot =
+public typealias FiberglassLazyGridItemSlot =
     @Composable LazyGridItemScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slots map alias
  */
-typealias FiberglassLazyGridItemSlots = Map<KClass<out FiberglassItem>, FiberglassLazyGridItemSlot>
+public typealias FiberglassLazyGridItemSlots =
+    Map<KClass<out FiberglassItem>, FiberglassLazyGridItemSlot>
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slot alias
  */
-typealias FiberglassLazyStaggeredGridItemSlot =
+public typealias FiberglassLazyStaggeredGridItemSlot =
     @Composable LazyStaggeredGridItemScope.(position: Int, item: FiberglassItem) -> Unit
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slots map alias
  */
-typealias FiberglassLazyStaggeredGridItemSlots =
+public typealias FiberglassLazyStaggeredGridItemSlots =
     Map<KClass<out FiberglassItem>, FiberglassLazyStaggeredGridItemSlot>

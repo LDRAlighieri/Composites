@@ -21,6 +21,6 @@ import androidx.compose.ui.window.ComposeViewport
 import ru.ldralighieri.composites.sample.ui.app.CompositesApp
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun main() {
+public fun main() {
     ComposeViewport("CompositesSampleJsApp") { CompositesApp() }
 }

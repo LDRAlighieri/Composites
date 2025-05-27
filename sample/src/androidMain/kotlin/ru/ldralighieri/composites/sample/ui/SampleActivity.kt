@@ -25,7 +25,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import ru.ldralighieri.composites.sample.ui.app.CompositesApp
 
-class SampleActivity : ComponentActivity() {
+internal class SampleActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         enableEdgeToEdge(

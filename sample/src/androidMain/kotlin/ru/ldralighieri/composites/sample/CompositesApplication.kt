@@ -20,7 +20,7 @@ import android.app.Application
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 
-class CompositesApplication : Application() {
+internal class CompositesApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         setUpNightMode()

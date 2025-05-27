@@ -54,7 +54,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyStaggeredGridIt
  */
 @ExperimentalFoundationApi
 @Composable
-fun FiberglassLazyHorizontalStaggeredGrid(
+public fun FiberglassLazyHorizontalStaggeredGrid(
     items: List<FiberglassItem>,
     itemSlots: FiberglassLazyStaggeredGridItemSlots,
     rows: StaggeredGridCells,

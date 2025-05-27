@@ -49,7 +49,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlots
  * @param itemContentType A factory of the content types for the item.
  */
 @Composable
-fun FiberglassLazyHorizontalGrid(
+public fun FiberglassLazyHorizontalGrid(
     items: List<FiberglassItem>,
     itemSlots: FiberglassLazyGridItemSlots,
     rows: GridCells,

@@ -22,7 +22,7 @@ import org.jetbrains.skiko.wasm.onWasmReady
 import ru.ldralighieri.composites.sample.ui.app.CompositesApp
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun main() {
+public fun main() {
     onWasmReady {
         ComposeViewport("CompositesSampleJsApp") { CompositesApp() }
     }

@@ -51,7 +51,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderSlot
  * @param itemContentType A factory of the content types for the item.
  */
 @Composable
-fun FiberglassLazyColumn(
+public fun FiberglassLazyColumn(
     items: List<FiberglassItem>,
     itemSlots: FiberglassLazyItemSlots,
     modifier: Modifier = Modifier,
@@ -109,7 +109,7 @@ fun FiberglassLazyColumn(
  * @param itemContentType A factory of the content types for the item.
  */
 @Composable
-fun FiberglassLazyColumn(
+public fun FiberglassLazyColumn(
     sections: Map<FiberglassStickyHeaderItem, List<FiberglassItem>>,
     headerSlot: FiberglassStickyHeaderSlot,
     itemSlots: FiberglassLazyItemSlots,

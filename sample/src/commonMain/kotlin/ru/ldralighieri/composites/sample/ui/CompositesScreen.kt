@@ -49,7 +49,7 @@ import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CompositesScreen() {
+internal fun CompositesScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
             title = {
@@ -84,7 +84,7 @@ private fun CompositesContent() {
 }
 
 @Composable
-fun CompositeItem(
+internal fun CompositeItem(
     title: String,
     onClick: () -> Unit,
 ) {

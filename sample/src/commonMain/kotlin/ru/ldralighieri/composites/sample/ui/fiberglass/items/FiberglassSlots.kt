@@ -47,7 +47,7 @@ import ru.ldralighieri.composites.fiberglass.row.FiberglassFlowRow
 import ru.ldralighieri.composites.fiberglass.row.FiberglassLazyRow
 import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
-fun stickyHeaderSlot(): FiberglassStickyHeaderSlot =
+internal fun stickyHeaderSlot(): FiberglassStickyHeaderSlot =
     {
         Text(
             text = (it as StickyHeaderItem).title,
@@ -61,11 +61,11 @@ fun stickyHeaderSlot(): FiberglassStickyHeaderSlot =
         )
     }
 
-fun spacerItemSlot(): FiberglassLazyItemSlot = { _, item ->
+internal fun spacerItemSlot(): FiberglassLazyItemSlot = { _, item ->
     Spacer(modifier = Modifier.height((item as SpacerItem).height.dp))
 }
 
-fun loremIpsumSlot(): FiberglassLazyItemSlot = { _, item ->
+internal fun loremIpsumSlot(): FiberglassLazyItemSlot = { _, item ->
     Text(
         text = (item as LoremIpsumItem).text,
         modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
@@ -92,11 +92,11 @@ private fun ImageSlot(width: Dp) {
     }
 }
 
-fun smallImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 160.dp) }
+internal fun smallImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 160.dp) }
 
-fun bigImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 256.dp) }
+internal fun bigImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 256.dp) }
 
-fun imagesRowSlot(): FiberglassLazyItemSlot = { _, item ->
+internal fun imagesRowSlot(): FiberglassLazyItemSlot = { _, item ->
     with(item as ImagesRowItem) {
         FiberglassLazyRow(
             items = images,
@@ -126,12 +126,12 @@ private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot = { _, item -
 }
 
 @Composable
-fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
+internal fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
 
 @Composable
-fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
+internal fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
 
-fun tagsFlowRowSlot(): FiberglassLazyItemSlot = { _, item ->
+internal fun tagsFlowRowSlot(): FiberglassLazyItemSlot = { _, item ->
     with(item as TagsFlowRowItem) {
         FiberglassFlowRow(
             items = tags,

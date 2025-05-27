@@ -49,7 +49,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
  * @param itemContentType A factory of the content types for the item.
  */
 @Composable
-fun FiberglassLazyRow(
+public fun FiberglassLazyRow(
     items: List<FiberglassItem>,
     itemSlots: FiberglassLazyItemSlots,
     modifier: Modifier = Modifier,

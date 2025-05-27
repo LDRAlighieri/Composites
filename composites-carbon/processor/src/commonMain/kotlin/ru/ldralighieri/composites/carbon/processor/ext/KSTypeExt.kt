@@ -16,7 +16,6 @@
 
 package ru.ldralighieri.composites.carbon.processor.ext
 
-import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName

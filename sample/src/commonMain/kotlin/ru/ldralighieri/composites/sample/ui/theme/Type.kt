@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 
 private val Roboto = FontFamily.Default
 
-val AppTypography =
+internal val AppTypography =
     Typography(
         displayLarge = TextStyle(
             fontFamily = Roboto,
