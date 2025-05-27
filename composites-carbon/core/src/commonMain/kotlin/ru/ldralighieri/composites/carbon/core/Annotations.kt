@@ -23,7 +23,7 @@ package ru.ldralighieri.composites.carbon.core
  * @param deeplinkSchema Route deeplink schema
  */
 @Target(AnnotationTarget.CLASS)
-annotation class CarbonRoute(val route: String, val deeplinkSchema: String = "")
+public annotation class CarbonRoute(val route: String, val deeplinkSchema: String = "")
 
 /**
  * Annotation for assigning default value without reflection
@@ -31,4 +31,4 @@ annotation class CarbonRoute(val route: String, val deeplinkSchema: String = "")
  * @param value Default value
  */
 @Target(AnnotationTarget.VALUE_PARAMETER)
-annotation class DefaultValue(val value: String)
+public annotation class DefaultValue(val value: String)

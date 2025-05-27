@@ -21,4 +21,4 @@ import platform.UIKit.UIViewController
 import ru.ldralighieri.composites.sample.ui.app.CompositesApp
 
 @Suppress("FunctionName")
-fun MainViewController(): UIViewController = ComposeUIViewController { CompositesApp() }
+public fun MainViewController(): UIViewController = ComposeUIViewController { CompositesApp() }

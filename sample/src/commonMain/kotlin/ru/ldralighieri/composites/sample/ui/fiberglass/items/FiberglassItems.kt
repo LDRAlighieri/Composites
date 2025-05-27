@@ -56,24 +56,24 @@ private val LOREM_IPSUM_SOURCE = (
         "Curabitur congue orci in neque euismod a blandit libero vehicula."
     ).split(" ")
 
-data class StickyHeaderItem(override val title: String) : FiberglassStickyHeaderItem {
+internal data class StickyHeaderItem(override val title: String) : FiberglassStickyHeaderItem {
     override val id: String = title
 }
 
-data class SpacerItem(val height: Int) : FiberglassItem {
+internal data class SpacerItem(val height: Int) : FiberglassItem {
     override val id: String = Uuid.random().toString()
 }
 
-data class LoremIpsumItem(private val words: Int) : FiberglassItem {
+internal data class LoremIpsumItem(private val words: Int) : FiberglassItem {
     val text = LOREM_IPSUM_SOURCE.take(words).joinToString(separator = " ")
     override val id: Int = words
 }
 
-data class SmallImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
+internal data class SmallImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
 
-data class BigImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
+internal data class BigImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
 
-data class ImagesRowItem(val count: Int) : FiberglassItem {
+internal data class ImagesRowItem(val count: Int) : FiberglassItem {
     override val id: String = "ImagesRowItem_$count"
     val images: List<FiberglassItem> =
         buildList {
@@ -84,16 +84,16 @@ data class ImagesRowItem(val count: Int) : FiberglassItem {
         }
 }
 
-open class TagItem(number: Int) : FiberglassItem {
+internal open class TagItem(number: Int) : FiberglassItem {
     override val id: String = Uuid.random().toString()
     open val text: String = "tag $number"
 }
 
-data class SecondaryTagItem(val number: Int) : TagItem(number)
+internal data class SecondaryTagItem(val number: Int) : TagItem(number)
 
-data class TertiaryTagItem(val number: Int) : TagItem(number)
+internal data class TertiaryTagItem(val number: Int) : TagItem(number)
 
-data class TagsFlowRowItem(val count: Int) : FiberglassItem {
+internal data class TagsFlowRowItem(val count: Int) : FiberglassItem {
     override val id: String = "TagItem_$count"
     val tags: List<TagItem> =
         buildList {

@@ -22,14 +22,14 @@ import androidx.compose.runtime.Stable
  * Item interface for Fiberglass
  */
 @Stable
-interface FiberglassItem {
-    val id: Any
+public interface FiberglassItem {
+    public val id: Any
 }
 
 /**
  * StickyHeader interface for FiberglassLazyColumn
  */
 @Stable
-interface FiberglassStickyHeaderItem : FiberglassItem {
-    val title: String
+public interface FiberglassStickyHeaderItem : FiberglassItem {
+    public val title: String
 }

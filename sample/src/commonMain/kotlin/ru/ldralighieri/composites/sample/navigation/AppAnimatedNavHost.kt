@@ -32,7 +32,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 
 @Composable
-fun AppAnimatedNavHost(
+internal fun AppAnimatedNavHost(
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier,

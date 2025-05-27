@@ -42,7 +42,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * @param itemKey A factory of the content types for the item.
  */
 @Composable
-fun FiberglassFlowColumn(
+public fun FiberglassFlowColumn(
     items: List<FiberglassItem>,
     itemSlots: FiberglassColumnItemSlots,
     modifier: Modifier = Modifier,

@@ -21,7 +21,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 
 @Immutable
-data class AppDimensions(
+internal data class AppDimensions(
     val shapeAppearanceSmall: Dp,
     val shapeAppearanceMedium: Dp,
     val shapeAppearanceLarge: Dp,
@@ -30,7 +30,6 @@ data class AppDimensions(
     val bottomGuideline: Dp,
 )
 
-val LocalAppDimensions =
-    staticCompositionLocalOf<AppDimensions> {
-        error("No LocalAppDimensions specified")
-    }
+internal val LocalAppDimensions = staticCompositionLocalOf<AppDimensions> {
+    error("No LocalAppDimensions specified")
+}

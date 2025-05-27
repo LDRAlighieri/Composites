@@ -27,11 +27,11 @@ import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassColumnScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassGridScreen
 import ru.ldralighieri.composites.sample.ui.fiberglass.FiberglassRootScreen
 
-enum class FiberglassType { Column, Grid }
+public enum class FiberglassType { Column, Grid }
 
 @Suppress("unused")
 @CarbonRoute(route = "composites")
-data object CompositesArgs
+public data object CompositesArgs
 
 /*
 adb shell am start \
@@ -39,7 +39,7 @@ adb shell am start \
     -d "composites://composites/fiberglass/<title>" ru.ldralighieri.composites.sample
  */
 @CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
-data class CompositesFiberglassArgs(
+public data class CompositesFiberglassArgs(
     @DefaultValue("Fiberglass composites") val title: String,
 )
 
@@ -49,12 +49,12 @@ data class CompositesFiberglassArgs(
     -d "composites://composites/fiberglass/example/<Column|Grid>" ru.ldralighieri.composites.sample
  */
 @CarbonRoute(route = "composites/fiberglass/example", deeplinkSchema = "composites")
-data class CompositesFiberglassExampleArgs(
+public data class CompositesFiberglassExampleArgs(
     val type: String,
 )
 
 @Composable
-fun AppNavHost(
+internal fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {

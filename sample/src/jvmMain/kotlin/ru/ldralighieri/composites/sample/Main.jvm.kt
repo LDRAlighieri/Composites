@@ -29,11 +29,13 @@ import composites.sample.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
 import ru.ldralighieri.composites.sample.ui.app.CompositesApp
 
-fun main() = application {
-    Window(
-        title = stringResource(Res.string.app_name),
-        onCloseRequest = ::exitApplication,
-        state = rememberWindowState(width = 400.dp, height = 800.dp),
-        onKeyEvent = { event -> event.key == Key.Escape && event.type == KeyEventType.KeyUp },
-    ) { CompositesApp() }
+public fun main() {
+    application {
+        Window(
+            title = stringResource(Res.string.app_name),
+            onCloseRequest = ::exitApplication,
+            state = rememberWindowState(width = 400.dp, height = 800.dp),
+            onKeyEvent = { event -> event.key == Key.Escape && event.type == KeyEventType.KeyUp },
+        ) { CompositesApp() }
+    }
 }

@@ -19,6 +19,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
@@ -29,6 +30,8 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
         pluginManager.apply("org.jetbrains.kotlin.multiplatform")
 
         extensions.configure<KotlinMultiplatformExtension> {
+            explicitApi()
+
             jvmToolchain {
                 languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
             }

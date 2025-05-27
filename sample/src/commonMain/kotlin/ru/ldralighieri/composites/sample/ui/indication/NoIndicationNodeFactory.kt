@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.node.DelegatableNode
 import androidx.compose.ui.node.DrawModifierNode
 
-object NoIndicationNodeFactory : IndicationNodeFactory {
+internal object NoIndicationNodeFactory : IndicationNodeFactory {
 
     override fun create(interactionSource: InteractionSource): DelegatableNode =
         NoIndicationInstance

@@ -45,7 +45,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * @param itemKey A factory of stable and unique keys representing the item.
  */
 @Composable
-fun FiberglassColumn(
+public fun FiberglassColumn(
     items: List<FiberglassItem>,
     itemSlots: FiberglassColumnItemSlots,
     modifier: Modifier = Modifier,

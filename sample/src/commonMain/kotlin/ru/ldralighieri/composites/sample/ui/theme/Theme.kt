@@ -112,7 +112,7 @@ private val DefaultShapes =
 
 // Theme
 @Composable
-fun AppTheme(
+internal fun AppTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
@@ -131,7 +131,7 @@ fun AppTheme(
     }
 }
 
-object AppTheme {
+internal object AppTheme {
     val colors: ColorScheme
         @Composable
         @ReadOnlyComposable

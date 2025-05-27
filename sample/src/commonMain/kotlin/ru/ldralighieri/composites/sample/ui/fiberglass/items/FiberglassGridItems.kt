@@ -20,7 +20,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-abstract class GridItem : FiberglassItem {
+internal abstract class GridItem : FiberglassItem {
     @OptIn(ExperimentalUuidApi::class)
     override val id: String = Uuid.random().toString()
 }
