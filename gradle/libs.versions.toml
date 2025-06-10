@@ -7,7 +7,7 @@ spotless = "7.0.4"
 mavenPublish = "0.31.0"
 bcv = "0.17.0"
 gver = "0.52.0"
-ksp = "2.1.21-2.0.1"
+ksp = "2.1.21-2.0.2"
 
 # Kotlin
 kotlin = "2.1.21"
