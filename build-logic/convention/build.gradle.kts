@@ -31,6 +31,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.compose.compiler.gradlePlugin)
     compileOnly(libs.jetbrains.compose.gradlePlugin)
+    compileOnly(libs.jetbrains.compose.hotReload.gradlePlugin)
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.spotless.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
