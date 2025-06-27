@@ -1,16 +1,16 @@
 [versions]
 # Plugins
-agp = "8.10.1"
+agp = "8.11.0"
 composeMultiplatform = "1.8.2"
 dokka = "1.9.20"
 spotless = "7.0.4"
 mavenPublish = "0.31.0"
 bcv = "0.17.0"
 gver = "0.52.0"
-ksp = "2.1.21-2.0.2"
+ksp = "2.2.0-2.0.2"
 
 # Kotlin
-kotlin = "2.1.21"
+kotlin = "2.2.0"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
@@ -29,12 +29,12 @@ ktlint = "1.2.1"
 
 
 [plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+compose-multiplatform  = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
-android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
