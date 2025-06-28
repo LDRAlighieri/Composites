@@ -97,7 +97,7 @@ repositories {
 }
 
 dependencies {
-   implementation("ru.ldralighieri.composites:{module}:0.6.0-SNAPSHOT")
+   implementation("ru.ldralighieri.composites:{module}:0.6.1-SNAPSHOT")
 }
 ```
 
@@ -107,6 +107,7 @@ dependencies {
 - Android: use the `sample` run configuration
 - iOS: use the `sampleIOSApp` run configuration
 - Desktop: `./gradlew :sample:run`
+- Desktop Hot Reload: `./gradlew :sample:jvmRunHot -DmainClass=ru.ldralighieri.composites.sample.Main_jvmKt`
 - Web (WASM): `./gradlew :sample:wasmJsBrowserDevelopmentRun`
 - Web (JS): `./gradlew :sample:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
 

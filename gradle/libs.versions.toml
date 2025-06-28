@@ -2,15 +2,16 @@
 # Plugins
 agp = "8.11.0"
 composeMultiplatform = "1.8.2"
-dokka = "1.9.20"
+composeHotReload = "1.0.0-beta01"
+dokka = "2.0.0"
 spotless = "7.0.4"
-mavenPublish = "0.31.0"
+mavenPublish = "0.33.0"
 bcv = "0.18.0"
 gver = "0.52.0"
-ksp = "2.2.0-2.0.2"
+ksp = "2.1.21-2.0.2"
 
 # Kotlin
-kotlin = "2.2.0"
+kotlin = "2.1.21"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
@@ -31,7 +32,8 @@ ktlint = "1.2.1"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-compose-multiplatform  = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+jetbrains-compose-multiplatform  = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+jetbrains-compose-hotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
@@ -74,6 +76,7 @@ kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlin
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 compose-compiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 jetbrains-compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
+jetbrains-compose-hotReload-gradlePlugin = { module = "org.jetbrains.compose.hot-reload:gradle-plugin", version.ref = "composeHotReload" }
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 spotless-gradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 ksp-gradlePlugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
