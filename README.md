@@ -97,7 +97,7 @@ repositories {
 }
 
 dependencies {
-   implementation("ru.ldralighieri.composites:{module}:0.6.0-SNAPSHOT")
+   implementation("ru.ldralighieri.composites:{module}:0.6.1-SNAPSHOT")
 }
 ```
 
