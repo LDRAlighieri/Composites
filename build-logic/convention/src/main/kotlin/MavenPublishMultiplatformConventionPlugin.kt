@@ -29,7 +29,7 @@ class MavenPublishMultiplatformConventionPlugin : Plugin<Project> {
         mavenPublishing {
             configure(
                 KotlinMultiplatform(
-                    javadocJar = JavadocJar.Dokka("dokkaHtml"),
+                    javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
                     sourcesJar = true,
                     androidVariantsToPublish = listOf("release"),
                 )

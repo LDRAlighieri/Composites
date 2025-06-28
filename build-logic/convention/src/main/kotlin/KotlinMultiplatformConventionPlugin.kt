@@ -93,5 +93,5 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
 
 private fun buildCustomCompilerArgs() = listOf(
     "-opt-in=kotlin.RequiresOptIn",
-    "-Xcontext-receivers",
+    "-Xcontext-parameters",
 )

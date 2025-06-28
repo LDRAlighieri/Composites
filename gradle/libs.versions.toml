@@ -2,16 +2,16 @@
 # Plugins
 agp = "8.11.0"
 composeMultiplatform = "1.8.2"
-composeHotReload = "1.0.0-alpha11"
-dokka = "1.9.20"
+composeHotReload = "1.0.0-beta01"
+dokka = "2.0.0"
 spotless = "7.0.4"
 mavenPublish = "0.31.0"
 bcv = "0.18.0"
 gver = "0.52.0"
-ksp = "2.2.0-2.0.2"
+ksp = "2.1.21-2.0.2"
 
 # Kotlin
-kotlin = "2.2.0"
+kotlin = "2.1.21"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"

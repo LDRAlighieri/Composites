@@ -84,11 +84,6 @@ gradlePlugin {
             implementationClass = "LibraryConventionPlugin"
         }
 
-        register("mavenPublishKotlinJvm") {
-            id = "composites.maven.publish.kotlin.jvm"
-            implementationClass = "MavenPublishKotlinJvmConventionPlugin"
-        }
-
         register("mavenPublishMultiplatform") {
             id = "composites.maven.publish.multiplatform"
             implementationClass = "MavenPublishMultiplatformConventionPlugin"
