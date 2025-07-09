@@ -107,7 +107,7 @@ dependencies {
 - Android: use the `sample` run configuration
 - iOS: use the `sampleIOSApp` run configuration
 - Desktop: `./gradlew :sample:run`
-- Desktop Hot Reload: `./gradlew :sample:jvmRunHot -DmainClass=ru.ldralighieri.composites.sample.Main_jvmKt`
+- Desktop Hot Reload: `./gradlew :sample:hotRunJvm`
 - Web (WASM): `./gradlew :sample:wasmJsBrowserDevelopmentRun`
 - Web (JS): `./gradlew :sample:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
 

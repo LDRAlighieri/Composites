@@ -2,7 +2,7 @@
 # Plugins
 agp = "8.11.0"
 composeMultiplatform = "1.8.2"
-composeHotReload = "1.0.0-beta01"
+composeHotReload = "1.0.0-beta03"
 dokka = "2.0.0"
 spotless = "7.0.4"
 mavenPublish = "0.33.0"
@@ -76,7 +76,7 @@ kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlin
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 compose-compiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 jetbrains-compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
-jetbrains-compose-hotReload-gradlePlugin = { module = "org.jetbrains.compose.hot-reload:gradle-plugin", version.ref = "composeHotReload" }
+jetbrains-compose-hotReload-gradlePlugin = { module = "org.jetbrains.compose.hot-reload:hot-reload-gradle-plugin", version.ref = "composeHotReload" }
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 spotless-gradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 ksp-gradlePlugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
