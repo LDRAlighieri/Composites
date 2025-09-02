@@ -6,12 +6,12 @@ composeHotReload = "1.0.0-beta04"
 dokka = "2.0.0"
 spotless = "7.2.1"
 mavenPublish = "0.33.0"
-bcv = "0.18.0"
+bcv = "0.18.1"
 gver = "0.52.0"
-ksp = "2.1.21-2.0.2"
+ksp = "2.2.10-2.0.2"
 
 # Kotlin
-kotlin = "2.1.21"
+kotlin = "2.2.10"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
