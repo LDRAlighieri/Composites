@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-    timeout-minutes: 80
+    timeout-minutes: 120
 
     steps:
       - name: Checkout
