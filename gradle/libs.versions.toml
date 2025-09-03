@@ -1,6 +1,6 @@
 [versions]
 # Plugins
-agp = "8.12.2"
+agp = "8.13.0"
 composeMultiplatform = "1.8.2"
 composeHotReload = "1.0.0-beta06"
 dokka = "2.0.0"
