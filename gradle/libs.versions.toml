@@ -2,7 +2,7 @@
 # Plugins
 agp = "8.13.0"
 composeMultiplatform = "1.8.2"
-composeHotReload = "1.0.0-beta06"
+composeHotReload = "1.0.0-beta08"
 dokka = "2.0.0"
 spotless = "7.2.1"
 mavenPublish = "0.34.0"
