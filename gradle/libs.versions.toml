@@ -20,7 +20,7 @@ androidxNavigation = "2.9.0-rc02"
 androidxPagingCompose = "3.3.6"
 
 # Google
-googleMaterial="1.12.0"
+googleMaterial="1.13.0"
 
 # KotlinPoet
 kotlinpoet="2.2.0"
