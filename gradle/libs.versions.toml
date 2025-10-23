@@ -11,7 +11,7 @@ gver = "0.53.0"
 ksp = "2.3.0"
 
 # Kotlin
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 
 # Androidx
 androidxCoreSplashscreen = "1.0.1"
