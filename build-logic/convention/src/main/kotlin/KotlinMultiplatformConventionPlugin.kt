@@ -19,7 +19,6 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.configure
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
@@ -69,10 +68,8 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
                     commonWebpackConfig {
                         outputFileName = "composites-wasm-js.js"
                         devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                            static = (static ?: mutableListOf()).apply {
-                                add(project.projectDir.path)
-                                add(project.rootDir.path)
-                            }
+                            static(project.projectDir.path)
+                            static(project.rootDir.path)
                         }
                     }
                 }
