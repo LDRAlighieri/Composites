@@ -14,7 +14,7 @@ ksp = "2.3.0"
 kotlin = "2.2.21"
 
 # Androidx
-androidxCoreSplashscreen = "1.0.1"
+androidxCoreSplashscreen = "1.2.0"
 androidxActivity = "1.11.0"
 androidxNavigation = "2.9.1"
 androidxPagingCompose = "3.3.6"
