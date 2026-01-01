@@ -2,7 +2,7 @@
 [![Compose Multiplatform Version](https://img.shields.io/badge/Compose_Multiplatform-v1.8.0-blue.svg?logo=jetpackcompose)](https://www.jetbrains.com/compose-multiplatform)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://developer.android.com/tools/releases/platforms?hl=ru#5.0)
+[![API](https://img.shields.io/badge/API-23%2B-brightgreen.svg)](https://developer.android.com/tools/releases/platforms?hl=ru#6.0)
 [![Publish status](https://github.com/LDRAlighieri/Composites/actions/workflows/publish.yml/badge.svg)](https://github.com/LDRAlighieri/Composites/actions)
 
 <p align="center">
