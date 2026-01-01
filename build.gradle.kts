@@ -54,3 +54,10 @@ tasks.withType<DependencyUpdatesTask> {
         isNonStable(candidate.version)
     }
 }
+
+// see https://github.com/ben-manes/gradle-versions-plugin/issues/968
+tasks.named("dependencyUpdates") {
+    doFirst {
+        gradle.startParameter.isParallelProjectExecutionEnabled = false
+    }
+}
