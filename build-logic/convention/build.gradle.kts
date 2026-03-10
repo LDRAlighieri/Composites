@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 /*
 * Copyright 2023 Vladimir Raupov
@@ -22,8 +23,13 @@ plugins {
 group = "ru.ldralighieri.composites.buildlogic"
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion)
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_21
     }
 }
 
