@@ -34,7 +34,7 @@ jobs:
 
   build-ios:
     name: Build ios
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
 
     steps:
       - name: Checkout
