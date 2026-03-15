@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 /*
 * Copyright 2023 Vladimir Raupov
@@ -22,16 +23,21 @@ plugins {
 group = "ru.ldralighieri.composites.buildlogic"
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion)
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_21
     }
 }
 
 dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.kotlin.multiplatform.gradlePlugin)
     compileOnly(libs.compose.compiler.gradlePlugin)
     compileOnly(libs.jetbrains.compose.gradlePlugin)
-    compileOnly(libs.jetbrains.compose.hotReload.gradlePlugin)
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.spotless.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
@@ -63,20 +69,43 @@ gradlePlugin {
         }
 
         plugins {
-            register("kotlinMultiplatform") {
-                id = "composites.kotlin.multiplatform"
-                implementationClass = "KotlinMultiplatformConventionPlugin"
+            register("kotlinAndroidMultiplatform") {
+                id = "composites.kotlin.android.multiplatform"
+                implementationClass = "KotlinAndroidMultiplatformConventionPlugin"
+            }
+        }
+
+        plugins {
+            register("kotlinCommonMultiplatform") {
+                id = "composites.kotlin.common.multiplatform"
+                implementationClass = "KotlinCommonMultiplatformConventionPlugin"
+            }
+        }
+
+        plugins {
+            register("kotlinIosMultiplatform") {
+                id = "composites.kotlin.ios.multiplatform"
+                implementationClass = "KotlinIosMultiplatformConventionPlugin"
+            }
+        }
+
+        plugins {
+            register("kotlinJvmMultiplatform") {
+                id = "composites.kotlin.jvm.multiplatform"
+                implementationClass = "KotlinJvmMultiplatformConventionPlugin"
+            }
+        }
+
+        plugins {
+            register("kotlinWebMultiplatform") {
+                id = "composites.kotlin.web.multiplatform"
+                implementationClass = "KotlinWebMultiplatformConventionPlugin"
             }
         }
 
         register("ksp") {
             id = "composites.ksp"
             implementationClass = "KspConventionPlugin"
-        }
-
-        register("libraryCompose") {
-            id = "composites.library.compose"
-            implementationClass = "LibraryComposeConventionPlugin"
         }
 
         register("library") {

@@ -1,6 +1,14 @@
 # ChangeLog
 
 
+## Version 0.6.0
+
+* New: AGPv9 support
+* New: Separate Apps
+* Update: Kotlin to v2.3.10.
+* Update: CMP to v1.10.2.
+
+
 ## Version 0.5.1
 
 * New: Add JS and WASM targets

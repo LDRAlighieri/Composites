@@ -1,5 +1,5 @@
-﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v2.1.20-blue.svg?logo=kotlin)](https://kotlinlang.org)
-[![Compose Multiplatform Version](https://img.shields.io/badge/Compose_Multiplatform-v1.8.0-blue.svg?logo=jetpackcompose)](https://www.jetbrains.com/compose-multiplatform)
+﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v2.3.10-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Compose Multiplatform Version](https://img.shields.io/badge/Compose_Multiplatform-v1.10.2-blue.svg?logo=jetpackcompose)](https://www.jetbrains.com/compose-multiplatform)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![API](https://img.shields.io/badge/API-23%2B-brightgreen.svg)](https://developer.android.com/tools/releases/platforms?hl=ru#6.0)
@@ -102,14 +102,14 @@ dependencies {
 ```
 
 
-## Run `Sample` app:
+## Run `App`:
 
-- Android: use the `sample` run configuration
-- iOS: use the `sampleIOSApp` run configuration
-- Desktop: `./gradlew :sample:run`
-- Desktop Hot Reload: `./gradlew :sample:hotRunJvm`
-- Web (WASM): `./gradlew :sample:wasmJsBrowserDevelopmentRun`
-- Web (JS): `./gradlew :sample:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
+- Android: use the `androidApp` run configuration
+- iOS: use the `iosApp` run configuration
+- Desktop: `./gradlew :app:desktopApp:run`
+- Desktop Hot Reload: `./gradlew :app:desktopApp:hotRun`
+- Web (WASM): `./gradlew :app:webApp:wasmJsBrowserDevelopmentRun`
+- Web (JS): `./gradlew :app:webApp:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
 
 
 ## If you're finding performance issues

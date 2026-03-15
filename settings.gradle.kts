@@ -33,13 +33,12 @@ dependencyResolutionManagement {
     }
 }
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-}
-
 rootProject.name = "Composites"
 
+include(":app:androidApp")
+include(":app:desktopApp")
+include(":app:webApp")
+include(":shared")
 include(":composites-carbon:core")
 include(":composites-carbon:processor")
 include(":composites-fiberglass")
-include(":sample")

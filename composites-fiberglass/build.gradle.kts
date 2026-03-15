@@ -15,27 +15,22 @@
  */
 
 plugins {
-    alias(libs.plugins.composites.library.compose)
-    alias(libs.plugins.composites.kotlin.multiplatform)
+    alias(libs.plugins.composites.library)
     alias(libs.plugins.composites.compose.multiplatform)
     alias(libs.plugins.composites.spotless)
     alias(libs.plugins.composites.dokka.multiplatform)
     alias(libs.plugins.composites.maven.publish.multiplatform)
 }
 
-android {
-    namespace = "ru.ldralighieri.composites.fiberglass"
-}
-
 kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
+    android {
+        namespace = "ru.ldralighieri.composites.fiberglass"
     }
 
     sourceSets {
         commonMain.dependencies {
-            api(compose.runtime)
-            api(compose.foundation)
+            api(libs.compose.runtime)
+            api(libs.compose.foundation)
         }
 
         androidMain.dependencies {
