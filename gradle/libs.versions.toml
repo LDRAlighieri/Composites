@@ -10,7 +10,7 @@ gver = "0.53.0"
 ksp = "2.3.4"
 
 # Kotlin
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 
 # Androidx
 androidxCoreSplashscreen = "1.2.0"
@@ -50,9 +50,7 @@ gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
 composites-library = { id = "composites.library", version = "unspecified" }
 composites-compose-multiplatform = { id = "composites.compose.multiplatform", version = "unspecified" }
 composites-dokka-multiplatform = { id = "composites.dokka.multiplatform", version = "unspecified" }
-composites-kotlin-android-multiplatform = { id = "composites.kotlin.android.multiplatform", version = "unspecified" }
 composites-kotlin-common-multiplatform = { id = "composites.kotlin.common.multiplatform", version = "unspecified" }
-composites-kotlin-ios-multiplatform = { id = "composites.kotlin.ios.multiplatform", version = "unspecified" }
 composites-kotlin-jvm-multiplatform = { id = "composites.kotlin.jvm.multiplatform", version = "unspecified" }
 composites-kotlin-web-multiplatform = { id = "composites.kotlin.web.multiplatform", version = "unspecified" }
 composites-ksp = { id = "composites.ksp", version = "unspecified" }
