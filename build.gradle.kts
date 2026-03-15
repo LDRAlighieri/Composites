@@ -33,11 +33,14 @@ plugins {
 
 // Binary compatibility validator
 apiValidation {
-    ignoredProjects.add("androidApp")
-    @OptIn(kotlinx.validation.ExperimentalBCVApi::class)
-    klib {
-        enabled = true
+    ignoredProjects.run {
+        add("androidApp")
+        add("desktopApp")
+        add("webApp")
     }
+
+    @OptIn(kotlinx.validation.ExperimentalBCVApi::class)
+    klib.enabled = true
 }
 
 // Dependency updates
