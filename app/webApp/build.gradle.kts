@@ -1,5 +1,9 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright 2026 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +18,16 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
-
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+plugins {
+    alias(libs.plugins.composites.kotlin.common.multiplatform)
+    alias(libs.plugins.composites.kotlin.web.multiplatform)
+    alias(libs.plugins.composites.compose.multiplatform)
+    alias(libs.plugins.composites.ksp)
+    alias(libs.plugins.composites.spotless)
 }
 
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
+kotlin {
+    dependencies {
+        implementation(projects.composites.sample)
     }
 }
-
-rootProject.name = "Composites"
-
-include(":app:androidApp")
-include(":app:desktopApp")
-include(":app:webApp")
-include(":sample")
-include(":composites-carbon:core")
-include(":composites-carbon:processor")
-include(":composites-fiberglass")

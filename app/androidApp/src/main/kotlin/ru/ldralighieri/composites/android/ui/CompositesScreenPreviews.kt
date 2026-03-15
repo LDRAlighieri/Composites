@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Vladimir Raupov
+ * Copyright 2026 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,17 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
+package ru.ldralighieri.composites.android.ui
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+import androidx.compose.runtime.Composable
+import ru.ldralighieri.composites.android.ThemePreviews
+import ru.ldralighieri.composites.sample.ui.CompositeItem
+import ru.ldralighieri.composites.sample.ui.theme.AppTheme
+
+@Composable
+@ThemePreviews
+private fun CompositeItemPreview() {
+    AppTheme {
+        CompositeItem(title = "Fiberglass", onClick = {})
     }
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-    }
-}
-
-rootProject.name = "Composites"
-
-include(":app:androidApp")
-include(":app:desktopApp")
-include(":app:webApp")
-include(":sample")
-include(":composites-carbon:core")
-include(":composites-carbon:processor")
-include(":composites-fiberglass")

@@ -102,14 +102,14 @@ dependencies {
 ```
 
 
-## Run `Sample` app:
+## Run `App`:
 
-- Android: use the `sample` run configuration
-- iOS: use the `sampleIOSApp` run configuration
-- Desktop: `./gradlew :sample:run`
-- Desktop Hot Reload: `./gradlew :sample:hotRunJvm`
-- Web (WASM): `./gradlew :sample:wasmJsBrowserDevelopmentRun`
-- Web (JS): `./gradlew :sample:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
+- Android: use the `androidApp` run configuration
+- iOS: use the `iosApp` run configuration
+- Desktop: `./gradlew :app:desktopApp:run`
+- Desktop Hot Reload: `./gradlew :app:desktopApp:hotRun`
+- Web (WASM): `./gradlew :app:webApp:wasmJsBrowserDevelopmentRun`
+- Web (JS): `./gradlew :app:webApp:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
 
 
 ## If you're finding performance issues
