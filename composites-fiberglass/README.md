@@ -30,7 +30,7 @@ Android only:
 
 ```groovy
 dependencies {
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.1")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
 }
 ```
 
@@ -39,7 +39,7 @@ Multiplatform:
 ```groovy
 kotlin {
     commonMain.dependencies {
-        implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.1")
+        implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
     }
 }
 ```
