@@ -24,10 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import composites.sample.generated.resources.Res
-import composites.sample.generated.resources.app_name
+import composites.shared.generated.resources.Res
+import composites.shared.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
-import ru.ldralighieri.composites.sample.ui.app.CompositesApp
+import ru.ldralighieri.composites.shared.ui.app.CompositesApp
 
 fun main() {
     application {

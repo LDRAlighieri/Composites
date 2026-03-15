@@ -73,7 +73,7 @@ kotlin {
 }
 
 dependencies {
-    implementation(projects.composites.sample)
+    implementation(projects.composites.shared)
     implementation(projects.composites.compositesFiberglass)
 
     implementation(libs.androidx.core.splashscreen)

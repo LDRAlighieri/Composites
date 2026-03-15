@@ -1,9 +1,5 @@
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
-
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-
 /*
- * Copyright 2026 Vladimir Raupov
+ * Copyright 2025 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,16 +14,11 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
  * limitations under the License.
  */
 
-plugins {
-    alias(libs.plugins.composites.kotlin.common.multiplatform)
-    alias(libs.plugins.composites.kotlin.web.multiplatform)
-    alias(libs.plugins.composites.compose.multiplatform)
-    alias(libs.plugins.composites.ksp)
-    alias(libs.plugins.composites.spotless)
-}
+package ru.ldralighieri.composites.shared.ui
 
-kotlin {
-    dependencies {
-        implementation(projects.composites.shared)
-    }
-}
+import androidx.compose.ui.window.ComposeUIViewController
+import platform.UIKit.UIViewController
+import ru.ldralighieri.composites.shared.ui.app.CompositesApp
+
+@Suppress("FunctionName")
+public fun MainViewController(): UIViewController = ComposeUIViewController { CompositesApp() }

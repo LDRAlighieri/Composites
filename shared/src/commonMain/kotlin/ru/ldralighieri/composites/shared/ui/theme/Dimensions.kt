@@ -14,31 +14,22 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
+package ru.ldralighieri.composites.shared.ui.theme
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.unit.Dp
+
+@Immutable
+internal data class AppDimensions(
+    val shapeAppearanceSmall: Dp,
+    val shapeAppearanceMedium: Dp,
+    val shapeAppearanceLarge: Dp,
+    val horizontalGuideline: Dp,
+    val topGuideline: Dp,
+    val bottomGuideline: Dp,
+)
+
+internal val LocalAppDimensions = staticCompositionLocalOf<AppDimensions> {
+    error("No LocalAppDimensions specified")
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-    }
-}
-
-rootProject.name = "Composites"
-
-include(":app:androidApp")
-include(":app:desktopApp")
-include(":app:webApp")
-include(":shared")
-include(":composites-carbon:core")
-include(":composites-carbon:processor")
-include(":composites-fiberglass")

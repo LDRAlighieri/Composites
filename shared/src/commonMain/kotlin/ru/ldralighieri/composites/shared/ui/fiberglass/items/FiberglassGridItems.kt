@@ -14,31 +14,17 @@
  * limitations under the License.
  */
 
-@file:Suppress("UnstableApiUsage")
+package ru.ldralighieri.composites.shared.ui.fiberglass.items
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
+
+internal abstract class GridItem : FiberglassItem {
+    @OptIn(ExperimentalUuidApi::class)
+    override val id: String = Uuid.random().toString()
 }
 
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-    }
-}
+internal class PrimaryGridItem : GridItem()
 
-rootProject.name = "Composites"
-
-include(":app:androidApp")
-include(":app:desktopApp")
-include(":app:webApp")
-include(":shared")
-include(":composites-carbon:core")
-include(":composites-carbon:processor")
-include(":composites-fiberglass")
+internal class ErrorGridItem : GridItem()

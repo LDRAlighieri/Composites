@@ -32,7 +32,7 @@ kotlin {
     }
 
     dependencies {
-        implementation(projects.composites.sample)
+        implementation(projects.composites.shared)
         implementation(compose.desktop.currentOs)
     }
 }

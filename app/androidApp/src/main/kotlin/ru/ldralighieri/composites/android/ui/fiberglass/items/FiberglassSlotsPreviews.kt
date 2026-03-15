@@ -5,19 +5,19 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.runtime.Composable
 import ru.ldralighieri.composites.android.ThemePreviews
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.BigImageItem
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.ImagesRowItem
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.LoremIpsumItem
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.SecondaryTagItem
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.SmallImageItem
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.TagsFlowRowItem
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.bigImageSlot
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.imagesRowSlot
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.loremIpsumSlot
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.secondaryTagSlot
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.smallImageSlot
-import ru.ldralighieri.composites.sample.ui.fiberglass.items.tagsFlowRowSlot
-import ru.ldralighieri.composites.sample.ui.theme.AppTheme
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.BigImageItem
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.ImagesRowItem
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.LoremIpsumItem
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.SecondaryTagItem
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.SmallImageItem
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.TagsFlowRowItem
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.bigImageSlot
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.imagesRowSlot
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.loremIpsumSlot
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.secondaryTagSlot
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.smallImageSlot
+import ru.ldralighieri.composites.shared.ui.fiberglass.items.tagsFlowRowSlot
+import ru.ldralighieri.composites.shared.ui.theme.AppTheme
 
 @Composable
 @ThemePreviews

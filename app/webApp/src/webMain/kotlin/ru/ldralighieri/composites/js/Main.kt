@@ -18,7 +18,7 @@ package ru.ldralighieri.composites.js
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
-import ru.ldralighieri.composites.sample.ui.app.CompositesApp
+import ru.ldralighieri.composites.shared.ui.app.CompositesApp
 
 @OptIn(ExperimentalComposeUiApi::class)
 public fun main() {

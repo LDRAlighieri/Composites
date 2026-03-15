@@ -18,13 +18,16 @@ package ru.ldralighieri.composites.android.ui
 
 import androidx.compose.runtime.Composable
 import ru.ldralighieri.composites.android.ThemePreviews
-import ru.ldralighieri.composites.sample.ui.CompositeItem
-import ru.ldralighieri.composites.sample.ui.theme.AppTheme
+import ru.ldralighieri.composites.shared.ui.CompositeItem
+import ru.ldralighieri.composites.shared.ui.theme.AppTheme
 
 @Composable
 @ThemePreviews
 private fun CompositeItemPreview() {
     AppTheme {
-        CompositeItem(title = "Fiberglass", onClick = {})
+        CompositeItem(
+            title = "Fiberglass",
+            onClick = {},
+        )
     }
 }
