@@ -18,6 +18,10 @@ androidxActivity = "1.12.4"
 androidxNavigation = "2.9.1"
 androidxPagingCompose = "3.3.6"
 
+# Compose
+composeMaterial3 = "1.9.0"
+composematerialIconsExtended = "1.7.3"
+
 # Google
 googleMaterial="1.13.0"
 
@@ -46,7 +50,9 @@ gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
 composites-library = { id = "composites.library", version = "unspecified" }
 composites-compose-multiplatform = { id = "composites.compose.multiplatform", version = "unspecified" }
 composites-dokka-multiplatform = { id = "composites.dokka.multiplatform", version = "unspecified" }
+composites-kotlin-android-multiplatform = { id = "composites.kotlin.android.multiplatform", version = "unspecified" }
 composites-kotlin-common-multiplatform = { id = "composites.kotlin.common.multiplatform", version = "unspecified" }
+composites-kotlin-ios-multiplatform = { id = "composites.kotlin.ios.multiplatform", version = "unspecified" }
 composites-kotlin-jvm-multiplatform = { id = "composites.kotlin.jvm.multiplatform", version = "unspecified" }
 composites-kotlin-web-multiplatform = { id = "composites.kotlin.web.multiplatform", version = "unspecified" }
 composites-ksp = { id = "composites.ksp", version = "unspecified" }
@@ -62,6 +68,14 @@ androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navi
 # paging
 androidx-paging-compose-android = { module = "androidx.paging:paging-compose-android", version.ref = "androidxPagingCompose" }
 # compose
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
+compose-animation = { module = "org.jetbrains.compose.animation:animation", version.ref = "composeMultiplatform" }
+compose-material = { module = "org.jetbrains.compose.material:material", version.ref = "composeMultiplatform" }
+compose-materialIconsExtended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "composematerialIconsExtended" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "composeMaterial3" }
+compose-uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatform" }
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
 
 

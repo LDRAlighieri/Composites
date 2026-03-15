@@ -41,13 +41,13 @@ kotlin {
                 implementation(projects.composites.compositesCarbon.core)
                 implementation(projects.composites.compositesFiberglass)
 
-                api(compose.ui)
-                api(compose.foundation)
-                api(compose.animation)
-                api(compose.components.resources)
-                implementation(compose.material)
-                implementation(compose.materialIconsExtended)
-                implementation(compose.material3)
+                api(libs.compose.ui)
+                api(libs.compose.foundation)
+                api(libs.compose.animation)
+                api(libs.compose.components.resources)
+                implementation(libs.compose.material)
+                implementation(libs.compose.materialIconsExtended)
+                implementation(libs.compose.material3)
 
                 implementation(libs.androidx.navigation.compose)
             }

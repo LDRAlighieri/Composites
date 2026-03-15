@@ -79,12 +79,11 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.activity.compose)
 
-    implementation(compose.material)
-    implementation(compose.materialIconsExtended)
-    implementation(compose.material3)
-    implementation(compose.components.resources)
-    implementation(compose.uiTooling)
     implementation(libs.compose.components.resources)
+    implementation(libs.compose.material)
+    implementation(libs.compose.materialIconsExtended)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.uiTooling)
 
     implementation(libs.androidx.navigation.compose)
 
