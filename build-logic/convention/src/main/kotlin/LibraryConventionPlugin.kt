@@ -14,34 +14,19 @@
  * limitations under the License.
  */
 
-import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.provideDelegate
 
 @Suppress("unused")
 internal class LibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("com.android.library")
-
-            extensions.configure<LibraryExtension> {
-                val targetSdk: String by project
-                val compileSdk: String by project
-                val minSdk: String by project
-
-                defaultConfig.targetSdk = targetSdk.toInt()
-                this.compileSdk = compileSdk.toInt()
-                defaultConfig {
-                    this.minSdk = minSdk.toInt()
-                }
-
-                buildTypes {
-                    release {
-                        proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-                    }
-                }
+            pluginManager.apply {
+                apply("composites.kotlin.common.multiplatform")
+                apply("composites.kotlin.android.multiplatform")
+                apply("composites.kotlin.ios.multiplatform")
+                apply("composites.kotlin.jvm.multiplatform")
+                apply("composites.kotlin.web.multiplatform")
             }
         }
     }

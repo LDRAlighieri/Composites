@@ -1,6 +1,5 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
@@ -21,66 +20,17 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
  */
 
 plugins {
-    id("com.android.application")
-    alias(libs.plugins.composites.kotlin.multiplatform)
+    alias(libs.plugins.composites.library)
     alias(libs.plugins.composites.compose.multiplatform)
     alias(libs.plugins.composites.ksp)
     alias(libs.plugins.composites.spotless)
 }
 
-android {
-    namespace = "ru.ldralighieri.composites.sample"
-
-    val targetSdk: String by project
-    val buildTools: String by project
-    val compileSdk: String by project
-    val minSdk: String by project
-    @Suppress("LocalVariableName") val VERSION_NAME: String by project
-
-    this.compileSdk = compileSdk.toInt()
-    buildToolsVersion = buildTools
-
-    defaultConfig {
-        this.targetSdk = targetSdk.toInt()
-        applicationId = "ru.ldralighieri.composites.sample"
-        this.minSdk = minSdk.toInt()
-        versionCode = 1
-        versionName = VERSION_NAME
-
-        vectorDrawables.useSupportLibrary = true
-    }
-
-    buildTypes {
-        val debug by getting {
-            isDebuggable = true
-            isMinifyEnabled = false
-            isShrinkResources = false
-        }
-
-        release {
-            isDebuggable = false
-            isMinifyEnabled = true
-            isShrinkResources = true
-            signingConfig = debug.signingConfig
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
-
-    buildFeatures.compose = true
-}
-
 kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
-    }
 
-    applyDefaultHierarchyTemplate {
-        common {
-            group("web") {
-                withJs()
-                withWasmJs()
-            }
-        }
+    android {
+        namespace = "ru.ldralighieri.composites.sample"
+        androidResources.enable = true
     }
 
     sourceSets {
@@ -88,45 +38,24 @@ kotlin {
             kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
 
             dependencies {
-                // Projects
-                // Carbon
                 implementation(projects.composites.compositesCarbon.core)
-                // Fiberglass
                 implementation(projects.composites.compositesFiberglass)
 
-                // Compose
+                api(compose.ui)
+                api(compose.foundation)
+                api(compose.animation)
+                api(compose.components.resources)
                 implementation(compose.material)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.material3)
-                implementation(compose.components.resources)
 
-                // Navigation
                 implementation(libs.androidx.navigation.compose)
             }
-        }
-
-        androidMain.dependencies {
-            // Androidx
-            implementation(libs.androidx.core.splashscreen)
-            implementation(libs.androidx.activity.compose)
-
-            // Compose
-            implementation(compose.uiTooling)
-
-            // Google
-            implementation(libs.google.material)
-        }
-
-        jvmMain.dependencies {
-            // Compose
-            implementation(compose.desktop.currentOs)
         }
     }
 }
 
 dependencies {
-    // Projects
-    // Carbon
     add("kspCommonMainMetadata", projects.composites.compositesCarbon.processor)
 }
 
@@ -137,20 +66,6 @@ tasks.withType<KotlinCompilationTask<*>>().all {
     }
 }
 
-// ./gradlew :sample:run
-compose {
-    desktop {
-        application {
-            mainClass = "ru.ldralighieri.composites.sample.Main_jvmKt"
-
-            nativeDistributions {
-                targetFormats(TargetFormat.Dmg)
-                packageName = "composites"
-                packageVersion = "1.0"
-                macOS {
-                    bundleID = "ru.ldralighieri.composites.desktopapp"
-                }
-            }
-        }
-    }
+compose.resources {
+    publicResClass = true
 }

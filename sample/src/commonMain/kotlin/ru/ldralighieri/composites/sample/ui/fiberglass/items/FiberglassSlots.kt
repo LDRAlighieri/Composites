@@ -65,7 +65,7 @@ internal fun spacerItemSlot(): FiberglassLazyItemSlot = { _, item ->
     Spacer(modifier = Modifier.height((item as SpacerItem).height.dp))
 }
 
-internal fun loremIpsumSlot(): FiberglassLazyItemSlot = { _, item ->
+public fun loremIpsumSlot(): FiberglassLazyItemSlot = { _, item ->
     Text(
         text = (item as LoremIpsumItem).text,
         modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
@@ -92,11 +92,11 @@ private fun ImageSlot(width: Dp) {
     }
 }
 
-internal fun smallImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 160.dp) }
+public fun smallImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 160.dp) }
 
-internal fun bigImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 256.dp) }
+public fun bigImageSlot(): FiberglassLazyItemSlot = { _, _ -> ImageSlot(width = 256.dp) }
 
-internal fun imagesRowSlot(): FiberglassLazyItemSlot = { _, item ->
+public fun imagesRowSlot(): FiberglassLazyItemSlot = { _, item ->
     with(item as ImagesRowItem) {
         FiberglassLazyRow(
             items = images,
@@ -126,12 +126,12 @@ private fun tagSlot(backgroundColor: Color): FiberglassRowItemSlot = { _, item -
 }
 
 @Composable
-internal fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
+public fun secondaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.secondaryContainer)
 
 @Composable
 internal fun tertiaryTagSlot(): FiberglassRowItemSlot = tagSlot(AppTheme.colors.tertiaryContainer)
 
-internal fun tagsFlowRowSlot(): FiberglassLazyItemSlot = { _, item ->
+public fun tagsFlowRowSlot(): FiberglassLazyItemSlot = { _, item ->
     with(item as TagsFlowRowItem) {
         FiberglassFlowRow(
             items = tags,

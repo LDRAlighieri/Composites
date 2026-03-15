@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Vladimir Raupov
+ * Copyright 2026 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,23 @@
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.provideDelegate
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import ru.ldralighieri.composites.ext.android
 
 @Suppress("unused")
-class ComposeMultiplatformConventionPlugin : Plugin<Project> {
+class KotlinAndroidMultiplatformConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
-        with(pluginManager) {
-            apply("org.jetbrains.kotlin.plugin.compose")
-            apply("org.jetbrains.compose")
+        pluginManager.apply("com.android.kotlin.multiplatform.library")
+
+        extensions.configure<KotlinMultiplatformExtension> {
+
+            val compileSdk: String by project
+            android {
+                compileSdk { version = release(compileSdk.toInt()) }
+            }
         }
     }
 }

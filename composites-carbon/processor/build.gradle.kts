@@ -15,27 +15,17 @@
  */
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
+    alias(libs.plugins.composites.kotlin.common.multiplatform)
+    alias(libs.plugins.composites.kotlin.jvm.multiplatform)
     alias(libs.plugins.composites.dokka.multiplatform)
     alias(libs.plugins.composites.maven.publish.multiplatform)
 }
 
 kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
-    }
-
-    jvm()
-
     sourceSets {
         commonMain.dependencies {
-            // Projects
             implementation(projects.compositesCarbon.core)
-
-            // Ksp devtools
             implementation(libs.google.ksp.api)
-
-            // KotlinPoet
             implementation(libs.kotlinpoet.ksp)
         }
     }

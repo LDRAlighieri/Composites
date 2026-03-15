@@ -16,11 +16,12 @@
 
 plugins {
     alias(libs.plugins.composites.library)
-    alias(libs.plugins.composites.kotlin.multiplatform)
     alias(libs.plugins.composites.dokka.multiplatform)
     alias(libs.plugins.composites.maven.publish.multiplatform)
 }
 
-android {
-    namespace = "ru.ldralighieri.composites.carbon.core"
+kotlin {
+    android {
+        namespace = "ru.ldralighieri.composites.carbon.core"
+    }
 }

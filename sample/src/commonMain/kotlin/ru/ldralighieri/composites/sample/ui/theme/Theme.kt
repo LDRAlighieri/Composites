@@ -112,7 +112,7 @@ private val DefaultShapes =
 
 // Theme
 @Composable
-internal fun AppTheme(
+public fun AppTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

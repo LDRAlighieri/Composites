@@ -37,7 +37,7 @@ import ru.ldralighieri.composites.sample.navigation.Navigator
 import ru.ldralighieri.composites.sample.ui.theme.AppTheme
 
 @Composable
-internal fun CompositesApp() {
+public fun CompositesApp() {
     val navController: NavHostController = rememberNavController()
     val navigator: Navigator = LocalNavigator.current
 

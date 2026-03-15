@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Vladimir Raupov
+ * Copyright 2026 Vladimir Raupov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,43 +14,20 @@
  * limitations under the License.
  */
 
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 @Suppress("unused")
-class KotlinMultiplatformConventionPlugin : Plugin<Project> {
+class KotlinWebMultiplatformConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         pluginManager.apply("org.jetbrains.kotlin.multiplatform")
 
         extensions.configure<KotlinMultiplatformExtension> {
-            explicitApi()
-
-            jvmToolchain {
-                languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
-            }
-
-            androidTarget()
-
-            listOf(
-                iosX64(),
-                iosArm64(),
-                iosSimulatorArm64()
-            ).forEach { iosTarget ->
-                iosTarget.binaries.framework {
-                    baseName = "CompositesSampleApp"
-                    binaryOption("bundleId", "ru.ldralighieri.composites.sample")
-                    binaryOption("bundleVersion", "2")
-                    isStatic = true
-                }
-            }
-
-            jvm()
 
             js {
                 binaries.executable()
@@ -61,7 +38,7 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
                 }
             }
 
-            @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+            @OptIn(ExperimentalWasmDsl::class)
             wasmJs {
                 binaries.executable()
                 browser {
@@ -74,21 +51,6 @@ class KotlinMultiplatformConventionPlugin : Plugin<Project> {
                     }
                 }
             }
-
-            targets.all {
-                compilations.all {
-                    compileTaskProvider.configure {
-                        compilerOptions {
-                            freeCompilerArgs.addAll(buildCustomCompilerArgs())
-                        }
-                    }
-                }
-            }
         }
     }
 }
-
-private fun buildCustomCompilerArgs() = listOf(
-    "-opt-in=kotlin.RequiresOptIn",
-    "-Xcontext-parameters",
-)

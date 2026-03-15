@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package ru.ldralighieri.composites.sample
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.window.ComposeViewport
-import org.jetbrains.skiko.wasm.onWasmReady
-import ru.ldralighieri.composites.sample.ui.app.CompositesApp
+@Suppress("unused")
+class KotlinJvmMultiplatformConventionPlugin : Plugin<Project> {
 
-@OptIn(ExperimentalComposeUiApi::class)
-public fun main() {
-    onWasmReady {
-        ComposeViewport("CompositesSampleJsApp") { CompositesApp() }
+    override fun apply(target: Project) = with(target) {
+        pluginManager.apply("org.jetbrains.kotlin.multiplatform")
+
+        extensions.configure<KotlinMultiplatformExtension> {
+            jvm()
+        }
     }
 }

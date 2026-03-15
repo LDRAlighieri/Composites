@@ -64,16 +64,16 @@ internal data class SpacerItem(val height: Int) : FiberglassItem {
     override val id: String = Uuid.random().toString()
 }
 
-internal data class LoremIpsumItem(private val words: Int) : FiberglassItem {
-    val text = LOREM_IPSUM_SOURCE.take(words).joinToString(separator = " ")
+public data class LoremIpsumItem(private val words: Int) : FiberglassItem {
+    val text: String = LOREM_IPSUM_SOURCE.take(words).joinToString(separator = " ")
     override val id: Int = words
 }
 
-internal data class SmallImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
+public data class SmallImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
 
-internal data class BigImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
+public data class BigImageItem(override val id: String = Uuid.random().toString()) : FiberglassItem
 
-internal data class ImagesRowItem(val count: Int) : FiberglassItem {
+public data class ImagesRowItem(val count: Int) : FiberglassItem {
     override val id: String = "ImagesRowItem_$count"
     val images: List<FiberglassItem> =
         buildList {
@@ -84,16 +84,16 @@ internal data class ImagesRowItem(val count: Int) : FiberglassItem {
         }
 }
 
-internal open class TagItem(number: Int) : FiberglassItem {
+public open class TagItem(number: Int) : FiberglassItem {
     override val id: String = Uuid.random().toString()
-    open val text: String = "tag $number"
+    public open val text: String = "tag $number"
 }
 
-internal data class SecondaryTagItem(val number: Int) : TagItem(number)
+public data class SecondaryTagItem(val number: Int) : TagItem(number)
 
 internal data class TertiaryTagItem(val number: Int) : TagItem(number)
 
-internal data class TagsFlowRowItem(val count: Int) : FiberglassItem {
+public data class TagsFlowRowItem(val count: Int) : FiberglassItem {
     override val id: String = "TagItem_$count"
     val tags: List<TagItem> =
         buildList {

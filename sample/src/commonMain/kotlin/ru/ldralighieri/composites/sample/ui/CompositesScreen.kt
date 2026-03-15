@@ -84,7 +84,7 @@ private fun CompositesContent() {
 }
 
 @Composable
-internal fun CompositeItem(
+public fun CompositeItem(
     title: String,
     onClick: () -> Unit,
 ) {
