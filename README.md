@@ -41,11 +41,11 @@ Android only:
 ```groovy
 dependencies {
     // Carbon
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.1")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.5.1")
+    implementation("ru.ldralighieri.composites:composites-carbon-core:0.6.0")
+    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.6.0")
 
     // Fiberglass
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.1")
+    implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
 }
 ```
 
@@ -59,10 +59,10 @@ kotlin {
 
             dependencies {
                 // Carbon
-                implementation("ru.ldralighieri.composites:composites-carbon-core:0.5.1")
+                implementation("ru.ldralighieri.composites:composites-carbon-core:0.6.0")
                 
                 // Fiberglass
-                implementation("ru.ldralighieri.composites:composites-fiberglass:0.5.1")
+                implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
             }
         }
     }
@@ -70,7 +70,7 @@ kotlin {
 
 dependencies {
     // Carbon
-    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.5.1")
+    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.6.0")
 }
 
 // https://github.com/google/ksp/issues/567
@@ -89,15 +89,14 @@ repositories {
 }
 ```
 
-Snapshot build:  
-[![Maven Central](https://img.shields.io/nexus/s/ru.ldralighieri.composites/composites-fiberglass?server=https://oss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/ru/ldralighieri/composites/)
+Snapshot build:
 ```kotlin
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
-   implementation("ru.ldralighieri.composites:{module}:0.6.1-SNAPSHOT")
+   implementation("ru.ldralighieri.composites:{module}:0.7.0-SNAPSHOT")
 }
 ```
 
