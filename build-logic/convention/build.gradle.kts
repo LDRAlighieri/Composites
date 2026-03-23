@@ -56,11 +56,9 @@ tasks {
 
 gradlePlugin {
     plugins {
-        plugins {
-            register("composeMultiplatform") {
-                id = "composites.compose.multiplatform"
-                implementationClass = "ComposeMultiplatformConventionPlugin"
-            }
+        register("composeMultiplatform") {
+            id = "composites.compose.multiplatform"
+            implementationClass = "ComposeMultiplatformConventionPlugin"
         }
 
         register("dokkaMultiplaform") {
@@ -68,39 +66,29 @@ gradlePlugin {
             implementationClass = "DokkaMultiplatformConventionPlugin"
         }
 
-        plugins {
-            register("kotlinAndroidMultiplatform") {
-                id = "composites.kotlin.android.multiplatform"
-                implementationClass = "KotlinAndroidMultiplatformConventionPlugin"
-            }
+        register("kotlinAndroidMultiplatform") {
+            id = "composites.kotlin.android.multiplatform"
+            implementationClass = "KotlinAndroidMultiplatformConventionPlugin"
         }
 
-        plugins {
-            register("kotlinCommonMultiplatform") {
-                id = "composites.kotlin.common.multiplatform"
-                implementationClass = "KotlinCommonMultiplatformConventionPlugin"
-            }
+        register("kotlinCommonMultiplatform") {
+            id = "composites.kotlin.common.multiplatform"
+            implementationClass = "KotlinCommonMultiplatformConventionPlugin"
         }
 
-        plugins {
-            register("kotlinIosMultiplatform") {
-                id = "composites.kotlin.ios.multiplatform"
-                implementationClass = "KotlinIosMultiplatformConventionPlugin"
-            }
+        register("kotlinIosMultiplatform") {
+            id = "composites.kotlin.ios.multiplatform"
+            implementationClass = "KotlinIosMultiplatformConventionPlugin"
         }
 
-        plugins {
-            register("kotlinJvmMultiplatform") {
-                id = "composites.kotlin.jvm.multiplatform"
-                implementationClass = "KotlinJvmMultiplatformConventionPlugin"
-            }
+        register("kotlinJvmMultiplatform") {
+            id = "composites.kotlin.jvm.multiplatform"
+            implementationClass = "KotlinJvmMultiplatformConventionPlugin"
         }
 
-        plugins {
-            register("kotlinWebMultiplatform") {
-                id = "composites.kotlin.web.multiplatform"
-                implementationClass = "KotlinWebMultiplatformConventionPlugin"
-            }
+        register("kotlinWebMultiplatform") {
+            id = "composites.kotlin.web.multiplatform"
+            implementationClass = "KotlinWebMultiplatformConventionPlugin"
         }
 
         register("ksp") {

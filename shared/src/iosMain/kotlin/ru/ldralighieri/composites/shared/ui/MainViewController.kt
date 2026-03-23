@@ -16,9 +16,13 @@
 
 package ru.ldralighieri.composites.shared.ui
 
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeUIViewController
 import platform.UIKit.UIViewController
 import ru.ldralighieri.composites.shared.ui.app.CompositesApp
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Suppress("FunctionName")
-public fun MainViewController(): UIViewController = ComposeUIViewController { CompositesApp() }
+public fun MainViewController(): UIViewController = ComposeUIViewController(
+    configure = { parallelRendering = true }
+) { CompositesApp() }
