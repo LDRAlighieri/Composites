@@ -24,5 +24,5 @@ import ru.ldralighieri.composites.shared.ui.app.CompositesApp
 @OptIn(ExperimentalComposeUiApi::class)
 @Suppress("FunctionName")
 public fun MainViewController(): UIViewController = ComposeUIViewController(
-    configure = { parallelRendering = true }
+    configure = { parallelRendering = true },
 ) { CompositesApp() }
