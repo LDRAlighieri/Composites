@@ -1,6 +1,6 @@
 [versions]
 # Plugins
-agp = "9.1.1"
+agp = "9.2.0"
 composeMultiplatform = "1.10.2"
 dokka = "2.2.0"
 spotless = "8.4.0"
