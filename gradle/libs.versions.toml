@@ -26,7 +26,7 @@ composeMaterialIconsExtended = "1.7.3"
 googleMaterial="1.13.0"
 
 # KotlinPoet
-kotlinpoet="2.2.0"
+kotlinpoet="2.3.0"
 
 # Lint
 ktlint = "1.2.1"
