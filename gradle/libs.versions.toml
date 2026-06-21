@@ -23,7 +23,7 @@ composeMaterial3 = "1.9.0"
 composeMaterialIconsExtended = "1.7.3"
 
 # Google
-googleMaterial="1.13.0"
+googleMaterial="1.14.0"
 
 # KotlinPoet
 kotlinpoet="2.2.0"
