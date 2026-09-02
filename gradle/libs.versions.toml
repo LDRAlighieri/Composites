@@ -5,12 +5,12 @@ composeMultiplatform = "1.10.3"
 dokka = "2.2.0"
 spotless = "8.9.0"
 mavenPublish = "0.34.0"
-bcv = "0.18.1"
+bcv = "0.18.2"
 gver = "0.54.0"
-ksp = "2.3.7"
+ksp = "2.3.11"
 
 # Kotlin
-kotlin = "2.3.21"
+kotlin = "2.4.10"
 
 # Androidx
 androidxCoreSplashscreen = "1.2.0"
