@@ -49,9 +49,9 @@ public final class composites/shared/generated/resources/String0_commonMainKt {
 public final class ru/ldralighieri/composites/shared/navigation/ComposableSingletons$AppNavHostKt {
 	public static final field INSTANCE Lru/ldralighieri/composites/shared/navigation/ComposableSingletons$AppNavHostKt;
 	public fun <init> ()V
-	public final fun getLambda$-1754675648$shared ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda$-1821082168$shared ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda$1712003817$shared ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$-1754675648$Composites_shared ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$-1821082168$Composites_shared ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$1712003817$Composites_shared ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class ru/ldralighieri/composites/shared/navigation/CompositesArgs {
@@ -129,7 +129,7 @@ public final class ru/ldralighieri/composites/shared/navigation/FiberglassType :
 public final class ru/ldralighieri/composites/shared/ui/ComposableSingletons$CompositesScreenKt {
 	public static final field INSTANCE Lru/ldralighieri/composites/shared/ui/ComposableSingletons$CompositesScreenKt;
 	public fun <init> ()V
-	public final fun getLambda$1783405655$shared ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1783405655$Composites_shared ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class ru/ldralighieri/composites/shared/ui/CompositesScreenKt {
@@ -143,19 +143,19 @@ public final class ru/ldralighieri/composites/shared/ui/app/CompositesAppKt {
 public final class ru/ldralighieri/composites/shared/ui/fiberglass/ComposableSingletons$FiberglassColumnScreenKt {
 	public static final field INSTANCE Lru/ldralighieri/composites/shared/ui/fiberglass/ComposableSingletons$FiberglassColumnScreenKt;
 	public fun <init> ()V
-	public final fun getLambda$582727263$shared ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$582727263$Composites_shared ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class ru/ldralighieri/composites/shared/ui/fiberglass/ComposableSingletons$FiberglassGridScreenKt {
 	public static final field INSTANCE Lru/ldralighieri/composites/shared/ui/fiberglass/ComposableSingletons$FiberglassGridScreenKt;
 	public fun <init> ()V
-	public final fun getLambda$-1417584161$shared ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1417584161$Composites_shared ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class ru/ldralighieri/composites/shared/ui/fiberglass/ComposableSingletons$FiberglassRootScreenKt {
 	public static final field INSTANCE Lru/ldralighieri/composites/shared/ui/fiberglass/ComposableSingletons$FiberglassRootScreenKt;
 	public fun <init> ()V
-	public final fun getLambda$-1677241879$shared ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1677241879$Composites_shared ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class ru/ldralighieri/composites/shared/ui/fiberglass/items/BigImageItem : ru/ldralighieri/composites/fiberglass/model/FiberglassItem {
@@ -176,13 +176,13 @@ public final class ru/ldralighieri/composites/shared/ui/fiberglass/items/BigImag
 public final class ru/ldralighieri/composites/shared/ui/fiberglass/items/ComposableSingletons$FiberglassSlotsKt {
 	public static final field INSTANCE Lru/ldralighieri/composites/shared/ui/fiberglass/items/ComposableSingletons$FiberglassSlotsKt;
 	public fun <init> ()V
-	public final fun getLambda$-1067594346$shared ()Lkotlin/jvm/functions/Function5;
-	public final fun getLambda$-1411909230$shared ()Lkotlin/jvm/functions/Function5;
-	public final fun getLambda$-1761702812$shared ()Lkotlin/jvm/functions/Function5;
-	public final fun getLambda$-1833737674$shared ()Lkotlin/jvm/functions/Function5;
-	public final fun getLambda$1604743271$shared ()Lkotlin/jvm/functions/Function5;
-	public final fun getLambda$162093473$shared ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda$1927121725$shared ()Lkotlin/jvm/functions/Function5;
+	public final fun getLambda$-1067594346$Composites_shared ()Lkotlin/jvm/functions/Function5;
+	public final fun getLambda$-1411909230$Composites_shared ()Lkotlin/jvm/functions/Function5;
+	public final fun getLambda$-1761702812$Composites_shared ()Lkotlin/jvm/functions/Function5;
+	public final fun getLambda$-1833737674$Composites_shared ()Lkotlin/jvm/functions/Function5;
+	public final fun getLambda$1604743271$Composites_shared ()Lkotlin/jvm/functions/Function5;
+	public final fun getLambda$162093473$Composites_shared ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$1927121725$Composites_shared ()Lkotlin/jvm/functions/Function5;
 }
 
 public final class ru/ldralighieri/composites/shared/ui/fiberglass/items/FiberglassSlotsKt {
