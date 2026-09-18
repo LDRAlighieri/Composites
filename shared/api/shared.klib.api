@@ -1,0 +1,274 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, wasmJs]
+// Alias: ios => [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Composites:shared>
+final enum class ru.ldralighieri.composites.shared.navigation/FiberglassType : kotlin/Enum<ru.ldralighieri.composites.shared.navigation/FiberglassType> { // ru.ldralighieri.composites.shared.navigation/FiberglassType|null[0]
+    enum entry Column // ru.ldralighieri.composites.shared.navigation/FiberglassType.Column|null[0]
+    enum entry Grid // ru.ldralighieri.composites.shared.navigation/FiberglassType.Grid|null[0]
+
+    final val entries // ru.ldralighieri.composites.shared.navigation/FiberglassType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<ru.ldralighieri.composites.shared.navigation/FiberglassType> // ru.ldralighieri.composites.shared.navigation/FiberglassType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): ru.ldralighieri.composites.shared.navigation/FiberglassType // ru.ldralighieri.composites.shared.navigation/FiberglassType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<ru.ldralighieri.composites.shared.navigation/FiberglassType> // ru.ldralighieri.composites.shared.navigation/FiberglassType.values|values#static(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs { // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs|null[0]
+    constructor <init>(kotlin/String) // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.<init>|<init>(kotlin.String){}[0]
+
+    final val title // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.title|{}title[0]
+        final fun <get-title>(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.title.<get-title>|<get-title>(){}[0]
+
+    final fun component1(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.component1|component1(){}[0]
+    final fun copy(kotlin/String = ...): ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.copy|copy(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs.toString|toString(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs { // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs|null[0]
+    constructor <init>(kotlin/String) // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.<init>|<init>(kotlin.String){}[0]
+
+    final val type // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.type|{}type[0]
+        final fun <get-type>(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.type.<get-type>|<get-type>(){}[0]
+
+    final fun component1(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.component1|component1(){}[0]
+    final fun copy(kotlin/String = ...): ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.copy|copy(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs.toString|toString(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem : ru.ldralighieri.composites.fiberglass.model/FiberglassItem { // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem|null[0]
+    constructor <init>(kotlin/String = ...) // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.<init>|<init>(kotlin.String){}[0]
+
+    final val id // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.id|{}id[0]
+        final fun <get-id>(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.id.<get-id>|<get-id>(){}[0]
+
+    final fun component1(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.component1|component1(){}[0]
+    final fun copy(kotlin/String = ...): ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.copy|copy(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/BigImageItem.toString|toString(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem : ru.ldralighieri.composites.fiberglass.model/FiberglassItem { // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem|null[0]
+    constructor <init>(kotlin/Int) // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.<init>|<init>(kotlin.Int){}[0]
+
+    final val count // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.count|{}count[0]
+        final fun <get-count>(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.count.<get-count>|<get-count>(){}[0]
+    final val id // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.id|{}id[0]
+        final fun <get-id>(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.id.<get-id>|<get-id>(){}[0]
+    final val images // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.images|{}images[0]
+        final fun <get-images>(): kotlin.collections/List<ru.ldralighieri.composites.fiberglass.model/FiberglassItem> // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.images.<get-images>|<get-images>(){}[0]
+
+    final fun component1(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.component1|component1(){}[0]
+    final fun copy(kotlin/Int = ...): ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.copy|copy(kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/ImagesRowItem.toString|toString(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem : ru.ldralighieri.composites.fiberglass.model/FiberglassItem { // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem|null[0]
+    constructor <init>(kotlin/Int) // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.<init>|<init>(kotlin.Int){}[0]
+
+    final val id // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.id|{}id[0]
+        final fun <get-id>(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.id.<get-id>|<get-id>(){}[0]
+    final val text // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.text|{}text[0]
+        final fun <get-text>(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.text.<get-text>|<get-text>(){}[0]
+
+    final fun copy(kotlin/Int = ...): ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.copy|copy(kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/LoremIpsumItem.toString|toString(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem : ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem { // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem|null[0]
+    constructor <init>(kotlin/Int) // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.<init>|<init>(kotlin.Int){}[0]
+
+    final val number // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.number|{}number[0]
+        final fun <get-number>(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.number.<get-number>|<get-number>(){}[0]
+
+    final fun component1(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.component1|component1(){}[0]
+    final fun copy(kotlin/Int = ...): ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.copy|copy(kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/SecondaryTagItem.toString|toString(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem : ru.ldralighieri.composites.fiberglass.model/FiberglassItem { // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem|null[0]
+    constructor <init>(kotlin/String = ...) // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.<init>|<init>(kotlin.String){}[0]
+
+    final val id // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.id|{}id[0]
+        final fun <get-id>(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.id.<get-id>|<get-id>(){}[0]
+
+    final fun component1(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.component1|component1(){}[0]
+    final fun copy(kotlin/String = ...): ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.copy|copy(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/SmallImageItem.toString|toString(){}[0]
+}
+
+final class ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem : ru.ldralighieri.composites.fiberglass.model/FiberglassItem { // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem|null[0]
+    constructor <init>(kotlin/Int) // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.<init>|<init>(kotlin.Int){}[0]
+
+    final val count // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.count|{}count[0]
+        final fun <get-count>(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.count.<get-count>|<get-count>(){}[0]
+    final val id // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.id|{}id[0]
+        final fun <get-id>(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.id.<get-id>|<get-id>(){}[0]
+    final val tags // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.tags|{}tags[0]
+        final fun <get-tags>(): kotlin.collections/List<ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem> // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.tags.<get-tags>|<get-tags>(){}[0]
+
+    final fun component1(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.component1|component1(){}[0]
+    final fun copy(kotlin/Int = ...): ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.copy|copy(kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagsFlowRowItem.toString|toString(){}[0]
+}
+
+open class ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem : ru.ldralighieri.composites.fiberglass.model/FiberglassItem { // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem|null[0]
+    constructor <init>(kotlin/Int) // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem.<init>|<init>(kotlin.Int){}[0]
+
+    open val id // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem.id|{}id[0]
+        open fun <get-id>(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem.id.<get-id>|<get-id>(){}[0]
+    open val text // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem.text|{}text[0]
+        open fun <get-text>(): kotlin/String // ru.ldralighieri.composites.shared.ui.fiberglass.items/TagItem.text.<get-text>|<get-text>(){}[0]
+}
+
+final object composites.shared.generated.resources/Res { // composites.shared.generated.resources/Res|null[0]
+    final fun getUri(kotlin/String): kotlin/String // composites.shared.generated.resources/Res.getUri|getUri(kotlin.String){}[0]
+    final suspend fun readBytes(kotlin/String): kotlin/ByteArray // composites.shared.generated.resources/Res.readBytes|readBytes(kotlin.String){}[0]
+
+    final object array // composites.shared.generated.resources/Res.array|null[0]
+
+    final object drawable // composites.shared.generated.resources/Res.drawable|null[0]
+
+    final object font // composites.shared.generated.resources/Res.font|null[0]
+
+    final object plurals // composites.shared.generated.resources/Res.plurals|null[0]
+
+    final object string // composites.shared.generated.resources/Res.string|null[0]
+}
+
+final object ru.ldralighieri.composites.shared.navigation/CompositesArgs { // ru.ldralighieri.composites.shared.navigation/CompositesArgs|null[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // ru.ldralighieri.composites.shared.navigation/CompositesArgs.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/CompositesArgs.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesArgs.toString|toString(){}[0]
+}
+
+final object ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute { // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute|null[0]
+    final const val route // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.route|{}route[0]
+        final fun <get-route>(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.route.<get-route>|<get-route>(){}[0]
+
+    final val arguments // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.arguments|{}arguments[0]
+        final fun <get-arguments>(): kotlin.collections/List<androidx.navigation/NamedNavArgument> // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.arguments.<get-arguments>|<get-arguments>(){}[0]
+    final val deepLinks // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.deepLinks|{}deepLinks[0]
+        final fun <get-deepLinks>(): kotlin.collections/List<androidx.navigation/NavDeepLink> // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.deepLinks.<get-deepLinks>|<get-deepLinks>(){}[0]
+
+    final fun create(kotlin/String): ru.ldralighieri.composites.carbon.core/Destination.Compose // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.create|create(kotlin.String){}[0]
+    final fun parseArguments(androidx.lifecycle/SavedStateHandle): ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.parseArguments|parseArguments(androidx.lifecycle.SavedStateHandle){}[0]
+    final fun parseArguments(androidx.navigation/NavBackStackEntry): ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleArgs // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassExampleRoute.parseArguments|parseArguments(androidx.navigation.NavBackStackEntry){}[0]
+}
+
+final object ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute { // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute|null[0]
+    final const val route // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.route|{}route[0]
+        final fun <get-route>(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.route.<get-route>|<get-route>(){}[0]
+
+    final val arguments // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.arguments|{}arguments[0]
+        final fun <get-arguments>(): kotlin.collections/List<androidx.navigation/NamedNavArgument> // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.arguments.<get-arguments>|<get-arguments>(){}[0]
+    final val deepLinks // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.deepLinks|{}deepLinks[0]
+        final fun <get-deepLinks>(): kotlin.collections/List<androidx.navigation/NavDeepLink> // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.deepLinks.<get-deepLinks>|<get-deepLinks>(){}[0]
+
+    final fun create(kotlin/String = ...): ru.ldralighieri.composites.carbon.core/Destination.Compose // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.create|create(kotlin.String){}[0]
+    final fun parseArguments(androidx.lifecycle/SavedStateHandle): ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.parseArguments|parseArguments(androidx.lifecycle.SavedStateHandle){}[0]
+    final fun parseArguments(androidx.navigation/NavBackStackEntry): ru.ldralighieri.composites.shared.navigation/CompositesFiberglassArgs // ru.ldralighieri.composites.shared.navigation/CompositesFiberglassRoute.parseArguments|parseArguments(androidx.navigation.NavBackStackEntry){}[0]
+}
+
+final object ru.ldralighieri.composites.shared.navigation/CompositesRoute { // ru.ldralighieri.composites.shared.navigation/CompositesRoute|null[0]
+    final const val route // ru.ldralighieri.composites.shared.navigation/CompositesRoute.route|{}route[0]
+        final fun <get-route>(): kotlin/String // ru.ldralighieri.composites.shared.navigation/CompositesRoute.route.<get-route>|<get-route>(){}[0]
+
+    final val arguments // ru.ldralighieri.composites.shared.navigation/CompositesRoute.arguments|{}arguments[0]
+        final fun <get-arguments>(): kotlin.collections/List<androidx.navigation/NamedNavArgument> // ru.ldralighieri.composites.shared.navigation/CompositesRoute.arguments.<get-arguments>|<get-arguments>(){}[0]
+    final val deepLinks // ru.ldralighieri.composites.shared.navigation/CompositesRoute.deepLinks|{}deepLinks[0]
+        final fun <get-deepLinks>(): kotlin.collections/List<androidx.navigation/NavDeepLink> // ru.ldralighieri.composites.shared.navigation/CompositesRoute.deepLinks.<get-deepLinks>|<get-deepLinks>(){}[0]
+
+    final fun create(): ru.ldralighieri.composites.carbon.core/Destination.Compose // ru.ldralighieri.composites.shared.navigation/CompositesRoute.create|create(){}[0]
+}
+
+final val composites.shared.generated.resources/allDrawableResources // composites.shared.generated.resources/allDrawableResources|@composites.shared.generated.resources.Res{}allDrawableResources[0]
+    final fun (composites.shared.generated.resources/Res).<get-allDrawableResources>(): kotlin.collections/Map<kotlin/String, org.jetbrains.compose.resources/DrawableResource> // composites.shared.generated.resources/allDrawableResources.<get-allDrawableResources>|<get-allDrawableResources>@composites.shared.generated.resources.Res(){}[0]
+final val composites.shared.generated.resources/allFontResources // composites.shared.generated.resources/allFontResources|@composites.shared.generated.resources.Res{}allFontResources[0]
+    final fun (composites.shared.generated.resources/Res).<get-allFontResources>(): kotlin.collections/Map<kotlin/String, org.jetbrains.compose.resources/FontResource> // composites.shared.generated.resources/allFontResources.<get-allFontResources>|<get-allFontResources>@composites.shared.generated.resources.Res(){}[0]
+final val composites.shared.generated.resources/allPluralStringResources // composites.shared.generated.resources/allPluralStringResources|@composites.shared.generated.resources.Res{}allPluralStringResources[0]
+    final fun (composites.shared.generated.resources/Res).<get-allPluralStringResources>(): kotlin.collections/Map<kotlin/String, org.jetbrains.compose.resources/PluralStringResource> // composites.shared.generated.resources/allPluralStringResources.<get-allPluralStringResources>|<get-allPluralStringResources>@composites.shared.generated.resources.Res(){}[0]
+final val composites.shared.generated.resources/allStringArrayResources // composites.shared.generated.resources/allStringArrayResources|@composites.shared.generated.resources.Res{}allStringArrayResources[0]
+    final fun (composites.shared.generated.resources/Res).<get-allStringArrayResources>(): kotlin.collections/Map<kotlin/String, org.jetbrains.compose.resources/StringArrayResource> // composites.shared.generated.resources/allStringArrayResources.<get-allStringArrayResources>|<get-allStringArrayResources>@composites.shared.generated.resources.Res(){}[0]
+final val composites.shared.generated.resources/allStringResources // composites.shared.generated.resources/allStringResources|@composites.shared.generated.resources.Res{}allStringResources[0]
+    final fun (composites.shared.generated.resources/Res).<get-allStringResources>(): kotlin.collections/Map<kotlin/String, org.jetbrains.compose.resources/StringResource> // composites.shared.generated.resources/allStringResources.<get-allStringResources>|<get-allStringResources>@composites.shared.generated.resources.Res(){}[0]
+final val composites.shared.generated.resources/app_name // composites.shared.generated.resources/app_name|@composites.shared.generated.resources.Res.string{}app_name[0]
+    final fun (composites.shared.generated.resources/Res.string).<get-app_name>(): org.jetbrains.compose.resources/StringResource // composites.shared.generated.resources/app_name.<get-app_name>|<get-app_name>@composites.shared.generated.resources.Res.string(){}[0]
+final val composites.shared.generated.resources/composites_shared_generated_resources_Res$stableprop // composites.shared.generated.resources/composites_shared_generated_resources_Res$stableprop|#static{}composites_shared_generated_resources_Res$stableprop[0]
+final val composites.shared.generated.resources/composites_shared_generated_resources_Res_array$stableprop // composites.shared.generated.resources/composites_shared_generated_resources_Res_array$stableprop|#static{}composites_shared_generated_resources_Res_array$stableprop[0]
+final val composites.shared.generated.resources/composites_shared_generated_resources_Res_drawable$stableprop // composites.shared.generated.resources/composites_shared_generated_resources_Res_drawable$stableprop|#static{}composites_shared_generated_resources_Res_drawable$stableprop[0]
+final val composites.shared.generated.resources/composites_shared_generated_resources_Res_font$stableprop // composites.shared.generated.resources/composites_shared_generated_resources_Res_font$stableprop|#static{}composites_shared_generated_resources_Res_font$stableprop[0]
+final val composites.shared.generated.resources/composites_shared_generated_resources_Res_plurals$stableprop // composites.shared.generated.resources/composites_shared_generated_resources_Res_plurals$stableprop|#static{}composites_shared_generated_resources_Res_plurals$stableprop[0]
+final val composites.shared.generated.resources/composites_shared_generated_resources_Res_string$stableprop // composites.shared.generated.resources/composites_shared_generated_resources_Res_string$stableprop|#static{}composites_shared_generated_resources_Res_string$stableprop[0]
+final val composites.shared.generated.resources/fiberglass // composites.shared.generated.resources/fiberglass|@composites.shared.generated.resources.Res.drawable{}fiberglass[0]
+    final fun (composites.shared.generated.resources/Res.drawable).<get-fiberglass>(): org.jetbrains.compose.resources/DrawableResource // composites.shared.generated.resources/fiberglass.<get-fiberglass>|<get-fiberglass>@composites.shared.generated.resources.Res.drawable(){}[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesArgs$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesArgs$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_CompositesArgs$stableprop[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassArgs$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassArgs$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_CompositesFiberglassArgs$stableprop[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleArgs$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleArgs$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleArgs$stableprop[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleRoute$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleRoute$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleRoute$stableprop[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassRoute$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassRoute$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_CompositesFiberglassRoute$stableprop[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesRoute$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesRoute$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_CompositesRoute$stableprop[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_Back$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_Back$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_Navigator_Event_Back$stableprop[0]
+final val ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_ToDestination$stableprop // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_ToDestination$stableprop|#static{}ru_ldralighieri_composites_shared_navigation_Navigator_Event_ToDestination$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_BigImageItem$stableprop // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_BigImageItem$stableprop|#static{}ru_ldralighieri_composites_shared_ui_fiberglass_items_BigImageItem$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_ImagesRowItem$stableprop // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_ImagesRowItem$stableprop|#static{}ru_ldralighieri_composites_shared_ui_fiberglass_items_ImagesRowItem$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_LoremIpsumItem$stableprop // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_LoremIpsumItem$stableprop|#static{}ru_ldralighieri_composites_shared_ui_fiberglass_items_LoremIpsumItem$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SecondaryTagItem$stableprop // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SecondaryTagItem$stableprop|#static{}ru_ldralighieri_composites_shared_ui_fiberglass_items_SecondaryTagItem$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SmallImageItem$stableprop // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SmallImageItem$stableprop|#static{}ru_ldralighieri_composites_shared_ui_fiberglass_items_SmallImageItem$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagItem$stableprop // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagItem$stableprop|#static{}ru_ldralighieri_composites_shared_ui_fiberglass_items_TagItem$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagsFlowRowItem$stableprop // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagsFlowRowItem$stableprop|#static{}ru_ldralighieri_composites_shared_ui_fiberglass_items_TagsFlowRowItem$stableprop[0]
+final val ru.ldralighieri.composites.shared.ui.indication/ru_ldralighieri_composites_shared_ui_indication_NoIndicationNodeFactory_NoIndicationInstance$stableprop // ru.ldralighieri.composites.shared.ui.indication/ru_ldralighieri_composites_shared_ui_indication_NoIndicationNodeFactory_NoIndicationInstance$stableprop|#static{}ru_ldralighieri_composites_shared_ui_indication_NoIndicationNodeFactory_NoIndicationInstance$stableprop[0]
+
+final fun composites.shared.generated.resources/composites_shared_generated_resources_Res$stableprop_getter(): kotlin/Int // composites.shared.generated.resources/composites_shared_generated_resources_Res$stableprop_getter|composites_shared_generated_resources_Res$stableprop_getter(){}[0]
+final fun composites.shared.generated.resources/composites_shared_generated_resources_Res_array$stableprop_getter(): kotlin/Int // composites.shared.generated.resources/composites_shared_generated_resources_Res_array$stableprop_getter|composites_shared_generated_resources_Res_array$stableprop_getter(){}[0]
+final fun composites.shared.generated.resources/composites_shared_generated_resources_Res_drawable$stableprop_getter(): kotlin/Int // composites.shared.generated.resources/composites_shared_generated_resources_Res_drawable$stableprop_getter|composites_shared_generated_resources_Res_drawable$stableprop_getter(){}[0]
+final fun composites.shared.generated.resources/composites_shared_generated_resources_Res_font$stableprop_getter(): kotlin/Int // composites.shared.generated.resources/composites_shared_generated_resources_Res_font$stableprop_getter|composites_shared_generated_resources_Res_font$stableprop_getter(){}[0]
+final fun composites.shared.generated.resources/composites_shared_generated_resources_Res_plurals$stableprop_getter(): kotlin/Int // composites.shared.generated.resources/composites_shared_generated_resources_Res_plurals$stableprop_getter|composites_shared_generated_resources_Res_plurals$stableprop_getter(){}[0]
+final fun composites.shared.generated.resources/composites_shared_generated_resources_Res_string$stableprop_getter(): kotlin/Int // composites.shared.generated.resources/composites_shared_generated_resources_Res_string$stableprop_getter|composites_shared_generated_resources_Res_string$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesArgs$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesArgs$stableprop_getter|ru_ldralighieri_composites_shared_navigation_CompositesArgs$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassArgs$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassArgs$stableprop_getter|ru_ldralighieri_composites_shared_navigation_CompositesFiberglassArgs$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleArgs$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleArgs$stableprop_getter|ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleArgs$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleRoute$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleRoute$stableprop_getter|ru_ldralighieri_composites_shared_navigation_CompositesFiberglassExampleRoute$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassRoute$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesFiberglassRoute$stableprop_getter|ru_ldralighieri_composites_shared_navigation_CompositesFiberglassRoute$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesRoute$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_CompositesRoute$stableprop_getter|ru_ldralighieri_composites_shared_navigation_CompositesRoute$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_Back$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_Back$stableprop_getter|ru_ldralighieri_composites_shared_navigation_Navigator_Event_Back$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_ToDestination$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.navigation/ru_ldralighieri_composites_shared_navigation_Navigator_Event_ToDestination$stableprop_getter|ru_ldralighieri_composites_shared_navigation_Navigator_Event_ToDestination$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.app/CompositesApp(androidx.compose.runtime/Composer?, kotlin/Int) // ru.ldralighieri.composites.shared.ui.app/CompositesApp|CompositesApp(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/bigImageSlot(): kotlin/Function5<androidx.compose.foundation.lazy/LazyItemScope, kotlin/Int, ru.ldralighieri.composites.fiberglass.model/FiberglassItem, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit> // ru.ldralighieri.composites.shared.ui.fiberglass.items/bigImageSlot|bigImageSlot(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/imagesRowSlot(): kotlin/Function5<androidx.compose.foundation.lazy/LazyItemScope, kotlin/Int, ru.ldralighieri.composites.fiberglass.model/FiberglassItem, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit> // ru.ldralighieri.composites.shared.ui.fiberglass.items/imagesRowSlot|imagesRowSlot(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/loremIpsumSlot(): kotlin/Function5<androidx.compose.foundation.lazy/LazyItemScope, kotlin/Int, ru.ldralighieri.composites.fiberglass.model/FiberglassItem, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit> // ru.ldralighieri.composites.shared.ui.fiberglass.items/loremIpsumSlot|loremIpsumSlot(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_BigImageItem$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_BigImageItem$stableprop_getter|ru_ldralighieri_composites_shared_ui_fiberglass_items_BigImageItem$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_ImagesRowItem$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_ImagesRowItem$stableprop_getter|ru_ldralighieri_composites_shared_ui_fiberglass_items_ImagesRowItem$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_LoremIpsumItem$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_LoremIpsumItem$stableprop_getter|ru_ldralighieri_composites_shared_ui_fiberglass_items_LoremIpsumItem$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SecondaryTagItem$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SecondaryTagItem$stableprop_getter|ru_ldralighieri_composites_shared_ui_fiberglass_items_SecondaryTagItem$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SmallImageItem$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_SmallImageItem$stableprop_getter|ru_ldralighieri_composites_shared_ui_fiberglass_items_SmallImageItem$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagItem$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagItem$stableprop_getter|ru_ldralighieri_composites_shared_ui_fiberglass_items_TagItem$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagsFlowRowItem$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.fiberglass.items/ru_ldralighieri_composites_shared_ui_fiberglass_items_TagsFlowRowItem$stableprop_getter|ru_ldralighieri_composites_shared_ui_fiberglass_items_TagsFlowRowItem$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/secondaryTagSlot(androidx.compose.runtime/Composer?, kotlin/Int): kotlin/Function5<androidx.compose.foundation.layout/RowScope, kotlin/Int, ru.ldralighieri.composites.fiberglass.model/FiberglassItem, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit> // ru.ldralighieri.composites.shared.ui.fiberglass.items/secondaryTagSlot|secondaryTagSlot(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/smallImageSlot(): kotlin/Function5<androidx.compose.foundation.lazy/LazyItemScope, kotlin/Int, ru.ldralighieri.composites.fiberglass.model/FiberglassItem, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit> // ru.ldralighieri.composites.shared.ui.fiberglass.items/smallImageSlot|smallImageSlot(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.fiberglass.items/tagsFlowRowSlot(): kotlin/Function5<androidx.compose.foundation.lazy/LazyItemScope, kotlin/Int, ru.ldralighieri.composites.fiberglass.model/FiberglassItem, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit> // ru.ldralighieri.composites.shared.ui.fiberglass.items/tagsFlowRowSlot|tagsFlowRowSlot(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.indication/ru_ldralighieri_composites_shared_ui_indication_NoIndicationNodeFactory_NoIndicationInstance$stableprop_getter(): kotlin/Int // ru.ldralighieri.composites.shared.ui.indication/ru_ldralighieri_composites_shared_ui_indication_NoIndicationNodeFactory_NoIndicationInstance$stableprop_getter|ru_ldralighieri_composites_shared_ui_indication_NoIndicationNodeFactory_NoIndicationInstance$stableprop_getter(){}[0]
+final fun ru.ldralighieri.composites.shared.ui.theme/AppTheme(kotlin/Boolean, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // ru.ldralighieri.composites.shared.ui.theme/AppTheme|AppTheme(kotlin.Boolean;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun ru.ldralighieri.composites.shared.ui/CompositeItem(kotlin/String, kotlin/Function0<kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int) // ru.ldralighieri.composites.shared.ui/CompositeItem|CompositeItem(kotlin.String;kotlin.Function0<kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+
+// Targets: [ios]
+final fun ru.ldralighieri.composites.shared.ui/MainViewController(): platform.UIKit/UIViewController // ru.ldralighieri.composites.shared.ui/MainViewController|MainViewController(){}[0]
