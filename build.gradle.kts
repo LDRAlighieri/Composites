@@ -15,6 +15,8 @@
  */
 
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -29,6 +31,15 @@ plugins {
     alias(libs.plugins.dokka) apply false
     alias(libs.plugins.binary.compatibility.validator)
     alias(libs.plugins.gver)
+}
+
+// Force npm dependency versions (Yarn resolutions)
+plugins.withType<YarnPlugin> {
+    configure<YarnRootExtension> {
+        // KGP's semver parser rejects dist-tags like "latest"; ">=0.0.0" means any version,
+        // so yarn resolves it to the newest one on every lock regeneration.
+        resolution("baseline-browser-mapping", ">=0.0.0")
+    }
 }
 
 // Binary compatibility validator

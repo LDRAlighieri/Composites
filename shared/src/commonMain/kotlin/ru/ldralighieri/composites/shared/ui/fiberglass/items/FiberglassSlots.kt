@@ -47,19 +47,18 @@ import ru.ldralighieri.composites.fiberglass.row.FiberglassFlowRow
 import ru.ldralighieri.composites.fiberglass.row.FiberglassLazyRow
 import ru.ldralighieri.composites.shared.ui.theme.AppTheme
 
-internal fun stickyHeaderSlot(): FiberglassStickyHeaderSlot =
-    {
-        Text(
-            text = (it as StickyHeaderItem).title,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = AppTheme.colors.background)
-                .padding(top = 16.dp)
-                .padding(horizontal = AppTheme.dimensions.horizontalGuideline),
-            color = AppTheme.colors.onBackground,
-            style = AppTheme.typography.headlineMedium,
-        )
-    }
+internal fun stickyHeaderSlot(): FiberglassStickyHeaderSlot = {
+    Text(
+        text = (it as StickyHeaderItem).title,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = AppTheme.colors.background)
+            .padding(top = 16.dp)
+            .padding(horizontal = AppTheme.dimensions.horizontalGuideline),
+        color = AppTheme.colors.onBackground,
+        style = AppTheme.typography.headlineMedium,
+    )
+}
 
 internal fun spacerItemSlot(): FiberglassLazyItemSlot = { _, item ->
     Spacer(modifier = Modifier.height((item as SpacerItem).height.dp))

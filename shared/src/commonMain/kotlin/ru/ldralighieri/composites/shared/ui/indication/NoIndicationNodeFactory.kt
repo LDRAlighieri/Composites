@@ -25,8 +25,7 @@ import androidx.compose.ui.node.DrawModifierNode
 
 internal object NoIndicationNodeFactory : IndicationNodeFactory {
 
-    override fun create(interactionSource: InteractionSource): DelegatableNode =
-        NoIndicationInstance
+    override fun create(interactionSource: InteractionSource): DelegatableNode = NoIndicationInstance
 
     override fun equals(other: Any?): Boolean = other === this
 
