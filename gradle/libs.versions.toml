@@ -1,6 +1,6 @@
 [versions]
 # Plugins
-agp = "9.3.1"
+agp = "9.4.1"
 composeMultiplatform = "1.10.3"
 dokka = "2.2.0"
 spotless = "8.10.2"
@@ -14,9 +14,9 @@ kotlin = "2.4.20"
 
 # Androidx
 androidxCoreSplashscreen = "1.2.0"
-androidxActivity = "1.12.4"
+androidxActivity = "1.13.0"
 androidxNavigation = "2.9.1"
-androidxPagingCompose = "3.3.6"
+androidxPagingCompose = "3.5.1"
 
 # Compose
 composeMaterial3 = "1.9.0"
