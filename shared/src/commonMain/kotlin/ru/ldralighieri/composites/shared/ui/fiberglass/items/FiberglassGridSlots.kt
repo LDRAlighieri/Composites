@@ -29,16 +29,15 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlot
 import ru.ldralighieri.composites.shared.ui.theme.AppTheme
 import kotlin.random.Random
 
-private fun gridSlot(backgroundColor: Color): FiberglassLazyGridItemSlot =
-    { _, _ ->
-        Box(
-            modifier = Modifier
-                .aspectRatio(1f)
-                .padding(Random.nextInt(8, 48).dp)
-                .clip(AppTheme.shapes.medium)
-                .background(backgroundColor),
-        )
-    }
+private fun gridSlot(backgroundColor: Color): FiberglassLazyGridItemSlot = { _, _ ->
+    Box(
+        modifier = Modifier
+            .aspectRatio(1f)
+            .padding(Random.nextInt(8, 48).dp)
+            .clip(AppTheme.shapes.medium)
+            .background(backgroundColor),
+    )
+}
 
 @Composable
 internal fun primaryGridSlot(): FiberglassLazyGridItemSlot = gridSlot(AppTheme.colors.primary)
