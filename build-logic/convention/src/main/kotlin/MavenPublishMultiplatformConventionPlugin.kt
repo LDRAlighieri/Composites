@@ -16,6 +16,7 @@
 
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import ru.ldralighieri.composites.ext.mavenPublishing
@@ -30,7 +31,7 @@ class MavenPublishMultiplatformConventionPlugin : Plugin<Project> {
             configure(
                 KotlinMultiplatform(
                     javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
-                    sourcesJar = true,
+                    sourcesJar = SourcesJar.Sources(),
                     androidVariantsToPublish = listOf("release"),
                 )
             )
