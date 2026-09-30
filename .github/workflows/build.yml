@@ -2,11 +2,16 @@ name: Build
 
 on:
   pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
   build-android:
     name: Build android
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -27,12 +32,24 @@ jobs:
       - name: Check spotless
         run: ./gradlew spotlessCheck --no-configuration-cache
 
-      - name: Build android app
-        run: ./gradlew app:AndroidApp:assemble --stacktrace
+      - name: Run JVM tests
+        run: ./gradlew jvmTest
+
+      - name: Check Android lint
+        run: ./gradlew lint
+
+      - name: Build and verify Android app and library modules
+        run: |
+          ./gradlew :app:androidApp:build \
+            :composites-carbon:core:build \
+            :composites-carbon:processor:build \
+            :composites-fiberglass:build \
+            :shared:build --stacktrace
 
   build-ios:
     name: Build ios
     runs-on: macOS-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -43,16 +60,26 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Set Xcode version
         run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
 
+      - name: Check binary compatibility
+        run: ./gradlew apiCheck
+
+      - name: Run iOS simulator tests
+        run: ./gradlew iosSimulatorArm64Test
+
       - name: Build ios app
-        run: cd ./iosApp && xcodebuild -target "iosApp" -configuration Debug -scheme iosApp -sdk iphonesimulator -arch arm64 CODE_SIGNING_ALLOWED='NO'
+        run: xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -arch arm64 CODE_SIGNING_ALLOWED=NO
 
   build-jvm:
     name: Build desktop
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -64,12 +91,16 @@ jobs:
           distribution: 'zulu'
           java-version: 21
 
-      - name: Build desktop app
-        run: ./gradlew :app:desktopApp:jar
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Build and verify desktop app
+        run: ./gradlew :app:desktopApp:build
 
   build-web:
     name: Build web
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -81,5 +112,8 @@ jobs:
           distribution: 'zulu'
           java-version: 21
 
-      - name: Build web app
-        run: ./gradlew :app:webApp:composeCompatibilityBrowserDistribution
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Build and verify web app
+        run: ./gradlew :app:webApp:build :app:webApp:composeCompatibilityBrowserDistribution
