@@ -17,7 +17,6 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.provideDelegate
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import ru.ldralighieri.composites.ext.android
 
@@ -29,9 +28,8 @@ class KotlinAndroidMultiplatformConventionPlugin : Plugin<Project> {
 
         extensions.configure<KotlinMultiplatformExtension> {
 
-            val compileSdk: String by project
             android {
-                compileSdk { version = release(compileSdk.toInt()) }
+                compileSdk { version = release(property("compileSdk").toString().toInt()) }
             }
         }
     }
