@@ -52,7 +52,14 @@ dependencies {
 }
 
 // https://github.com/google/ksp/issues/567
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().all {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+// KSP tasks also read the generated common sources and are not Kotlin compilation tasks.
+tasks.withType<com.google.devtools.ksp.gradle.KspAATask>().configureEach {
     if (name != "kspCommonMainKotlinMetadata") {
         dependsOn("kspCommonMainKotlinMetadata")
     }

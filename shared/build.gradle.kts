@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
+import com.google.devtools.ksp.gradle.KspAATask
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
@@ -60,7 +61,14 @@ dependencies {
 }
 
 // https://github.com/google/ksp/issues/567
-tasks.withType<KotlinCompilationTask<*>>().all {
+tasks.withType<KotlinCompilationTask<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+// KSP tasks also read the generated common sources and are not Kotlin compilation tasks.
+tasks.withType<KspAATask>().configureEach {
     if (name != "kspCommonMainKotlinMetadata") {
         dependsOn("kspCommonMainKotlinMetadata")
     }
