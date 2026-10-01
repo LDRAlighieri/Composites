@@ -39,7 +39,8 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlots
  * @param modifier The modifier to apply to this layout.
  * @param state The state object to be used to control and observe the grid state.
  * @param contentPadding A padding around the whole content.
- * @param reverseLayout Reverse the direction of scrolling and layout.
+ * @param reverseLayout Reverse the direction of scrolling and layout. When true, the first
+ * items appear at the end of the grid. This does not change [horizontalArrangement].
  * @param horizontalArrangement The horizontal arrangement of the layout's children.
  * @param verticalArrangement The vertical arrangement of the layout's children.
  * @param flingBehavior Logic describing fling behavior.
@@ -72,6 +73,7 @@ public fun FiberglassLazyHorizontalGrid(
         modifier = modifier,
         state = state,
         contentPadding = contentPadding,
+        reverseLayout = reverseLayout,
         horizontalArrangement = horizontalArrangement,
         verticalArrangement = verticalArrangement,
         flingBehavior = flingBehavior,
