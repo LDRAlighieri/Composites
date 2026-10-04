@@ -25,6 +25,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.LocalSaveableStateRegistry
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -91,9 +92,14 @@ public fun FiberglassLazyColumn(
 /**
  * Fiberglass lazy column Composite with sticky headers
  *
- * @param sections Map of column sections.
+ * Keys are scoped by section identity and record kind, so headers and items may share IDs,
+ * and item IDs may repeat across sections. Stable keys preserve state on section and item
+ * reordering. Moving an item to another section gives it a new identity.
+ * Each key component must support Android Bundle state saving and have stable equals/hashCode.
+ *
+ * @param sections Map of column sections in iteration order. Section identities must be unique.
  * @param headerSlot Sticky header [slot][FiberglassStickyHeaderSlot].
- * @param itemSlots FiberglassLazyColumn [slots map][FiberglassLazyItemSlots]..
+ * @param itemSlots FiberglassLazyColumn [slots map][FiberglassLazyItemSlots].
  * @param modifier The modifier to apply to this layout.
  * @param state The state object to be used to control or observe the list's state.
  * @param contentPadding A padding around the whole content.
@@ -103,9 +109,14 @@ public fun FiberglassLazyColumn(
  * @param flingBehavior Logic describing fling behavior.
  * @param userScrollEnabled Whether the scrolling via the user gestures or accessibility actions
  * is allowed.
- * @param headerKey A factory of stable and unique keys representing the header.
+ * @param headerKey A factory of stable section identities, unique across sections, receiving the
+ * section index. Defaults to header.id. A null factory or result uses a positional header key;
+ * items then use header.id as their section identity. Header keys are scoped by record kind.
  * @param headerContentType A factory of the content types for the header.
- * @param itemKey A factory of stable and unique keys representing the item.
+ * @param itemKey A factory of stable keys, unique within their section, receiving the item index
+ * within that section. Defaults to item.id. Keys are scoped by section identity and record kind,
+ * including custom keys. A null factory uses positional item keys. Positional keys do not
+ * guarantee state preservation on reorder.
  * @param itemContentType A factory of the content types for the item.
  */
 @Composable
@@ -132,6 +143,8 @@ public fun FiberglassLazyColumn(
         item::class.simpleName
     },
 ) {
+    val saveableStateRegistry = LocalSaveableStateRegistry.current
+
     LazyColumn(
         modifier = modifier,
         state = state,
@@ -143,8 +156,16 @@ public fun FiberglassLazyColumn(
         userScrollEnabled = userScrollEnabled,
     ) {
         sections.onEachIndexed { sectionPosition, (header, compositeItems) ->
+            val sectionKey = headerKey?.invoke(sectionPosition, header)
+            val sectionIdentity = sectionKey ?: header.id
+            if (sectionKey != null || (itemKey != null && compositeItems.isNotEmpty())) {
+                require(saveableStateRegistry?.canBeSaved(sectionIdentity) != false) {
+                    "Section keys must be saveable by the current SaveableStateRegistry."
+                }
+            }
+
             stickyHeader(
-                key = headerKey?.invoke(sectionPosition, header),
+                key = sectionKey?.let { arrayListOf("header", it) },
                 contentType = headerContentType?.invoke(sectionPosition, header),
             ) {
                 headerSlot(header)
@@ -152,7 +173,15 @@ public fun FiberglassLazyColumn(
 
             itemsIndexed(
                 items = compositeItems,
-                key = itemKey,
+                key = itemKey?.let { keyFactory ->
+                    { position, item ->
+                        val localKey = keyFactory(position, item)
+                        require(saveableStateRegistry?.canBeSaved(localKey) != false) {
+                            "Item keys must be saveable by the current SaveableStateRegistry."
+                        }
+                        arrayListOf("item", sectionIdentity, localKey)
+                    }
+                },
                 contentType = itemContentType,
             ) { itemPosition, item ->
                 itemSlots[item::class]?.let { it(itemPosition, item) }
