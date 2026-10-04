@@ -36,5 +36,11 @@ kotlin {
         androidMain.dependencies {
             api(libs.androidx.paging.compose.android)
         }
+
+        jvmTest.dependencies {
+            implementation(libs.kotlin.test.junit)
+            implementation(libs.compose.ui.test)
+            runtimeOnly(compose.desktop.currentOs)
+        }
     }
 }

@@ -67,6 +67,7 @@ androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navi
 androidx-paging-compose-android = { module = "androidx.paging:paging-compose-android", version.ref = "androidxPagingCompose" }
 # compose
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+compose-ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "composeMultiplatform" }
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
 compose-animation = { module = "org.jetbrains.compose.animation:animation", version.ref = "composeMultiplatform" }
@@ -84,6 +85,9 @@ google-ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", ver
 
 # KotlinPoet
 kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinpoet" }
+
+# Testing
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 
 
 # build-logic
