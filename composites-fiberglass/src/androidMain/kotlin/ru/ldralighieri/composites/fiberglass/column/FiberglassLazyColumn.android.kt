@@ -31,13 +31,18 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
+import ru.ldralighieri.composites.fiberglass.model.requireSlot
 
 /**
  * Fiberglass lazy column Composite for [LazyPagingItems]
  *
+ * Loaded items require an exact runtime-class slot. Unloaded null placeholders render no
+ * content and do not require a slot.
+ *
  * @param items LazyPagingItems items.
- * @param itemSlots FiberglassLazyColumn [slots map][FiberglassLazyItemSlots]..
+ * @param itemSlots FiberglassLazyColumn [slots map][FiberglassLazyItemSlots].
  * @param modifier The modifier to apply to this layout.
  * @param state The state object to be used to control or observe the list's state.
  * @param contentPadding A padding around the whole content.
@@ -49,6 +54,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
  * is allowed.
  * @param itemKey A factory of stable and unique keys representing the item.
  * @param itemContentType A factory of the content types for the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @Composable
 public fun FiberglassLazyColumn(
@@ -82,7 +88,8 @@ public fun FiberglassLazyColumn(
             contentType = items.itemContentType(itemContentType),
         ) { position ->
             items[position]?.let { item ->
-                itemSlots[item::class]?.let { slot -> slot(position, item) }
+                val slot: FiberglassLazyItemSlot = itemSlots.requireSlot(item, position)
+                slot(position, item)
             }
         }
     }

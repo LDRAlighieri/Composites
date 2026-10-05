@@ -32,6 +32,11 @@ public typealias FiberglassLazyItemSlot =
 
 /**
  * FiberglassLazyColumn and FiberglassLazyRow slots map alias
+ *
+ * Slots are selected by the exact runtime class; superclass and interface registrations
+ * are not inherited. A missing slot throws [IllegalArgumentException] when the item is
+ * composed, including lazy prefetch. Positions are zero-based and local to the section
+ * for sectioned columns. Sticky headers use a separate [FiberglassStickyHeaderSlot].
  */
 public typealias FiberglassLazyItemSlots = Map<KClass<out FiberglassItem>, FiberglassLazyItemSlot>
 
@@ -49,6 +54,10 @@ public typealias FiberglassStickyHeaderSlot =
 
 /**
  * FiberglassColumn slots map alias
+ *
+ * Slots are selected by the exact runtime class; superclass and interface registrations
+ * are not inherited. A missing slot throws [IllegalArgumentException] when the item is
+ * composed. Slots receive the original item and its zero-based position.
  */
 public typealias FiberglassColumnItemSlots =
     Map<KClass<out FiberglassItem>, FiberglassColumnItemSlot>
@@ -61,6 +70,10 @@ public typealias FiberglassRowItemSlot =
 
 /**
  * FiberglassRow slots map alias
+ *
+ * Slots are selected by the exact runtime class; superclass and interface registrations
+ * are not inherited. A missing slot throws [IllegalArgumentException] when the item is
+ * composed. Slots receive the original item and its zero-based position.
  */
 public typealias FiberglassRowItemSlots = Map<KClass<out FiberglassItem>, FiberglassRowItemSlot>
 
@@ -72,6 +85,10 @@ public typealias FiberglassLazyGridItemSlot =
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slots map alias
+ *
+ * Slots are selected by the exact runtime class; superclass and interface registrations
+ * are not inherited. A missing slot throws [IllegalArgumentException] when the item is
+ * composed, including lazy prefetch. Slots receive the original item and its zero-based position.
  */
 public typealias FiberglassLazyGridItemSlots =
     Map<KClass<out FiberglassItem>, FiberglassLazyGridItemSlot>
@@ -84,6 +101,10 @@ public typealias FiberglassLazyStaggeredGridItemSlot =
 
 /**
  * Fiberglass[Vertical|Horizontal]Grid slots map alias
+ *
+ * Slots are selected by the exact runtime class; superclass and interface registrations
+ * are not inherited. A missing slot throws [IllegalArgumentException] when the item is
+ * composed, including lazy prefetch. Slots receive the original item and its zero-based position.
  */
 public typealias FiberglassLazyStaggeredGridItemSlots =
     Map<KClass<out FiberglassItem>, FiberglassLazyStaggeredGridItemSlot>

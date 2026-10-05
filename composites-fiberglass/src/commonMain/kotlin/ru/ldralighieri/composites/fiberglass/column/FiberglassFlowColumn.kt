@@ -25,8 +25,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ru.ldralighieri.composites.fiberglass.model.FiberglassColumnItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassColumnItemSlots
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.requireSlot
 
 /**
  * Fiberglass flow column Composite
@@ -40,6 +42,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * @param horizontalArrangement The horizontal arrangement of the layout's virtual columns.
  * @param maxItemsInEachColumn The maximum number of items per column.
  * @param itemKey A factory of the content types for the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @Composable
 public fun FiberglassFlowColumn(
@@ -61,7 +64,8 @@ public fun FiberglassFlowColumn(
         ) {
             items.forEachIndexed { position, item ->
                 key(itemKey?.invoke(position, item)) {
-                    itemSlots[item::class]?.let { it(position, item) }
+                    val slot: FiberglassColumnItemSlot = itemSlots.requireSlot(item, position)
+                    slot(position, item)
                 }
             }
         }

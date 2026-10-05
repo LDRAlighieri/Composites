@@ -30,9 +30,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderItem
 import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderSlot
+import ru.ldralighieri.composites.fiberglass.model.requireSlot
 
 /**
  * Fiberglass lazy column Composite
@@ -50,6 +52,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassStickyHeaderSlot
  * is allowed.
  * @param itemKey A factory of stable and unique keys representing the item.
  * @param itemContentType A factory of the content types for the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @Composable
 public fun FiberglassLazyColumn(
@@ -84,7 +87,8 @@ public fun FiberglassLazyColumn(
             key = itemKey,
             contentType = itemContentType,
         ) { position, item ->
-            itemSlots[item::class]?.let { it(position, item) }
+            val slot: FiberglassLazyItemSlot = itemSlots.requireSlot(item, position)
+            slot(position, item)
         }
     }
 }
@@ -118,6 +122,7 @@ public fun FiberglassLazyColumn(
  * including custom keys. A null factory uses positional item keys. Positional keys do not
  * guarantee state preservation on reorder.
  * @param itemContentType A factory of the content types for the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @Composable
 public fun FiberglassLazyColumn(
@@ -184,7 +189,8 @@ public fun FiberglassLazyColumn(
                 },
                 contentType = itemContentType,
             ) { itemPosition, item ->
-                itemSlots[item::class]?.let { it(itemPosition, item) }
+                val slot: FiberglassLazyItemSlot = itemSlots.requireSlot(item, itemPosition)
+                slot(itemPosition, item)
             }
         }
     }
