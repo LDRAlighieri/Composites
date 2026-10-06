@@ -52,6 +52,11 @@ repositories {
 }
 ```
 
+## Model state and stability
+
+`FiberglassItem` and `FiberglassStickyHeaderItem` are open interfaces and do not promise Compose
+stability for their implementations.
+
 ## Example
 
 List of items:
@@ -144,3 +149,4 @@ A more complex example can be found in the [demo application][demo]
 [LazyHorizontalStaggeredGrid]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/staggeredgrid/package-summary#LazyHorizontalStaggeredGrid(androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells,androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.foundation.layout.Arrangement.Vertical,androidx.compose.ui.unit.Dp,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)
 [LazyVerticalStaggeredGrid]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/staggeredgrid/package-summary#LazyVerticalStaggeredGrid(androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells,androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.ui.unit.Dp,androidx.compose.foundation.layout.Arrangement.Horizontal,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)
 [demo]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/ui/fiberglass/FiberglassRootScreen.kt
+[Compose stability contract]: https://developer.android.com/reference/kotlin/androidx/compose/runtime/Stable

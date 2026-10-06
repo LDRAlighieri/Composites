@@ -40,7 +40,7 @@ import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.runComposeUiTest
+import androidx.compose.ui.test.v2.runComposeUiTest
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyItemSlots
