@@ -28,8 +28,10 @@ import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ru.ldralighieri.composites.fiberglass.model.FiberglassColumnItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassColumnItemSlots
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.requireSlot
 
 /**
  * Fiberglass column Composite
@@ -43,6 +45,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
  * @param verticalArrangement The vertical arrangement of the layout's children.
  * @param horizontalAlignment The horizontal alignment of the layout's children.
  * @param itemKey A factory of stable and unique keys representing the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @Composable
 public fun FiberglassColumn(
@@ -65,7 +68,8 @@ public fun FiberglassColumn(
         ) {
             items.forEachIndexed { position, item ->
                 key(itemKey?.invoke(position, item)) {
-                    itemSlots[item::class]?.let { it(position, item) }
+                    val slot: FiberglassColumnItemSlot = itemSlots.requireSlot(item, position)
+                    slot(position, item)
                 }
             }
         }

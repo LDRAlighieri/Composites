@@ -31,7 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyStaggeredGridItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyStaggeredGridItemSlots
+import ru.ldralighieri.composites.fiberglass.model.requireSlot
 
 /**
  * Fiberglass lazy vertical staggered grid Composite
@@ -51,6 +53,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyStaggeredGridIt
  * false.
  * @param itemKey A factory of stable and unique keys representing the item.
  * @param itemContentType A factory of the content types for the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @ExperimentalFoundationApi
 @Composable
@@ -87,7 +90,8 @@ public fun FiberglassLazyVerticalStaggeredGrid(
             key = itemKey,
             contentType = itemContentType,
         ) { position, item ->
-            itemSlots[item::class]?.let { it(position, item) }
+            val slot: FiberglassLazyStaggeredGridItemSlot = itemSlots.requireSlot(item, position)
+            slot(position, item)
         }
     }
 }

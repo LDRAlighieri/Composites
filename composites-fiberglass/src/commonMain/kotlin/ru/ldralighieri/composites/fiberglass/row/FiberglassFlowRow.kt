@@ -26,7 +26,9 @@ import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlots
+import ru.ldralighieri.composites.fiberglass.model.requireSlot
 
 /**
  * Fiberglass flow row Composite
@@ -40,6 +42,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassRowItemSlots
  * @param verticalArrangement The vertical arrangement of the layout's virtual rows.
  * @param maxItemsInEachRow The maximum number of items per row.
  * @param itemKey A factory of the content types for the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @Composable
 public fun FiberglassFlowRow(
@@ -61,7 +64,8 @@ public fun FiberglassFlowRow(
         ) {
             items.forEachIndexed { position, item ->
                 key(itemKey?.invoke(position, item)) {
-                    itemSlots[item::class]?.let { it(position, item) }
+                    val slot: FiberglassRowItemSlot = itemSlots.requireSlot(item, position)
+                    slot(position, item)
                 }
             }
         }

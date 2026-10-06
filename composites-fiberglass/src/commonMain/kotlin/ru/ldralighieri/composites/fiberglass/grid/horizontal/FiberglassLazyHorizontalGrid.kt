@@ -29,7 +29,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
+import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlot
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlots
+import ru.ldralighieri.composites.fiberglass.model.requireSlot
 
 /**
  * Fiberglass lazy horizontal grid Composite
@@ -48,6 +50,7 @@ import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlots
  * is allowed. You can still scroll programmatically using the state even when it is disabled.
  * @param itemKey A factory of stable and unique keys representing the item.
  * @param itemContentType A factory of the content types for the item.
+ * @throws IllegalArgumentException If a composed item has no slot for its exact runtime class.
  */
 @Composable
 public fun FiberglassLazyHorizontalGrid(
@@ -84,7 +87,8 @@ public fun FiberglassLazyHorizontalGrid(
             key = itemKey,
             contentType = itemContentType,
         ) { position, item ->
-            itemSlots[item::class]?.let { it(position, item) }
+            val slot: FiberglassLazyGridItemSlot = itemSlots.requireSlot(item, position)
+            slot(position, item)
         }
     }
 }
