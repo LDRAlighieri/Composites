@@ -23,13 +23,13 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import ru.ldralighieri.composites.carbon.core.Destination
 import ru.ldralighieri.composites.shared.navigation.AppNavHost
 import ru.ldralighieri.composites.shared.navigation.LocalNavigator
@@ -39,38 +39,43 @@ import ru.ldralighieri.composites.shared.ui.theme.AppTheme
 @Composable
 public fun CompositesApp() {
     val navController: NavHostController = rememberNavController()
-    val navigator: Navigator = LocalNavigator.current
+    val navigator = remember { Navigator() }
 
-    LaunchedEffect(Unit) {
-        navigator.destinations
-            .onEach {
-                when (it) {
-                    is Navigator.Event.ToDestination -> {
-                        when (val destination: Destination = it.destination) {
-                            is Destination.Compose -> navController.navigate(destination.route)
-                        }
+    LaunchedEffect(navigator, navController) {
+        navigator.destinations.collect { event ->
+            when (event) {
+                is Navigator.Event.ToDestination -> {
+                    when (val destination: Destination = event.destination) {
+                        is Destination.Compose -> navController.navigate(destination.route)
                     }
+                }
 
-                    is Navigator.Event.Back -> navController.popBackStack()
+                Navigator.Event.Back -> {
+                    // Repeated Back taps must not remove the last screen.
+                    if (navController.previousBackStackEntry != null) {
+                        navController.popBackStack()
+                    }
                 }
             }
-            .launchIn(this)
+        }
     }
 
-    AppTheme {
-        Column {
-            Scaffold(
-                containerColor = Color.Transparent,
-                contentColor = AppTheme.colors.onBackground,
-                contentWindowInsets = WindowInsets(0, 0, 0, 0),
-            ) { innerPadding ->
-                AppNavHost(
-                    navController = navController,
-                    modifier = Modifier
-                        .background(color = AppTheme.colors.background)
-                        .padding(innerPadding)
-                        .consumeWindowInsets(innerPadding),
-                )
+    CompositionLocalProvider(LocalNavigator provides navigator) {
+        AppTheme {
+            Column {
+                Scaffold(
+                    containerColor = Color.Transparent,
+                    contentColor = AppTheme.colors.onBackground,
+                    contentWindowInsets = WindowInsets(0, 0, 0, 0),
+                ) { innerPadding ->
+                    AppNavHost(
+                        navController = navController,
+                        modifier = Modifier
+                            .background(color = AppTheme.colors.background)
+                            .padding(innerPadding)
+                            .consumeWindowInsets(innerPadding),
+                    )
+                }
             }
         }
     }

@@ -23,15 +23,15 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import ru.ldralighieri.composites.carbon.core.Destination
 
 internal class Navigator {
-    private val _destinations = Channel<Event>(Channel.CONFLATED)
+    private val _destinations = Channel<Event>(Channel.UNLIMITED)
     val destinations: Flow<Event> = _destinations.receiveAsFlow()
 
     fun navigateTo(destination: Destination) {
-        _destinations.trySend(Event.ToDestination(destination))
+        _destinations.trySend(Event.ToDestination(destination)).getOrThrow()
     }
 
     fun navigateBack() {
-        _destinations.trySend(Event.Back)
+        _destinations.trySend(Event.Back).getOrThrow()
     }
 
     sealed interface Event {
@@ -41,4 +41,6 @@ internal class Navigator {
     }
 }
 
-internal val LocalNavigator = staticCompositionLocalOf { Navigator() }
+internal val LocalNavigator = staticCompositionLocalOf<Navigator> {
+    error("Navigator must be provided by CompositesApp")
+}
