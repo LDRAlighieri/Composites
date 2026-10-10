@@ -28,27 +28,21 @@ plugins {
 android {
     namespace = "ru.ldralighieri.composites.android"
 
-    val targetSdk: String by project
-    val buildTools: String by project
-    val compileSdk: String by project
-    val minSdk: String by project
-    @Suppress("LocalVariableName") val VERSION_NAME: String by project
-
-    this.compileSdk = compileSdk.toInt()
-    buildToolsVersion = buildTools
+    compileSdk = providers.gradleProperty("compileSdk").get().toInt()
+    buildToolsVersion = providers.gradleProperty("buildTools").get()
 
     defaultConfig {
-        this.targetSdk = targetSdk.toInt()
+        targetSdk = providers.gradleProperty("targetSdk").get().toInt()
         applicationId = "ru.ldralighieri.composites.androidApp"
-        this.minSdk = minSdk.toInt()
+        minSdk = providers.gradleProperty("minSdk").get().toInt()
         versionCode = 1
-        versionName = VERSION_NAME
+        versionName = providers.gradleProperty("VERSION_NAME").get()
 
         vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
-        val debug by getting {
+        val debug = getByName("debug") {
             isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false

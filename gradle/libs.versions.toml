@@ -45,7 +45,7 @@ maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPubli
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv" }
-gver = { id = "com.github.ben-manes.versions", version.ref = "gver" }
+gver = { id = "io.github.ben-manes.versions", version.ref = "gver" }
 
 composites-library = { id = "composites.library", version = "unspecified" }
 composites-compose-multiplatform = { id = "composites.compose.multiplatform", version = "unspecified" }
