@@ -17,4 +17,5 @@
 
 <resources>
     <string name="app_name">Composites</string>
+    <string name="navigate_back">Back</string>
 </resources>

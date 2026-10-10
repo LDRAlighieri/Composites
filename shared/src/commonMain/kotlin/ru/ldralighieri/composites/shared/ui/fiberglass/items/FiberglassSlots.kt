@@ -84,7 +84,7 @@ private fun ImageSlot(width: Dp) {
     ) {
         Image(
             imageVector = Icons.Default.Image,
-            contentDescription = "",
+            contentDescription = null,
             modifier = Modifier.size(64.dp),
             colorFilter = ColorFilter.tint(color = AppTheme.colors.onBackground),
         )
