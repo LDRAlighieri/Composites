@@ -46,9 +46,9 @@ internal class DokkaMultiplatformConventionPlugin : Plugin<Project> {
                     skipEmptyPackages.set(true)
 
                     sourceLink {
-                        val relPath = rootProject.projectDir.toPath().relativize(projectDir.toPath())
-                        localDirectory.set(file("src/main/kotlin"))
-                        remoteUrl("https://github.com/LDRAlighieri/Composites/tree/master/$relPath/src/main/kotlin")
+                        val relPath = projectDir.relativeTo(rootProject.projectDir).invariantSeparatorsPath
+                        localDirectory.set(layout.projectDirectory.dir("src"))
+                        remoteUrl("https://github.com/LDRAlighieri/Composites/blob/main/$relPath/src")
                         remoteLineSuffix.set("#L")
                     }
 
