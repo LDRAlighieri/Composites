@@ -28,7 +28,7 @@ FiberglassColumn and FiberglassRow are great for small and not very complex case
 
 Android only:
 
-```groovy
+```kotlin
 dependencies {
     implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
 }
@@ -36,21 +36,18 @@ dependencies {
 
 Multiplatform:
 
-```groovy
+```kotlin
 kotlin {
-    commonMain.dependencies {
-        implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
+    sourceSets {
+        commonMain.dependencies {
+            implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
+        }
     }
 }
 ```
 
-Make sure that you have `mavenCentral()` in the list of repositories:
-
-```groovy
-repositories {
-    mavenCentral()
-}
-```
+Configure `google()` and `mavenCentral()` as described in the [root README](../README.md#using-in-your-projects).
+The Paging overload of `FiberglassLazyColumn` is available only on Android.
 
 ## Model state and stability
 
@@ -61,18 +58,11 @@ stability for their implementations.
 
 List of items:
 ```kotlin
-data class SpacerItem(val height: Int) : FiberglassItem {
-    override val id: String = UUID.randomUUID().toString()
-}
+data class SpacerItem(override val id: String, val height: Int) : FiberglassItem
 
-data class TitleItem(val title: String) : FiberglassItem {
-    override val id: String = title
-}
+data class TitleItem(override val id: String, val title: String) : FiberglassItem
 
-data class LoremIpsumItem(private val words: Int) : FiberglassItem {
-    val text = LOREM_IPSUM_SOURCE.take(words).joinToString(separator = " ")
-    override val id: Int = words
-}
+data class TextItem(override val id: String, val text: String) : FiberglassItem
 ```
 
 List of slots:
@@ -84,18 +74,16 @@ fun spacerItemSlot(): FiberglassLazyItemSlot = { _, item ->
 fun titleItemSlot(): FiberglassLazyItemSlot = { _, item ->
     Text(
         text = (item as TitleItem).title,
-        modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
-        color = AppTheme.colors.onBackground,
-        style = AppTheme.typography.headlineMedium
+        modifier = Modifier.padding(horizontal = 16.dp),
+        style = MaterialTheme.typography.titleMedium
     )
 }
 
-fun loremIpsumSlot(): FiberglassLazyItemSlot = { _, item ->
+fun textItemSlot(): FiberglassLazyItemSlot = { _, item ->
     Text(
-        text = (item as LoremIpsumItem).text,
-        modifier = Modifier.padding(horizontal = AppTheme.dimensions.horizontalGuideline),
-        color = AppTheme.colors.onBackground,
-        style = AppTheme.typography.bodyMedium,
+        text = (item as TextItem).text,
+        modifier = Modifier.padding(horizontal = 16.dp),
+        style = MaterialTheme.typography.bodyMedium,
     )
 }
 ```
@@ -109,9 +97,9 @@ private fun FiberglassColumnContent() {
             val count = 4
             repeat(count) {
                 val number = it + 1
-                add(TitleItem("Block №$number"))
-                add(LoremIpsumItem(20 * number))
-                if (number < count) add(SpacerItem(16))
+                add(TitleItem(id = "title:$number", title = "Block №$number"))
+                add(TextItem(id = "text:$number", text = "A block built from reusable items."))
+                if (number < count) add(SpacerItem(id = "spacer:$number", height = 16))
             }
         }
     }
@@ -121,16 +109,10 @@ private fun FiberglassColumnContent() {
         itemSlots = mapOf(
             SpacerItem::class to spacerItemSlot(),
             TitleItem::class to titleItemSlot(),
-            LoremIpsumItem::class to loremIpsumSlot()
+            TextItem::class to textItemSlot()
         ),
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(
-            top = AppTheme.dimensions.topGuideline,
-            bottom = WindowInsets.navigationBars
-                .only(WindowInsetsSides.Bottom)
-                .asPaddingValues()
-                .calculateBottomPadding() + AppTheme.dimensions.bottomGuideline
-        )
+        contentPadding = PaddingValues(vertical = 16.dp)
     )
 }
 ```
@@ -148,5 +130,5 @@ A more complex example can be found in the [demo application][demo]
 [LazyVerticalGrid]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/grid/package-summary#LazyVerticalGrid(androidx.compose.foundation.lazy.grid.GridCells,androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.grid.LazyGridState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.foundation.layout.Arrangement.Vertical,androidx.compose.foundation.layout.Arrangement.Horizontal,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)
 [LazyHorizontalStaggeredGrid]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/staggeredgrid/package-summary#LazyHorizontalStaggeredGrid(androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells,androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.foundation.layout.Arrangement.Vertical,androidx.compose.ui.unit.Dp,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)
 [LazyVerticalStaggeredGrid]: https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/staggeredgrid/package-summary#LazyVerticalStaggeredGrid(androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells,androidx.compose.ui.Modifier,androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState,androidx.compose.foundation.layout.PaddingValues,kotlin.Boolean,androidx.compose.ui.unit.Dp,androidx.compose.foundation.layout.Arrangement.Horizontal,androidx.compose.foundation.gestures.FlingBehavior,kotlin.Boolean,kotlin.Function1)
-[demo]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/ui/fiberglass/FiberglassRootScreen.kt
+[demo]: https://github.com/LDRAlighieri/Composites/blob/main/shared/src/commonMain/kotlin/ru/ldralighieri/composites/shared/ui/fiberglass/FiberglassRootScreen.kt
 [Compose stability contract]: https://developer.android.com/reference/kotlin/androidx/compose/runtime/Stable
