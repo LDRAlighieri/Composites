@@ -1,5 +1,5 @@
-﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v2.3.10-blue.svg?logo=kotlin)](https://kotlinlang.org)
-[![Compose Multiplatform Version](https://img.shields.io/badge/Compose_Multiplatform-v1.10.2-blue.svg?logo=jetpackcompose)](https://www.jetbrains.com/compose-multiplatform)
+﻿[![Kotlin Version](https://img.shields.io/badge/Kotlin-v2.4.21-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Compose Multiplatform Version](https://img.shields.io/badge/Compose_Multiplatform-v1.12.1-blue.svg?logo=jetpackcompose)](https://www.jetbrains.com/compose-multiplatform)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![API](https://img.shields.io/badge/API-23%2B-brightgreen.svg)](https://developer.android.com/tools/releases/platforms?hl=ru#6.0)
@@ -36,69 +36,34 @@ Please consider giving this repository a star ⭐ if you like the project.
 
 ## Using in your projects
 
-Android only:
+Use the Kotlin DSL instructions for your module:
 
-```groovy
-dependencies {
-    // Carbon
-    implementation("ru.ldralighieri.composites:composites-carbon-core:0.6.0")
-    ksp("ru.ldralighieri.composites:composites-carbon-processor:0.6.0")
+* [Carbon setup and navigation examples](composites-carbon/README.md#using-in-your-projects), including the Navigation dependency and task ordering for common source generation.
+* [Fiberglass setup and examples](composites-fiberglass/README.md#using-in-your-projects). Fiberglass can be used independently and does not require KSP.
 
-    // Fiberglass
-    implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
-}
-```
+Configure dependency repositories in `settings.gradle.kts`:
 
-Multiplatform:
-
-```groovy
-kotlin {
-    sourceSets {
-        commonMain {
-            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-
-            dependencies {
-                // Carbon
-                implementation("ru.ldralighieri.composites:composites-carbon-core:0.6.0")
-                
-                // Fiberglass
-                implementation("ru.ldralighieri.composites:composites-fiberglass:0.6.0")
-            }
-        }
-    }
-}
-
-dependencies {
-    // Carbon
-    add("kspCommonMainMetadata", "ru.ldralighieri.composites:composites-carbon-processor:0.6.0")
-}
-
-// https://github.com/google/ksp/issues/567
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().all {
-    if (name != "kspCommonMainKotlinMetadata") {
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
-}
-```
-
-Make sure that you have `mavenCentral()` in the list of repositories:
-
-```groovy
-repositories {
-    mavenCentral()
-}
-```
-
-Snapshot build:
 ```kotlin
-repositories {
-    maven("https://oss.sonatype.org/content/repositories/snapshots/")
-}
-
-dependencies {
-   implementation("ru.ldralighieri.composites:{module}:0.7.0-SNAPSHOT")
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 ```
+
+### Snapshot builds
+
+To use the development version, replace `0.6.0` with `0.7.0-SNAPSHOT` in the module instructions, keeping Carbon core and processor on the same version.
+Add the [Central Portal snapshot repository](https://central.sonatype.org/publish/publish-portal-snapshots/#consuming-via-gradle) to the repositories above:
+
+```kotlin
+maven("https://central.sonatype.com/repository/maven-snapshots/") {
+    content { includeGroup("ru.ldralighieri.composites") }
+}
+```
+
+Snapshots are updated in place and may differ from a particular checkout.
 
 
 ## Run `App`:
@@ -108,7 +73,7 @@ dependencies {
 - Desktop: `./gradlew :app:desktopApp:run`
 - Desktop Hot Reload: `./gradlew :app:desktopApp:hotRun`
 - Web (WASM): `./gradlew :app:webApp:wasmJsBrowserDevelopmentRun`
-- Web (JS): `./gradlew :app:webApp:jsBrowserDevelopmentRun` (only for browsers that do not support WASM)
+- Web (JS): `./gradlew :app:webApp:jsBrowserDevelopmentRun` (use this to test the JS target independently)
 
 
 ## If you're finding performance issues

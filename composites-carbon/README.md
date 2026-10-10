@@ -23,18 +23,19 @@ Allows you to significantly reduce routine and time spent on creating `Route` ob
 
 ## Using in your projects
 
-Android only:
+Android only (`com.android.application` or `com.android.library`):
 
-```groovy
+```kotlin
 dependencies {
     implementation("ru.ldralighieri.composites:composites-carbon-core:0.6.0")
     ksp("ru.ldralighieri.composites:composites-carbon-processor:0.6.0")
+    implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
 }
 ```
 
-Multiplatform:
+Multiplatform, with argument models in `commonMain`:
 
-```groovy
+```kotlin
 kotlin {
     sourceSets {
         commonMain {
@@ -42,6 +43,7 @@ kotlin {
 
             dependencies {
                 implementation("ru.ldralighieri.composites:composites-carbon-core:0.6.0")
+                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
             }
         }
     }
@@ -79,14 +81,16 @@ repositories {
 
 The arguments class/object is the basis for generating the Route object:
 ```kotlin
+import ru.ldralighieri.composites.carbon.core.CarbonRoute
+import ru.ldralighieri.composites.carbon.core.DefaultValue
+
 @CarbonRoute(route = "composites/fiberglass", deeplinkSchema = "composites")
 data class CompositesFiberglassArgs(
-    @DefaultValue("Fiberglass composites") val title: String
+    @DefaultValue("Fiberglass") val title: String
 )
 ```
-The generator currently only supports primitives and strings as arguments.
 
-The generated `Route` object will look as follows:
+The generated `Route` object is placed in the same package (imports omitted below):
 ```kotlin
 public object CompositesFiberglassRoute { 
     public const val route: String = "composites/fiberglass/{title}"
@@ -95,7 +99,7 @@ public object CompositesFiberglassRoute {
         navArgument("title") { 
             type = StringType
             nullable = false
-            defaultValue = "Fiberglass composites"
+            defaultValue = "Fiberglass"
         },
     )
 
@@ -105,24 +109,27 @@ public object CompositesFiberglassRoute {
         }
     )
 
-  public fun create(title: String = "Fiberglass composites"): Destination.Compose = 
+  public fun create(title: String = "Fiberglass"): Destination.Compose =
       Destination.Compose("composites/fiberglass/$title")
 
   public fun parseArguments(navBackStackEntry: NavBackStackEntry): CompositesFiberglassArgs = 
       CompositesFiberglassArgs(
-          title = navBackStackEntry.savedStateHandle.get<String>("title") ?: "Fiberglass composites",
+          title = navBackStackEntry.savedStateHandle.get<String>("title") ?: "Fiberglass",
       )
 
   public fun parseArguments(savedStateHandle: SavedStateHandle): CompositesFiberglassArgs = 
       CompositesFiberglassArgs(
-          title = savedStateHandle.get<String>("title") ?: "Fiberglass composites",
+          title = savedStateHandle.get<String>("title") ?: "Fiberglass",
       )
 }
 ```
 The object contains the components necessary for navigation:
-- `route`, `arguments` and `deeplink` are used for navigation
-- `create` creates a Destination class for [navigator]
-- `parseArguments` and `parseArguments` for parsing the argument class from `NavBackStackEntry` and `SavedStateHandle` respectively
+- `route`, `arguments` and `deepLinks` configure a destination in the navigation graph
+- `create()` returns a `Destination.Compose` whose `route` can be passed to `NavController.navigate()` or the demo's [navigator]
+- The two `parseArguments()` overloads reconstruct the argument model from `NavBackStackEntry` or `SavedStateHandle`
+
+`deeplinkSchema = "composites"` generates `composites://composites/fiberglass/{title}`.
+Register `deepLinks` in the navigation graph. External Android links also require a matching `VIEW` intent filter in the manifest; the demo's filters are currently commented out, so its generated patterns alone do not enable external launches.
 
 If the base object contains no arguments:
 ```kotlin
@@ -130,7 +137,7 @@ If the base object contains no arguments:
 data object CompositesArgs
 ```
 
-Then the generated `Route` object will not contain `parseArguments` and `parseArguments` methods:
+Then the generated `Route` object will not contain either `parseArguments()` overload:
 ```kotlin
 public object CompositesRoute {
     public const val route: String = "composites"
@@ -143,29 +150,40 @@ public object CompositesRoute {
 }
 ```
 
-Using a simple [navigator], you can implement navigation based on the Route object:
+This composable registers both routes using Navigation Compose and Compose Material (`org.jetbrains.compose.material:material:1.12.1`):
 ```kotlin
-val navigator: Navigator = LocalNavigator.current
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
-LazyColumn {
-    item(key = "fiberglass") {
-        CompositeItem(
-            title = "Fiberglass",
-            onClick = {
-                navigator.navigateTo(
-                    CompositesFiberglassRoute.create(title = "Not a default title")
-                )
+@Composable
+fun CarbonDemo() {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = CompositesRoute.route) {
+        composable(route = CompositesRoute.route) {
+            Button(
+                onClick = {
+                    navController.navigate(
+                        CompositesFiberglassRoute.create(title = "Fiberglass").route
+                    )
+                }
+            ) {
+                Text("Fiberglass")
             }
-        )
+        }
+        composable(
+            route = CompositesFiberglassRoute.route,
+            arguments = CompositesFiberglassRoute.arguments,
+            deepLinks = CompositesFiberglassRoute.deepLinks,
+        ) { navBackStackEntry ->
+            val args = CompositesFiberglassRoute.parseArguments(navBackStackEntry)
+            Text(args.title)
+        }
     }
-}
-
-composable(
-    route = CompositesFiberglassRoute.route,
-    arguments = CompositesFiberglassRoute.arguments,
-    deepLinks = CompositesFiberglassRoute.deepLinks,
-) { navBackStackEntry ->
-    FiberglassRootScreen(args = CompositesFiberglassRoute.parseArguments(navBackStackEntry))
 }
 ```
 
@@ -173,8 +191,8 @@ A more complex example can be found in the [demo application][demo]
 
 
 [ksp]: https://kotlinlang.org/docs/ksp-overview.html
-[navigator]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/navigation/Navigator.kt
+[navigator]: https://github.com/LDRAlighieri/Composites/blob/main/shared/src/commonMain/kotlin/ru/ldralighieri/composites/shared/navigation/Navigator.kt
 [composites-carbon-core]: https://github.com/LDRAlighieri/Composites/tree/main/composites-carbon/core
 [composites-carbon-processor]: https://github.com/LDRAlighieri/Composites/tree/main/composites-carbon/processor
 [navigation]: https://developer.android.com/guide/navigation
-[demo]: https://github.com/LDRAlighieri/Composites/blob/master/sample/src/main/kotlin/ru/ldralighieri/composites/sample/navigation/AppNavHost.kt
+[demo]: https://github.com/LDRAlighieri/Composites/blob/main/shared/src/commonMain/kotlin/ru/ldralighieri/composites/shared/navigation/AppNavHost.kt
