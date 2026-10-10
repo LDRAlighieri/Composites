@@ -52,6 +52,7 @@ android {
             isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
+            // Local/CI demo only; debug signing is intentional.
             signingConfig = debug.signingConfig
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
