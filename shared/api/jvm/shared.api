@@ -44,6 +44,7 @@ public final class composites/shared/generated/resources/Res$string {
 
 public final class composites/shared/generated/resources/String0_commonMainKt {
 	public static final fun getApp_name (Lcomposites/shared/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getNavigate_back (Lcomposites/shared/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
 }
 
 public final class ru/ldralighieri/composites/shared/navigation/ComposableSingletons$AppNavHostKt {

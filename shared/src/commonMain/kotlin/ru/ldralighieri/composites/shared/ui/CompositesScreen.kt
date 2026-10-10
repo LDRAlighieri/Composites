@@ -98,7 +98,7 @@ public fun CompositeItem(
     ) {
         Image(
             painter = painterResource(Res.drawable.fiberglass),
-            contentDescription = "",
+            contentDescription = null,
             modifier = Modifier.size(48.dp),
             colorFilter = ColorFilter.tint(color = AppTheme.colors.onBackground),
         )
