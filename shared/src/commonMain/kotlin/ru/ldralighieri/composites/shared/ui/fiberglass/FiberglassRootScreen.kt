@@ -37,6 +37,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import composites.shared.generated.resources.Res
+import composites.shared.generated.resources.navigate_back
+import org.jetbrains.compose.resources.stringResource
 import ru.ldralighieri.composites.shared.navigation.CompositesFiberglassArgs
 import ru.ldralighieri.composites.shared.navigation.CompositesFiberglassExampleRoute
 import ru.ldralighieri.composites.shared.navigation.FiberglassType
@@ -56,7 +59,10 @@ internal fun FiberglassRootScreen(args: CompositesFiberglassArgs) {
             },
             navigationIcon = {
                 IconButton(onClick = { navigator.navigateBack() }) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "")
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = stringResource(Res.string.navigate_back),
+                    )
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(

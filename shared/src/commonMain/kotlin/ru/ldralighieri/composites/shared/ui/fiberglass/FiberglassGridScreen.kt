@@ -38,6 +38,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import composites.shared.generated.resources.Res
+import composites.shared.generated.resources.navigate_back
+import org.jetbrains.compose.resources.stringResource
 import ru.ldralighieri.composites.fiberglass.grid.vertical.FiberglassLazyVerticalGrid
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
 import ru.ldralighieri.composites.shared.navigation.CompositesFiberglassExampleArgs
@@ -61,7 +64,10 @@ internal fun FiberglassGridScreen(args: CompositesFiberglassExampleArgs) {
             },
             navigationIcon = {
                 IconButton(onClick = { navigator.navigateBack() }) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "")
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = stringResource(Res.string.navigate_back),
+                    )
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(

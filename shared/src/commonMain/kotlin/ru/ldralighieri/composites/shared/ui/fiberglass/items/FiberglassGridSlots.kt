@@ -27,13 +27,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ru.ldralighieri.composites.fiberglass.model.FiberglassLazyGridItemSlot
 import ru.ldralighieri.composites.shared.ui.theme.AppTheme
-import kotlin.random.Random
 
-private fun gridSlot(backgroundColor: Color): FiberglassLazyGridItemSlot = { _, _ ->
+private fun gridSlot(backgroundColor: Color): FiberglassLazyGridItemSlot = { _, item ->
     Box(
         modifier = Modifier
             .aspectRatio(1f)
-            .padding(Random.nextInt(8, 48).dp)
+            .padding((item as GridItem).padding.dp)
             .clip(AppTheme.shapes.medium)
             .background(backgroundColor),
     )

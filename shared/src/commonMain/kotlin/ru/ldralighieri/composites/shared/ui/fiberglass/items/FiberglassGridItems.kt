@@ -17,12 +17,13 @@
 package ru.ldralighieri.composites.shared.ui.fiberglass.items
 
 import ru.ldralighieri.composites.fiberglass.model.FiberglassItem
-import kotlin.uuid.ExperimentalUuidApi
+import kotlin.random.Random
 import kotlin.uuid.Uuid
 
 internal abstract class GridItem : FiberglassItem {
-    @OptIn(ExperimentalUuidApi::class)
     override val id: String = Uuid.random().toString()
+
+    val padding: Int = Random.nextInt(8, 48)
 }
 
 internal class PrimaryGridItem : GridItem()
