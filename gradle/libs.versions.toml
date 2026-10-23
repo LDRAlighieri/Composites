@@ -15,7 +15,7 @@ kotlin = "2.4.21"
 # Androidx
 androidxCoreSplashscreen = "1.2.0"
 androidxActivity = "1.13.0"
-androidxNavigation = "2.9.2"
+androidxNavigation = "2.10.0"
 androidxPagingCompose = "3.5.3"
 
 # Compose
