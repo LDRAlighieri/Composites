@@ -38,11 +38,14 @@ jobs:
 
       - name: Publish to Sonatype
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        # Gradle retries transient network errors, including HTTP 429, with exponential backoff.
         run: |
           ./gradlew publish --no-parallel \
             --max-workers 1 \
             -Dorg.gradle.internal.http.connectionTimeout=120000 \
-            -Dorg.gradle.internal.http.socketTimeout=120000
+            -Dorg.gradle.internal.http.socketTimeout=120000 \
+            -Dorg.gradle.internal.network.retry.max.attempts=4 \
+            -Dorg.gradle.internal.network.retry.initial.backOff=30000
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
